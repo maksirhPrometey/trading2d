@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='page',
             name='slug',
-            field=models.SlugField(max_length=64, null=True),
+            field=models.SlugField(db_index=False, max_length=64, null=True),
         ),
         migrations.AlterField(
             model_name='page',
