@@ -115,9 +115,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Адміністративний URL — на проді МАЄ бути перевизначений через env ADMIN_URL,
-# щоб не залишати дефолтний /admin/ для ботів.
-ADMIN_URL = env('ADMIN_URL', 'admin/')
+# Адмінка — ніколи дефолтний /admin/ (ERR-132). Порожнє і літерал admin → manage/
+_admin_path = (env('ADMIN_URL', 'manage') or 'manage').strip().strip('/')
+if not _admin_path or _admin_path.lower() == 'admin':
+    _admin_path = 'manage'
+ADMIN_URL = f'{_admin_path}/'
+LOGIN_URL = 'admin:login'
 
 X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
