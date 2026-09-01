@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='slug',
-            field=models.SlugField(blank=True, max_length=255),
+            field=models.SlugField(blank=True, db_index=False, max_length=255),
         ),
         migrations.AddField(
             model_name='product',
