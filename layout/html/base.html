@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="TRADING 2D – Інтернет-магазин">
+  <meta name="theme-color" content="#FAFAFA">
+  
+  <title>{% block title %}TRADING 2D{% endblock %}</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/typography.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <!-- Header -->
+  {% include 'components/header.html' %}
+  
+  <!-- Main Content -->
+  <main class="main">
+    {% block content %}{% endblock %}
+  </main>
+  
+  <!-- Footer -->
+  {% include 'components/footer.html' %}
+  
+  <!-- Scripts -->
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

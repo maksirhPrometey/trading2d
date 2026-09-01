@@ -1,0 +1,35 @@
+{% load i18n %}
+{% if page_obj.has_other_pages %}
+  <nav class="pagination" aria-label="{% trans 'Сторінки каталогу' %}">
+    {% if page_obj.has_previous %}
+      <a
+        class="pagination-item"
+        href="?{% if query_string %}{{ query_string }}&{% endif %}page={{ page_obj.previous_page_number }}"
+      >← {% trans 'Назад' %}</a>
+    {% else %}
+      <span class="pagination-item disabled">← {% trans 'Назад' %}</span>
+    {% endif %}
+
+    {% for page_number in page_range %}
+      {% if page_number == page_obj.number %}
+        <span class="pagination-item active" aria-current="page">{{ page_number }}</span>
+      {% elif page_number == page_obj.paginator.ELLIPSIS %}
+        <span class="pagination-item pagination-ellipsis disabled">{{ page_number }}</span>
+      {% else %}
+        <a
+          class="pagination-item"
+          href="?{% if query_string %}{{ query_string }}&{% endif %}page={{ page_number }}"
+        >{{ page_number }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a
+        class="pagination-item"
+        href="?{% if query_string %}{{ query_string }}&{% endif %}page={{ page_obj.next_page_number }}"
+      >{% trans 'Вперед' %} →</a>
+    {% else %}
+      <span class="pagination-item disabled">{% trans 'Вперед' %} →</span>
+    {% endif %}
+  </nav>
+{% endif %}

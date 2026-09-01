@@ -1,0 +1,588 @@
+/* ========================================
+   TRADING 2D – Industrial Tech overrides
+   Loaded after responsive.css. No !important.
+   ======================================== */
+
+.btn-primary {
+  background-color: var(--accent-start);
+  background-image: var(--accent-gradient);
+  color: var(--text-on-dark);
+  border-color: transparent;
+  transition: filter var(--duration-base) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.btn-primary:hover:not(:disabled),
+.btn-primary:focus-visible:not(:disabled) {
+  background-color: var(--accent-end);
+  background-image: var(--accent-gradient);
+  filter: brightness(1.06);
+  color: var(--text-on-dark);
+}
+
+.badge-accent {
+  background-color: var(--accent-start);
+  background-image: var(--accent-gradient);
+  color: var(--text-on-dark);
+}
+
+/* ---- PRODUCT GRID ---- */
+
+/* auto-fit + фіксований верхній ліміт (замість 1fr) не дає карткам
+   розтягуватись на всю ширину і не лишає порожні колонки, коли товарів
+   менше за максимальну кількість колонок (напр. 2 товари у "4-колонковому"
+   ряду) — рядок стискається до фактичної кількості карток і центрується. */
+.grid-auto-lg {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 300px));
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Каталог має свій sidebar (280-320px + gap), тож .catalog-main завжди
+   вужчий за головну сторінку — auto-fit з мінімумом 260px там влазить лише
+   у 2 колонки. На відміну від головної (де буває 1-3 товари і auto-fit
+   рятує від порожнього рядка), у каталозі товарів завжди багато (пагінація),
+   тож фіксовані 4 колонки безпечні й дають потрібний рядок з 4 карток.
+   min-width: 1025px — щоб не конфліктувати за специфічністю з планшетними/
+   мобільними правилами .grid-auto-lg у industrial-mq.css (там max-width: 1024px
+   і 639px на тому самому селекторі .grid-auto-lg без класу .catalog-grid). */
+@media (min-width: 1025px) {
+  .catalog-grid.grid-auto-lg,
+  .home-products-grid.grid-auto-lg {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-content: stretch;
+  }
+}
+
+.card {
+  border: none;
+  box-shadow: var(--shadow-card);
+}
+
+.card-product {
+  padding: 0;
+  min-height: 440px;
+  background-color: var(--bg-card);
+  /* НЕ hidden: базовий .card клас (components.css) кладе overflow:hidden,
+     і якщо контент (2-рядкова назва + бейдж + кнопка) через будь-яку
+     розбіжність рендеру (flex-basis% від .card-product-media, шрифти,
+     iOS Safari) трохи не влазить у min-height, кнопку "До кошика" зверху
+     обрізає межа картки. overflow:visible гарантує, що CTA завжди видима
+     повністю, картка просто трохи виросте, а не сховає низ. */
+  overflow: visible;
+}
+
+.card-product-media {
+  /* flex-basis у % рахується від висоти .card-product, а та задається
+     через height:100% (у components.css) від висоти grid-рядка — це
+     циклічна/невизначена величина, яку різні браузери (особливо Safari)
+     можуть резолвити по-різному. flex:1 1 auto забирає лишній простір
+     без залежності від %, тож картка рахується однаково у всіх браузерах. */
+  flex: 1 1 auto;
+  min-height: 220px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card-product-media .card-product-image-link,
+.card-product-media .product-thumb-wrap,
+.card-product-media .card-product-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.card-product-image,
+.card-product-media .demo-photo,
+.product-thumb-wrap .card-product-image,
+.product-thumb-wrap .demo-photo,
+.product-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  max-height: 240px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.card-product .card-body {
+  padding: 0 var(--sp-lg) var(--sp-sm);
+  margin-bottom: 0;
+}
+
+.card-product-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+}
+
+.card-product-actions {
+  padding: 0 var(--sp-lg) var(--sp-lg);
+  align-items: stretch;
+}
+
+.btn-cart {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  min-height: 52px;
+  padding: var(--sp-md) var(--sp-lg);
+  background-color: var(--btn-primary);
+  background-image: none;
+  color: var(--text-on-dark);
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.btn-cart::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.btn-cart:hover:not(:disabled),
+.btn-cart:focus-visible:not(:disabled) {
+  background-color: var(--btn-primary);
+  background-image: none;
+  color: var(--text-on-dark);
+  filter: none;
+}
+
+.btn-cart:hover:not(:disabled)::before,
+.btn-cart:focus-visible:not(:disabled)::before {
+  opacity: 1;
+}
+
+.btn-cart:disabled {
+  background-color: #A1A1AA;
+}
+
+.stock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: var(--stock-bg);
+  color: var(--stock-fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.stock-badge.is-out {
+  background-color: #F4F4F5;
+  color: #52525B;
+}
+
+.stock-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--stock-dot);
+  flex-shrink: 0;
+}
+
+.stock-badge:not(.is-out) .stock-dot {
+  animation: stock-pulse 1.6s ease-out infinite;
+}
+
+@keyframes stock-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* ---- HERO (Premium Clean Tech) ---- */
+
+.hero-industrial {
+  position: relative;
+  min-height: 500px;
+  background-color: var(--hero-bg);
+  background-image: linear-gradient(165deg, var(--hero-bg) 0%, #F3F5F7 48%, var(--hero-bg-end) 100%);
+  color: var(--hero-heading);
+  overflow: hidden;
+  padding: 0;
+  text-align: left;
+  border-bottom: 1px solid #EEF1F4;
+}
+
+.hero-industrial--photo {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-industrial--photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: linear-gradient(
+    100deg,
+    var(--hero-bg) 0%,
+    var(--hero-bg) 32%,
+    rgba(248, 249, 250, 0.82) 46%,
+    rgba(248, 249, 250, 0.35) 62%,
+    rgba(248, 249, 250, 0.05) 78%
+  );
+}
+
+.hero-industrial-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: var(--sp-2xl);
+  align-items: center;
+  min-height: 500px;
+  padding-block: var(--sp-2xl);
+}
+
+.hero-copy h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5.2vw, 4rem);
+  font-weight: var(--fw-black);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--hero-heading);
+  margin-bottom: var(--sp-md);
+  max-width: 12ch;
+}
+
+/* Заголовок (важкий, uppercase, Montserrat) і опис (тонкий, звичайний
+   регістр, Inter) поруч виглядали "нерівно" через різницю у вазі шрифту —
+   опис ніби "провисав" окремо від заголовка. Тісніший відступ зверху
+   (sp-md замість sp-lg на h1) і трохи більша вага/контраст тексту тут
+   зв'язують їх в один візуальний блок замість двох розрізнених рядків. */
+.hero-industrial .hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  color: var(--hero-heading);
+  opacity: 0.72;
+  max-width: 36rem;
+  margin: 0 0 var(--sp-xl);
+  text-align: left;
+}
+
+.hero-cta {
+  min-height: 52px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  background-color: var(--hero-cta);
+  background-image: none;
+  color: #FFFFFF;
+  box-shadow: none;
+  filter: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.hero-cta:hover,
+.hero-cta:focus-visible {
+  background-color: var(--hero-cta-hover);
+  background-image: none;
+  color: #FFFFFF;
+  filter: none;
+  box-shadow: 0 10px 18px -8px rgba(15, 23, 42, 0.28);
+}
+
+.hero-cta:active {
+  background-color: var(--hero-cta);
+  box-shadow: none;
+}
+
+.hero-cutout {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+  background: transparent;
+}
+
+.hero-cutout::before {
+  content: "";
+  position: absolute;
+  width: min(440px, 86%);
+  height: min(440px, 86%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 36%, #EDF3F8 0%, var(--hero-shape) 58%, transparent 72%);
+  transform: translateZ(0);
+  pointer-events: none;
+}
+
+.hero-cutout-img,
+.hero-cutout-fallback {
+  position: relative;
+  z-index: 1;
+  max-height: 440px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  background-color: transparent;
+}
+
+.hero-cutout-img {
+  mix-blend-mode: multiply;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  animation: hero-float 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes hero-float {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(6px, -8px) rotate(1deg); }
+  50% { transform: translate(0, -4px) rotate(0deg); }
+  75% { transform: translate(-6px, -8px) rotate(-1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.hero-cutout-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(320px, 100%);
+  height: 280px;
+  color: var(--hero-muted);
+  font-family: var(--font-display);
+  font-weight: var(--fw-black);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---- QUICK PAY + DRAWER ---- */
+
+.btn-quick-pay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-black);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--duration-base) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.btn-quick-pay:hover,
+.btn-quick-pay:focus-visible {
+  background-color: #18181B;
+  color: #FFFFFF;
+}
+
+.btn-quick-pay:active {
+  transform: scale(0.98);
+}
+
+.btn-quick-pay svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.cart-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background-color: rgba(15, 23, 42, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--duration-base) var(--ease-out),
+    visibility var(--duration-base) var(--ease-out);
+}
+
+.cart-drawer-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: calc(var(--z-modal) + 1);
+  display: flex;
+  flex-direction: column;
+  width: min(420px, 100vw);
+  height: 100dvh;
+  max-height: -webkit-fill-available;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(100%);
+  transition: transform var(--duration-slow) var(--ease-out);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.cart-drawer.is-open {
+  transform: translateX(0);
+}
+
+.cart-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-md);
+  padding: var(--sp-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cart-drawer-head h2 {
+  margin: 0;
+  font-size: var(--fs-lg);
+}
+
+.cart-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sp-lg);
+}
+
+.cart-drawer-item {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: var(--sp-md);
+  align-items: center;
+  padding-bottom: var(--sp-md);
+  margin-bottom: var(--sp-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cart-drawer-item img,
+.cart-drawer-item .demo-photo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  background-color: var(--bg-main);
+}
+
+.cart-drawer-item-name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.cart-drawer-foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  padding: var(--sp-lg);
+  padding-bottom: max(var(--sp-lg), env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+}
+
+.cart-drawer-total {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-weight: var(--fw-black);
+  text-transform: uppercase;
+}
+
+body.cart-drawer-open {
+  overflow: hidden;
+}
+
+/* ---- CATALOG FILTERS: нейтральний акцент замість помаранчевого ----
+   --color-accent (помаранч) лишається зарезервованим для ціни/CTA десь
+   в іншому місці сайту, але в сайдбарі фільтрів на світлому/графітовому
+   тлі він виглядає чужорідно. Тут — той самий графіт, що й у .btn-cart /
+   .hero-cta, для консистентного monochrome-вигляду фільтрів. */
+.catalog-filters-submit.btn-primary {
+  background-color: var(--btn-primary);
+  background-image: none;
+  color: var(--text-on-dark);
+}
+
+.catalog-filters-submit.btn-primary:hover:not(:disabled),
+.catalog-filters-submit.btn-primary:focus-visible:not(:disabled) {
+  background-color: var(--btn-primary-hover);
+  background-image: none;
+  filter: none;
+}
+
+.category-acc-link.is-active {
+  color: var(--text-main);
+  background-color: var(--color-bg-alt);
+}
+
+.category-acc:has(.is-active) > .category-acc-summary {
+  color: var(--text-main);
+}
+
+.category-acc-link:focus-visible,
+.category-acc-summary:focus-visible,
+.category-link:focus-visible {
+  outline-color: var(--text-main);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .category-acc-link:hover,
+  .category-acc-summary:hover,
+  .category-search-results .category-child-link:hover {
+    color: var(--text-main);
+    background-color: var(--color-bg-alt);
+  }
+
+  .category-link:hover {
+    color: var(--text-main);
+  }
+}
+
+.category-link.active {
+  color: var(--text-main);
+  background-color: var(--color-bg-alt);
+}
+
+.catalog-checkbox {
+  accent-color: var(--btn-primary);
+}
+
+.catalog-price-input:focus,
+.category-search-input:focus {
+  border-color: var(--btn-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--btn-primary) 10%, transparent);
+}

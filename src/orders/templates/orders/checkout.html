@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load i18n i18n_fields static %}
+
+{% block title %}{% trans 'Оформлення замовлення' %} – TRADING 2D{% endblock %}
+
+{% block content %}
+
+  <nav class="breadcrumbs breadcrumbs-alt" aria-label="{% trans 'Хлібні крихти' %}">
+    <div class="container">
+      <ol class="breadcrumbs-list">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Головна' %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'cart_detail' %}">{% trans 'Кошик' %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans 'Оформлення замовлення' %}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="container checkout-page">
+    <h1 class="mb-lg">{% trans 'Оформлення замовлення' %}</h1>
+
+    <div class="checkout-layout">
+      <form method="post" class="checkout-form" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <div class="form-error mb-md">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <section class="checkout-section">
+          <h2>{% trans 'Контактні дані' %}</h2>
+          <div class="form-group">
+            <label class="form-label" for="{{ form.full_name.id_for_label }}">{% trans 'ПІБ' %}</label>
+            {{ form.full_name }}
+            {{ form.full_name.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="{{ form.phone.id_for_label }}">{% trans 'Телефон' %}</label>
+            {{ form.phone }}
+            {{ form.phone.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="{{ form.email.id_for_label }}">{% trans "E-mail (необов'язково)" %}</label>
+            {{ form.email }}
+          </div>
+        </section>
+
+        <section class="checkout-section">
+          <h2>{% trans 'Доставка' %}</h2>
+          <div class="form-group">
+            {% for radio in form.delivery_method %}
+              <label class="catalog-checkbox-label">{{ radio.tag }} {{ radio.choice_label }}</label>
+            {% endfor %}
+          </div>
+          <div class="form-group" data-np-fields>
+            <label class="form-label" for="{{ form.np_city_name.id_for_label }}">{% trans 'Місто (Нова Пошта)' %}</label>
+            {{ form.np_city_name }}
+            {{ form.np_city_ref }}
+            <ul class="category-search-results" data-np-city-results hidden></ul>
+          </div>
+          <div class="form-group" data-np-fields>
+            <label class="form-label" for="{{ form.np_warehouse_name.id_for_label }}">{% trans 'Відділення' %}</label>
+            {{ form.np_warehouse_name }}
+            {{ form.np_warehouse_ref }}
+            <ul class="category-search-results" data-np-warehouse-results hidden></ul>
+          </div>
+          {% if form.errors.np_city_ref or form.errors.np_warehouse_ref %}
+            <p class="form-error">{% trans 'Оберіть місто та відділення зі списку.' %}</p>
+          {% endif %}
+        </section>
+
+        <section class="checkout-section">
+          <h2>{% trans 'Оплата' %}</h2>
+          <div class="form-group">
+            {% for radio in form.payment_method %}
+              <label class="catalog-checkbox-label">{{ radio.tag }} {{ radio.choice_label }}</label>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="checkout-section">
+          <h2>{% trans 'Коментар' %}</h2>
+          <div class="form-group">
+            {{ form.comment }}
+          </div>
+        </section>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">{% trans 'Підтвердити замовлення' %}</button>
+      </form>
+
+      <aside class="cart-summary">
+        <h2>{% trans 'Ваше замовлення' %}</h2>
+        {% for item in cart.items.all %}
+          <div class="cart-summary-row">
+            <span>{{ item.product|loc:'name' }} × {{ item.quantity }}</span>
+            <span>{{ item.line_total|floatformat:0 }} {% trans 'грн' %}</span>
+          </div>
+        {% endfor %}
+        <div class="cart-summary-row cart-summary-total">
+          <span>{% trans 'Разом' %}</span>
+          <span>{{ cart.total_price|floatformat:0 }} {% trans 'грн' %}</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/checkout.js' %}" defer></script>
+{% endblock %}

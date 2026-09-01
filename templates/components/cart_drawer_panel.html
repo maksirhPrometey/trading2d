@@ -1,0 +1,15 @@
+{% load i18n i18n_fields %}
+{% if cart and cart.items.all %}
+  {% for item in cart.items.all %}
+    <article class="cart-drawer-item">
+      {% include 'components/product_card_image.html' with product=item.product %}
+      <div>
+        <a href="{% url 'product_detail' item.product.slug %}" class="cart-drawer-item-name">{{ item.product|loc:'name' }}</a>
+        <p class="text-sm text-muted">{{ item.quantity }} × {{ item.product.price|floatformat:0 }} {% trans 'грн' %}</p>
+      </div>
+      <strong>{{ item.line_total|floatformat:0 }} {% trans 'грн' %}</strong>
+    </article>
+  {% endfor %}
+{% else %}
+  <p>{% trans 'Ваш кошик порожній.' %}</p>
+{% endif %}

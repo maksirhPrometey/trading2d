@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load i18n i18n_fields %}
+
+{% block title %}{% trans 'Кошик' %} – TRADING 2D{% endblock %}
+
+{% block content %}
+
+  <nav class="breadcrumbs breadcrumbs-alt" aria-label="{% trans 'Хлібні крихти' %}">
+    <div class="container">
+      <ol class="breadcrumbs-list">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Головна' %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans 'Кошик' %}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="container cart-page">
+    <h1 class="mb-lg">{% trans 'Кошик' %}</h1>
+
+    {% if cart and cart.items.all %}
+      <div class="cart-layout">
+        <div class="cart-items">
+          {% for item in cart.items.all %}
+            <div class="cart-item">
+              <div class="cart-item-image">
+                {% include 'components/product_card_image.html' with product=item.product %}
+              </div>
+
+              <div class="cart-item-info">
+                <a href="{% url 'product_detail' item.product.slug %}" class="cart-item-name">{{ item.product|loc:'name' }}</a>
+                <span class="cart-item-price">{{ item.product.price|floatformat:0 }} {% trans 'грн' %}</span>
+              </div>
+
+              <form method="post" action="{% url 'cart_update' item.id %}" class="cart-item-qty-form">
+                {% csrf_token %}
+                <div class="qty-control">
+                  <button type="submit" name="quantity" value="{{ item.quantity|add:'-1' }}" class="qty-btn" aria-label="{% trans 'Зменшити' %}">−</button>
+                  <span class="qty-input" aria-live="polite">{{ item.quantity }}</span>
+                  <button type="submit" name="quantity" value="{{ item.quantity|add:'1' }}" class="qty-btn" aria-label="{% trans 'Збільшити' %}">+</button>
+                </div>
+              </form>
+
+              <div class="cart-item-total">{{ item.line_total|floatformat:0 }} {% trans 'грн' %}</div>
+
+              <form method="post" action="{% url 'cart_remove' item.id %}" class="cart-item-remove-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-ghost btn-icon" aria-label="{% blocktrans with name=item.product|loc:'name' %}Видалити {{ name }} з кошика{% endblocktrans %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          {% endfor %}
+        </div>
+
+        <aside class="cart-summary">
+          <h2>{% trans 'Разом' %}</h2>
+          <div class="cart-summary-row">
+            <span>{% trans 'Товарів' %}</span>
+            <span>{{ cart.total_quantity }}</span>
+          </div>
+          <div class="cart-summary-row cart-summary-total">
+            <span>{% trans 'Сума' %}</span>
+            <span>{{ cart.total_price|floatformat:0 }} {% trans 'грн' %}</span>
+          </div>
+          {% include 'components/quick_pay_button.html' %}
+          <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg btn-block">{% trans 'Оформити замовлення' %}</a>
+          <a href="{% url 'catalog' %}" class="btn btn-ghost btn-block mt-md">{% trans 'Продовжити покупки' %}</a>
+        </aside>
+      </div>
+    {% else %}
+      <div class="cart-empty">
+        <p>{% trans 'Ваш кошик порожній.' %}</p>
+        <a href="{% url 'catalog' %}" class="btn btn-primary">{% trans 'Перейти до каталогу' %}</a>
+      </div>
+    {% endif %}
+  </div>
+
+{% endblock %}

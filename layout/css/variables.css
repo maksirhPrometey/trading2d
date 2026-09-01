@@ -1,0 +1,111 @@
+/* ========================================
+   TRADING 2D – Design System
+   Engraving / Premium Monochrome Palette
+   ======================================== */
+
+:root {
+  /* ---- CORE PALETTE (canonical tokens) ---- */
+  --bg-main: #F4F4F4;
+  --bg-card: #FCFCFC;
+  --btn-primary: #2C2C2C;
+  --btn-primary-hover: #404040;
+  --text-on-dark: #F4F4F4;
+  --text-main: #1A1A1A;
+  --border-color: #E0E0E0;
+
+  /* ---- LEGACY ALIASES (used across layout/components) ---- */
+  --color-white: var(--bg-card);
+  --color-bg: var(--bg-main);
+  --color-bg-alt: #EEEEEE;
+  --color-text-dark: var(--text-main);
+  --color-text-primary: var(--text-main);
+  --color-text-secondary: #5C5C5C;
+  --color-text-light: #8A8A8A;
+  --color-border: var(--border-color);
+  --color-border-dark: #CCCCCC;
+
+  --color-accent: var(--btn-primary);
+  --color-accent-hover: var(--btn-primary-hover);
+  --color-accent-light: #EBEBEB;
+  --color-price: var(--text-main);
+
+  /* Flat only – no gradients in this design system */
+  --color-success: #2E5E4E;
+  --color-error: #6B2E2E;
+  --color-warning: #5C4A1F;
+  --color-info: var(--btn-primary);
+
+  /* ---- TYPOGRAPHY ---- */
+
+  --font-serif: 'Playfair Display', 'Cinzel', 'Merriweather', serif;
+  --font-sans: 'Lato', 'Montserrat', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.25rem;
+  --fs-2xl: 1.5rem;
+  --fs-3xl: 1.875rem;
+  --fs-4xl: 2.25rem;
+  --fs-5xl: 3rem;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --lh-tight: 1.2;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.75;
+
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.05em;
+
+  /* ---- SPACING ---- */
+
+  --sp-xs: 0.25rem;
+  --sp-sm: 0.5rem;
+  --sp-md: 1rem;
+  --sp-lg: 1.5rem;
+  --sp-xl: 2rem;
+  --sp-2xl: 3rem;
+  --sp-3xl: 4rem;
+
+  /* ---- BORDERS & SHADOWS ---- */
+
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 4px;
+  --border-radius-lg: 4px;
+
+  /* Minimal neutral shadows – engraving style, no coloured glow */
+  --shadow-subtle: 0 1px 2px rgba(26, 26, 26, 0.04);
+  --shadow-sm: 0 1px 3px rgba(26, 26, 26, 0.06);
+  --shadow-md: 0 2px 8px rgba(26, 26, 26, 0.08);
+  --shadow-lg: 0 4px 16px rgba(26, 26, 26, 0.1);
+
+  /* ---- TRANSITIONS ---- */
+
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 350ms;
+  --easing-ease: ease;
+  --easing-ease-in: ease-in;
+  --easing-ease-out: ease-out;
+  --easing-ease-in-out: ease-in-out;
+
+  /* ---- LAYOUT ---- */
+
+  --container-max-width: 1200px;
+  --header-height: 80px;
+  --header-height-mobile: 60px;
+
+  --z-base: 0;
+  --z-overlay: 100;
+  --z-modal: 1000;
+  --z-dropdown: 200;
+}

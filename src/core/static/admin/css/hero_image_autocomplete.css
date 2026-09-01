@@ -1,0 +1,18 @@
+.hero-image-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-image-option__thumb {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.select2-selection__rendered .hero-image-option__thumb {
+  width: 22px;
+  height: 22px;
+}

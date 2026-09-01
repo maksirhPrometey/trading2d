@@ -1,0 +1,126 @@
+<!-- Header Component -->
+
+<header>
+  <div class="container-fluid">
+    <div class="header-content">
+      
+      <!-- Logo -->
+      <div class="header-logo">
+        <a href="/" class="logo-link">
+          <span class="logo-text">TRADING 2D</span>
+        </a>
+      </div>
+      
+      <!-- Search Bar -->
+      <div class="header-search">
+        <form method="GET" action="/catalog/" class="search-form">
+          <input 
+            type="text" 
+            name="q" 
+            class="search-input" 
+            placeholder="Пошук товарів..."
+            aria-label="Пошук товарів"
+          >
+        </form>
+      </div>
+      
+      <!-- Actions (Cart, Wishlist, Language, Menu) -->
+      <div class="header-actions">
+        
+        <!-- Wishlist -->
+        <a href="/wishlist/" class="header-action-item" title="Обране">
+          <div class="icon icon-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <span class="header-action-badge" id="wishlist-count">0</span>
+        </a>
+        
+        <!-- Cart -->
+        <a href="/cart/" class="header-action-item" title="Кошик">
+          <div class="icon icon-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+          </div>
+          <span class="header-action-badge" id="cart-count">0</span>
+        </a>
+        
+        <!-- Language Switcher -->
+        <div class="header-lang">
+          <select class="lang-select" id="lang-select" aria-label="Виберіть мову">
+            <option value="uk" selected>УК</option>
+            <option value="en">EN</option>
+            <option value="ru">РУ</option>
+          </select>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="btn btn-icon" id="menu-toggle" aria-label="Меню" aria-expanded="false">
+          <div class="icon icon-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </div>
+        </button>
+        
+      </div>
+      
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu (hidden by default) -->
+<nav class="mobile-menu" id="mobile-menu" aria-label="Мобільне меню">
+  <div class="mobile-menu-content">
+    
+    <!-- Mobile Search -->
+    <form method="GET" action="/catalog/" class="mobile-search">
+      <input 
+        type="text" 
+        name="q" 
+        placeholder="Пошук товарів..."
+        aria-label="Пошук товарів"
+      >
+    </form>
+    
+    <!-- Mobile Navigation -->
+    <ul class="mobile-nav-list">
+      <li><a href="/catalog/">Каталог</a></li>
+      <li><a href="/about/">Про нас</a></li>
+      <li><a href="/delivery/">Доставка та оплата</a></li>
+      <li><a href="/contact/">Контакти</a></li>
+      <li><a href="/faq/">Поширені питання</a></li>
+    </ul>
+    
+  </div>
+</nav>
+
+<!-- Mobile menu styles live in css/layout.css (.mobile-menu, .mobile-nav-list, etc.)
+     so they aren't duplicated across every standalone page. -->
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', mobileMenu.classList.contains('active'));
+    });
+
+    // Close menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

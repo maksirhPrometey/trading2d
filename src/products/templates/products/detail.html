@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% load i18n i18n_fields static richtext %}
+
+{% block title %}{% firstof product|loc:'meta_title' product|loc:'name' %} – TRADING 2D{% endblock %}
+{% block meta_description %}{% firstof product|loc:'meta_description' product|loc:'description'|striptags|truncatechars:160 %}{% endblock %}
+
+{% block content %}
+
+  <nav class="breadcrumbs breadcrumbs-alt" aria-label="{% trans 'Хлібні крихти' %}">
+    <div class="container">
+      <ol class="breadcrumbs-list">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Головна' %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'catalog' %}">{% trans 'Каталог' %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'catalog' %}?category={{ product.category_id }}">{{ product.category|loc:'name' }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ product|loc:'name' }}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="container product-main-section">
+    <div class="grid product-layout">
+
+      <div class="product-gallery" data-product-gallery>
+        {% with first_image=product.images.first %}
+          {% if first_image and first_image.image %}
+            <button
+              type="button"
+              class="product-gallery-main"
+              data-lightbox-open
+              aria-label="{% trans 'Відкрити фото на весь екран' %}"
+            >
+              <img
+                id="product-main-image"
+                src="{{ first_image.image.url }}"
+                alt="{{ product|loc:'name' }}"
+                width="800"
+                height="800"
+              >
+            </button>
+          {% else %}
+            <div class="product-gallery-main">
+              <div class="demo-photo" id="product-main-image" aria-hidden="true">{% trans 'Фото товару' %}</div>
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        {% with images=product.images.all %}
+          {% if images|length > 1 %}
+            <div class="product-thumbs">
+              {% for gallery_item in images %}
+                {% if gallery_item.image %}
+                  <button
+                    type="button"
+                    class="gallery-thumb{% if forloop.first %} active{% endif %}"
+                    data-gallery-thumb
+                    data-src="{{ gallery_item.image.url }}"
+                    aria-label="{% blocktrans with n=forloop.counter %}Фото {{ n }}{% endblocktrans %}"
+                  >
+                    <img
+                      src="{{ gallery_item.image.url }}"
+                      alt=""
+                      width="120"
+                      height="120"
+                      loading="lazy"
+                    >
+                  </button>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+      </div>
+
+      <div class="product-info">
+        <h1>{{ product|loc:'name' }}</h1>
+
+        <div class="product-meta">
+          <span class="product-meta-item">SKU: {{ product.sku }}</span>
+        </div>
+
+        <div class="product-status">
+          {% if product.in_stock %}
+            <span class="stock-badge">
+              <span class="stock-dot" aria-hidden="true"></span>
+              {% trans 'В наявності' %}{% if product.stock_quantity %} · {{ product.stock_quantity }} {% trans 'шт' %}{% endif %}
+            </span>
+          {% else %}
+            <span class="stock-badge is-out">
+              <span class="stock-dot" aria-hidden="true"></span>
+              {% trans 'Немає в наявності' %}
+            </span>
+          {% endif %}
+          {% if product.is_new %}
+            <span class="badge badge-success">{% trans 'Новинка' %}</span>
+          {% endif %}
+          {% if product.is_bestseller %}
+            <span class="badge badge-accent">{% trans 'Хіт продажу' %}</span>
+          {% endif %}
+        </div>
+
+        <div class="product-price-block">
+          <div class="product-price">
+            {{ product.price|floatformat:0 }} {% trans 'грн' %}
+            {% if product.old_price %}
+              <span class="product-price-old">{{ product.old_price|floatformat:0 }} {% trans 'грн' %}</span>
+            {% endif %}
+          </div>
+          {% if product.savings_amount and product.discount_percent %}
+            <span class="product-savings">
+              {% blocktrans with amount=product.savings_amount|floatformat:0 percent=product.discount_percent %}Ви економите: {{ amount }} грн (−{{ percent }}%){% endblocktrans %}
+            </span>
+          {% endif %}
+        </div>
+
+        <div class="product-quantity-block">
+          {% if product.in_stock %}
+            <form method="post" action="{% url 'cart_add' product.slug %}" id="add-to-cart-form">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.path }}">
+              <div class="product-quantity-row">
+                <label class="form-label qty-label" for="qty-input">{% trans 'Кількість:' %}</label>
+                <div class="qty-control">
+                  <button type="button" class="qty-btn" id="qty-minus" aria-label="{% trans 'Зменшити' %}">−</button>
+                  <input
+                    type="number"
+                    name="quantity"
+                    value="1"
+                    min="1"
+                    max="{% if product.stock_quantity %}{{ product.stock_quantity }}{% else %}99{% endif %}"
+                    class="qty-input"
+                    id="qty-input"
+                    inputmode="numeric"
+                  >
+                  <button type="button" class="qty-btn" id="qty-plus" aria-label="{% trans 'Збільшити' %}">+</button>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-cart btn-lg btn-block mb-md">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                {% trans 'Додати в кошик' %}
+              </button>
+            </form>
+          {% else %}
+            <button type="button" class="btn btn-primary btn-lg btn-block mb-md" disabled>{% trans 'Немає в наявності' %}</button>
+          {% endif %}
+
+          <div class="product-secondary-actions">
+            <button
+              type="button"
+              class="btn btn-ghost flex-1 btn-wishlist-toggle{% if product.id in wishlist_ids %} is-active{% endif %}"
+              data-wishlist-toggle
+              data-product-slug="{{ product.slug }}"
+              aria-pressed="{% if product.id in wishlist_ids %}true{% else %}false{% endif %}"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+              <span data-wishlist-label>{% if product.id in wishlist_ids %}{% trans 'У обраному' %}{% else %}{% trans 'Обране' %}{% endif %}</span>
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary flex-1"
+              data-share-button
+              data-share-title="{{ product|loc:'name' }}"
+              data-share-url="{{ request.build_absolute_uri }}"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              <span data-share-label>{% trans 'Поділитись' %}</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="product-shipping-info">
+          <div class="shipping-row">
+            <span>{% trans 'Доставка' %}</span>
+            <span>{% trans '1–3 робочих дні' %}</span>
+          </div>
+          <div class="shipping-row">
+            <span>{% trans 'Повернення' %}</span>
+            <span>{% trans 'До 30 днів' %}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="grid product-details-grid">
+      <div>
+        <h2>{% trans 'Опис' %}</h2>
+        {% if product|loc:'description' %}
+          <div class="prose">{{ product|loc:'description'|richtext }}</div>
+        {% else %}
+          <p class="text-muted text-sm">{% trans 'Опис товару ще не додано.' %}</p>
+        {% endif %}
+        <p class="text-muted text-sm">
+          {% trans 'Деталі доставки та оплати — у розділі «Доставка та оплата».' %}
+        </p>
+      </div>
+
+      <div>
+        <h2>{% trans 'Характеристики' %}</h2>
+        <table class="table table-compact">
+          <tbody>
+            <tr><td class="spec-label">{% trans 'Артикул' %}</td><td>{{ product.sku }}</td></tr>
+            <tr><td class="spec-label">{% trans 'Категорія' %}</td><td>{{ product.category|loc:'name' }}</td></tr>
+            <tr><td class="spec-label">{% trans 'Ціна' %}</td><td>{{ product.price|floatformat:0 }} {% trans 'грн' %}</td></tr>
+            <tr>
+              <td class="spec-label">{% trans 'Наявність' %}</td>
+              <td>{% if product.in_stock %}{% trans 'В наявності' %}{% else %}{% trans 'Немає в наявності' %}{% endif %}</td>
+            </tr>
+            {% for attr in product.attributes.all %}
+              <tr>
+                <td class="spec-label">{{ attr|loc:'name' }}</td>
+                <td>{{ attr|loc:'value' }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  {% if related_products %}
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>{% trans 'Схожі товари' %}</h2>
+        </div>
+        <div class="grid grid-auto-lg">
+          {% for related in related_products %}
+            {% include 'components/product_card.html' with product=related show_image_wrapper=False show_wishlist=False %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% include 'components/product_lightbox.html' %}
+
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/product.js' %}?v=2" defer></script>
+{% endblock %}

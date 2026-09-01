@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load i18n i18n_fields %}
+
+{% block title %}{{ main_page|loc:'title' }} – TRADING 2D{% endblock %}
+
+{% block content %}
+
+  <section
+    class="hero hero-industrial{% if main_page.banner_image %} hero-industrial--photo{% endif %}"
+    {% if main_page.banner_image %}style="background-image: url('{{ main_page.banner_image.url }}');"{% endif %}
+  >
+    <div class="container hero-industrial-inner">
+      <div class="hero-copy">
+        <h1>{{ main_page|loc:'title' }}</h1>
+        {% if main_page|loc:'description' %}
+          <p class="hero-subtitle">{{ main_page|loc:'description' }}</p>
+        {% else %}
+          <p class="hero-subtitle">{% trans 'Промислове обладнання та інструмент для виробництва. Підбір, наявність, доставка по Україні.' %}</p>
+        {% endif %}
+        <a href="{% url 'catalog' %}" class="btn btn-lg hero-cta">{% trans 'Перейти до каталогу' %}</a>
+      </div>
+
+      <div class="hero-cutout">
+        {% if main_page.hero_image and main_page.hero_image.image %}
+          <img
+            class="hero-cutout-img"
+            src="{{ main_page.hero_image.image.url }}"
+            alt="{{ main_page|loc:'title' }}"
+            width="640"
+            height="640"
+          >
+        {% elif hero_product and hero_product.primary_image and hero_product.primary_image.image %}
+          <img
+            class="hero-cutout-img"
+            src="{{ hero_product.primary_image.image.url }}"
+            alt="{{ hero_product|loc:'name' }}"
+            width="640"
+            height="640"
+          >
+        {% elif not main_page.banner_image %}
+          <div class="hero-cutout-fallback">TRADING 2D</div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% if bestsellers %}
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>{% trans 'Хіти продажу' %}</h2>
+          <p>{% trans 'Найпопулярніші позиції цього сезону' %}</p>
+        </div>
+
+        <div class="grid grid-auto-lg home-products-grid">
+          {% for product in bestsellers %}
+            {% include 'components/product_card.html' with product=product show_image_wrapper=True catalog_mode=True %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if new_arrivals %}
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>{% trans 'Новинки' %}</h2>
+          <p>{% trans 'Свіжі надходження каталогу' %}</p>
+        </div>
+
+        <div class="grid grid-auto-lg home-products-grid">
+          {% for product in new_arrivals %}
+            {% include 'components/product_card.html' with product=product show_image_wrapper=True catalog_mode=True %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+{% endblock %}

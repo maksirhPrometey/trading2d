@@ -1,0 +1,128 @@
+.product-lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: color-mix(in srgb, var(--text-main) 94%, transparent);
+  color: var(--bg-card);
+  z-index: var(--z-modal);
+}
+
+.product-lightbox::backdrop {
+  background-color: color-mix(in srgb, var(--text-main) 80%, transparent);
+}
+
+.product-lightbox[open] {
+  display: block;
+}
+
+.lightbox-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  padding:
+    max(56px, env(safe-area-inset-top))
+    max(56px, env(safe-area-inset-right))
+    max(48px, env(safe-area-inset-bottom))
+    max(56px, env(safe-area-inset-left));
+  box-sizing: border-box;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: calc(100dvh - 104px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.lightbox-counter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  margin: 0;
+  text-align: center;
+  font-size: 16px;
+  color: var(--bg-card);
+  pointer-events: none;
+}
+
+.lightbox-btn {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: var(--border-thin) solid color-mix(in srgb, var(--bg-card) 35%, transparent);
+  border-radius: var(--border-radius-sm);
+  background-color: color-mix(in srgb, var(--text-main) 55%, transparent);
+  color: var(--bg-card);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lightbox-close {
+  top: max(12px, env(safe-area-inset-top));
+  right: max(12px, env(safe-area-inset-right));
+}
+
+.lightbox-prev {
+  top: 50%;
+  left: max(12px, env(safe-area-inset-left));
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  top: 50%;
+  right: max(12px, env(safe-area-inset-right));
+  transform: translateY(-50%);
+}
+
+.lightbox-btn:focus-visible {
+  outline: 2px solid var(--bg-card);
+  outline-offset: 2px;
+}
+
+.lightbox-btn[hidden] {
+  visibility: hidden;
+}
+
+.lightbox-btn svg {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .lightbox-stage {
+    padding:
+      max(56px, env(safe-area-inset-top))
+      max(52px, env(safe-area-inset-right))
+      max(48px, env(safe-area-inset-bottom))
+      max(52px, env(safe-area-inset-left));
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lightbox-btn:hover {
+    background-color: color-mix(in srgb, var(--text-main) 75%, transparent);
+  }
+}

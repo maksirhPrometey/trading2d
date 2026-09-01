@@ -1,0 +1,342 @@
+/* ========================================
+   TRADING 2D – Typography System
+   Headings, Body Text, Links
+   ======================================== */
+
+/* Шрифти завантажуються через <link rel="preconnect"> + <link> у templates/base.html,
+   а не через @import, який блокує рендеринг (RULE anti-slop). */
+
+/* ---- HEADINGS (Серіфи) ---- */
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-5xl);
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--sp-lg);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--sp-lg);
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--sp-md);
+}
+
+h4 {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--sp-md);
+}
+
+h5 {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+  text-transform: uppercase;
+  margin-bottom: var(--sp-sm);
+}
+
+h6 {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+  text-transform: uppercase;
+  margin-bottom: var(--sp-sm);
+}
+
+/* ---- BODY TEXT (Sans-serif) ---- */
+
+p {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);    /* 16px */
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  margin-bottom: var(--sp-md);
+}
+
+p + p {
+  margin-top: var(--sp-lg);
+}
+
+.text-sm {
+  font-size: var(--fs-sm);      /* 14px */
+  line-height: var(--lh-normal);
+}
+
+.text-xs {
+  font-size: var(--fs-xs);      /* 12px */
+  line-height: var(--lh-normal);
+}
+
+.text-lg {
+  font-size: var(--fs-lg);      /* 18px */
+  line-height: var(--lh-relaxed);
+}
+
+/* ---- TEXT UTILITIES ---- */
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-muted {
+  color: var(--color-text-light);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-light {
+  font-weight: var(--fw-light);
+}
+
+.font-regular {
+  font-weight: var(--fw-regular);
+}
+
+.font-semibold {
+  font-weight: var(--fw-semibold);
+}
+
+.font-bold {
+  font-weight: var(--fw-bold);
+}
+
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* ---- SPECIAL ELEMENTS ---- */
+
+strong, .bold {
+  font-weight: var(--fw-bold);
+}
+
+em, .italic {
+  font-style: italic;
+}
+
+mark {
+  background-color: var(--color-accent-light);
+  padding: 0 var(--sp-xs);
+  border-radius: var(--border-radius-sm);
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  background-color: var(--color-border);
+  padding: 0 var(--sp-xs);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9em;
+}
+
+pre {
+  background-color: var(--color-border);
+  padding: var(--sp-md);
+  border-radius: var(--border-radius-md);
+  overflow-x: auto;
+  margin-bottom: var(--sp-md);
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+/* ---- LINKS ----
+   Base link color stays neutral (--color-text-primary, inherited from reset.css).
+   Accent is reserved for hover/active feedback and explicit CTAs –
+   see CSS_Tokens_Handbook "Accent Rule: max 1-2 per screen". */
+
+a:not(.btn):hover {
+  color: var(--color-accent-hover);
+}
+
+a:not(.btn):active {
+  color: var(--color-accent-hover);
+}
+
+/* ---- MOBILE TYPOGRAPHY ---- */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: var(--fs-3xl);    /* 30px on mobile */
+    margin-bottom: var(--sp-md);
+  }
+
+  h2 {
+    font-size: var(--fs-2xl);    /* 24px on mobile */
+    margin-bottom: var(--sp-md);
+  }
+
+  h3 {
+    font-size: var(--fs-xl);     /* 20px on mobile */
+  }
+
+  h4 {
+    font-size: var(--fs-lg);     /* 18px on mobile */
+  }
+
+  p {
+    font-size: var(--fs-base);   /* 16px on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: var(--fs-2xl);    /* 24px on small mobile */
+  }
+
+  h2 {
+    font-size: var(--fs-xl);     /* 20px on small mobile */
+  }
+
+  h3 {
+    font-size: var(--fs-lg);     /* 18px on small mobile */
+  }
+}
+
+/* HTML з TinyMCE на вітрині */
+.prose {
+  max-width: 65ch;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  -webkit-text-size-adjust: 100%;
+}
+
+.prose > *:first-child {
+  margin-top: 0;
+}
+
+.prose > *:last-child {
+  margin-bottom: 0;
+}
+
+.prose h2,
+.prose h3 {
+  margin-top: var(--sp-lg);
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 var(--sp-md);
+  padding-left: 1.25rem;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin-bottom: var(--sp-xs);
+  line-height: var(--lh-relaxed);
+}
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.prose blockquote {
+  margin: 0 0 var(--sp-md);
+  padding: var(--sp-sm) 0 var(--sp-sm) var(--sp-md);
+  border-left: var(--border-medium) solid var(--border-color);
+  color: var(--color-text-secondary);
+}
+
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: var(--sp-md) 0;
+  border-radius: var(--border-radius-sm);
+}
+
+@media (max-width: 1024px) {
+  .prose {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .prose ul,
+  .prose ol {
+    padding-left: 1.125rem;
+  }
+}

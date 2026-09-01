@@ -1,0 +1,139 @@
+{% load i18n i18n_fields %}
+<div class="sidebar-backdrop" data-sidebar-backdrop hidden></div>
+<aside class="sidebar" id="catalog-sidebar" data-catalog-sidebar>
+  <div class="sidebar-mobile-header">
+    <span class="sidebar-title">{% trans 'Фільтри' %}</span>
+    <button type="button" class="btn btn-icon" data-sidebar-close aria-label="{% trans 'Закрити фільтри' %}">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <form method="get" action="{% url 'catalog' %}" class="catalog-filters">
+    {% if query %}
+      <input type="hidden" name="q" value="{{ query }}">
+    {% endif %}
+    {% if sort %}
+      <input type="hidden" name="sort" value="{{ sort }}">
+    {% endif %}
+    {% if active_category %}
+      <input type="hidden" name="category" value="{{ active_category.pk }}">
+    {% endif %}
+
+    <div class="sidebar-section sidebar-section--categories">
+      <h2 class="sidebar-title" id="catalog-categories-title">{% trans 'Категорії' %}</h2>
+
+      <label class="visually-hidden" for="category-search">{% trans 'Пошук категорії' %}</label>
+      <input
+        type="search"
+        id="category-search"
+        class="form-input category-search-input"
+        placeholder="{% trans 'Знайти категорію…' %}"
+        autocomplete="off"
+        data-category-search
+      >
+
+      <nav
+        class="category-nav"
+        data-category-nav
+        aria-labelledby="catalog-categories-title"
+      >
+        <a
+          href="{% url 'catalog' %}{% if query %}?q={{ query|urlencode }}{% endif %}"
+          class="category-acc-link{% if not active_category %} is-active{% endif %}"
+          data-category-all
+          data-category-name="{% trans 'всі товари' %}"
+          {% if not active_category %}aria-current="page"{% endif %}
+        >{% trans 'Всі товари' %}</a>
+
+        {% for group in category_nav_groups %}
+          {% if group.categories|length == 1 %}
+            {% with category=group.categories.0 %}
+              <a
+                href="{% url 'catalog' %}?category={{ category.pk }}{% if query %}&amp;q={{ query|urlencode }}{% endif %}"
+                class="category-acc-link{% if active_category and active_category.pk == category.pk %} is-active{% endif %}"
+                data-category-leaf
+                data-category-name="{{ group.label|lower }} {{ category|loc:'name'|lower }}"
+                {% if active_category and active_category.pk == category.pk %}aria-current="page"{% endif %}
+              >{{ group.label }}</a>
+            {% endwith %}
+          {% else %}
+            <details
+              class="category-acc"
+              data-category-acc
+              data-group-name="{{ group.label|lower }}"
+              {% if active_nav_panel == group.panel_id and active_category %}open data-default-open="true"{% endif %}
+            >
+              <summary class="category-acc-summary">
+                <span class="category-acc-label">{{ group.label }}</span>
+                <span class="category-acc-chevron" aria-hidden="true"></span>
+              </summary>
+              <ul class="category-acc-list">
+                {% for category in group.categories %}
+                  <li>
+                    <a
+                      href="{% url 'catalog' %}?category={{ category.pk }}{% if query %}&amp;q={{ query|urlencode }}{% endif %}"
+                      class="category-acc-link category-acc-link--child{% if active_category and active_category.pk == category.pk %} is-active{% endif %}"
+                      data-category-name="{{ category|loc:'name'|lower }}"
+                      {% if active_category and active_category.pk == category.pk %}aria-current="page"{% endif %}
+                    >{{ category|loc:'name' }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </details>
+          {% endif %}
+        {% endfor %}
+
+        <p class="category-search-empty" data-category-empty hidden>{% trans 'Категорій не знайдено' %}</p>
+      </nav>
+    </div>
+
+    <div class="sidebar-section">
+      <h2 class="sidebar-title">{% trans 'Ціна' %}</h2>
+      <div class="catalog-price-inputs">
+        <input
+          type="number"
+          name="price_min"
+          class="form-input catalog-price-input"
+          placeholder="{% trans 'Від' %}"
+          min="0"
+          step="1"
+          value="{{ price_min }}"
+          inputmode="numeric"
+          aria-label="{% trans 'Ціна від' %}"
+        >
+        <input
+          type="number"
+          name="price_max"
+          class="form-input catalog-price-input"
+          placeholder="{% trans 'До' %}"
+          min="0"
+          step="1"
+          value="{{ price_max }}"
+          inputmode="numeric"
+          aria-label="{% trans 'Ціна до' %}"
+        >
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h2 class="sidebar-title">{% trans 'Наявність' %}</h2>
+      <label class="catalog-checkbox-label" for="in-stock">
+        <input
+          type="checkbox"
+          class="form-checkbox catalog-checkbox"
+          id="in-stock"
+          name="in_stock"
+          value="1"
+          {% if in_stock_only %}checked{% endif %}
+        >
+        <span class="catalog-checkbox-text">{% trans 'В наявності' %}</span>
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block catalog-filters-submit">
+      {% trans 'Застосувати фільтри' %}
+    </button>
+  </form>
+</aside>

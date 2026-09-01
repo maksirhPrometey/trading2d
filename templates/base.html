@@ -1,0 +1,60 @@
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html
+  lang="{{ LANGUAGE_CODE }}"
+  data-uah="{% trans 'грн' %}"
+  data-wishlist-toggle-tpl="{% url 'wishlist_toggle' slug='__SLUG__' %}"
+  data-cart-drawer-url="{% url 'cart_detail' %}?fragment=drawer"
+  data-wishlist-in="{% trans 'У обраному' %}"
+  data-wishlist-out="{% trans 'Обране' %}"
+  data-wishlist-empty="{% trans 'У вас ще немає обраних товарів.' %}"
+  data-catalog-url="{% url 'catalog' %}"
+  data-catalog-cta="{% trans 'Перейти до каталогу' %}"
+  data-share-copied="{% trans 'Скопійовано!' %}"
+  data-share-ok="{% trans 'Посилання на товар скопійовано' %}"
+  data-share-fail="{% trans 'Не вдалося скопіювати посилання' %}"
+  data-share-prompt="{% trans 'Скопіюйте посилання на товар:' %}"
+  data-np-cities-url="{% url 'np_cities' %}"
+  data-np-warehouses-url="{% url 'np_warehouses' %}"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="{% block meta_description %}{% trans 'TRADING 2D – Інтернет-магазин' %}{% endblock %}">
+  <meta name="theme-color" content="#F4F5F7">
+  <title>{% block title %}TRADING 2D{% endblock %}</title>
+
+  {% if site_settings and site_settings.site_favicon %}
+    <link rel="icon" href="{{ site_settings.site_favicon.url }}">
+  {% else %}
+    <link rel="icon" href="{% static 'img/logo.png' %}">
+  {% endif %}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/typography.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  <link rel="stylesheet" href="{% static 'css/industrial.css' %}">
+  <link rel="stylesheet" href="{% static 'css/industrial-mq.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  {% include 'components/header.html' %}
+  <main class="main">
+    {% block content %}{% endblock %}
+  </main>
+  {% include 'components/footer.html' %}
+  {% include 'components/cart_drawer.html' %}
+  <script src="{% static 'js/cart-drawer.js' %}" defer></script>
+  <script src="{% static 'js/wishlist.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

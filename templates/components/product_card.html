@@ -1,0 +1,84 @@
+{% load i18n i18n_fields %}
+<article class="card card-product">
+  <div class="card-product-media">
+    {% if show_image_wrapper %}
+      {% if catalog_mode %}
+        <div class="product-thumb-wrap">
+          <a href="{% url 'product_detail' product.slug %}" class="card-product-image-link">
+            {% include 'components/product_card_image.html' %}
+          </a>
+          {% if product.discount_percent %}
+            <span class="badge badge-accent badge-corner-right">-{{ product.discount_percent }}%</span>
+          {% elif product.is_new %}
+            <span class="badge badge-accent badge-corner-left">{% trans 'Новинка' %}</span>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="card-product-image-wrapper">
+          <a href="{% url 'product_detail' product.slug %}" class="card-product-image-link">
+            {% include 'components/product_card_image.html' %}
+          </a>
+          {% if product.discount_percent %}
+            <span class="badge badge-accent badge-corner-right">-{{ product.discount_percent }}%</span>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% else %}
+      <a href="{% url 'product_detail' product.slug %}" class="card-product-image-link">
+        {% include 'components/product_card_image.html' %}
+      </a>
+    {% endif %}
+  </div>
+
+  <div class="card-body">
+    <h5 class="card-product-name">
+      <a href="{% url 'product_detail' product.slug %}">{{ product|loc:'name' }}</a>
+    </h5>
+    <div class="card-product-price">
+      {% if product.old_price %}
+        <span class="card-product-price-old">{{ product.old_price|floatformat:0 }} {% trans 'грн' %}</span>
+      {% endif %}
+      <span>{{ product.price|floatformat:0 }} {% trans 'грн' %}</span>
+    </div>
+    <p class="card-product-info">
+      {% if product.in_stock %}
+        <span class="stock-badge">
+          <span class="stock-dot" aria-hidden="true"></span>
+          {% trans 'В наявності' %}
+        </span>
+      {% else %}
+        <span class="stock-badge is-out">
+          <span class="stock-dot" aria-hidden="true"></span>
+          {% trans 'Немає в наявності' %}
+        </span>
+      {% endif %}
+    </p>
+  </div>
+
+  <div class="card-product-actions">
+    {% if product.in_stock %}
+      <form method="post" action="{% url 'cart_add' product.slug %}" class="card-add-to-cart-form flex-1">
+        {% csrf_token %}
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" class="btn btn-cart">{% trans 'До кошика' %}</button>
+      </form>
+    {% else %}
+      <button type="button" class="btn btn-cart flex-1" disabled>{% trans 'Немає' %}</button>
+    {% endif %}
+
+    {% if show_wishlist is not False %}
+      <button
+        type="button"
+        class="btn btn-ghost btn-wishlist-toggle{% if product.id in wishlist_ids %} is-active{% endif %}"
+        data-wishlist-toggle
+        data-product-slug="{{ product.slug }}"
+        aria-pressed="{% if product.id in wishlist_ids %}true{% else %}false{% endif %}"
+        aria-label="{% blocktrans with name=product|loc:'name' %}Додати «{{ name }}» в обране{% endblocktrans %}"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
+    {% endif %}
+  </div>
+</article>

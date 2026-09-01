@@ -1,0 +1,12 @@
+Django==6.1
+pillow==12.3.0
+requests==2.34.2
+argon2-cffi==25.1.0
+bleach==6.4.0
+django-tinymce==5.0.0
+django-unfold==0.104.1
+
+# Продакшн (Docker / Droplet)
+gunicorn==23.0.0
+psycopg2-binary==2.9.10
+whitenoise==6.8.2

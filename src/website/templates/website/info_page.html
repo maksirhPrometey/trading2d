@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n i18n_fields richtext %}
+
+{% block title %}{{ page|loc:'title' }} – {{ site_settings.site_name|default:'TRADING 2D' }}{% endblock %}
+{% block meta_description %}{{ page|loc:'title' }} — {{ site_settings.site_name|default:'TRADING 2D' }}.{% endblock %}
+
+{% block content %}
+
+  <nav class="breadcrumbs breadcrumbs-alt" aria-label="{% trans 'Хлібні крихти' %}">
+    <div class="container">
+      <ol class="breadcrumbs-list">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Головна' %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ page|loc:'title' }}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="container info-page">
+    <header class="info-page-header">
+      <h1>{{ page|loc:'title' }}</h1>
+    </header>
+    <div class="info-page-body prose">
+      {{ page|loc:'description'|richtext }}
+    </div>
+  </div>
+
+{% endblock %}

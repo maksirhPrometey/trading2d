@@ -1,0 +1,29 @@
+{% load i18n %}
+<dialog class="product-lightbox" data-product-lightbox aria-labelledby="lightbox-title">
+  <p id="lightbox-title" class="visually-hidden">{% trans 'Перегляд фото товару' %}</p>
+
+  <button type="button" class="lightbox-btn lightbox-close" data-lightbox-close aria-label="{% trans 'Закрити' %}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <button type="button" class="lightbox-btn lightbox-prev" data-lightbox-prev aria-label="{% trans 'Попереднє фото' %}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+
+  <div class="lightbox-stage">
+    <img class="lightbox-image" data-lightbox-image alt="" width="1200" height="1200">
+  </div>
+
+  <button type="button" class="lightbox-btn lightbox-next" data-lightbox-next aria-label="{% trans 'Наступне фото' %}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+
+  <p class="lightbox-counter" data-lightbox-counter></p>
+</dialog>

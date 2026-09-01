@@ -1,0 +1,32 @@
+{% load i18n %}
+<div class="cart-drawer-backdrop" data-cart-backdrop hidden></div>
+<aside
+  class="cart-drawer"
+  id="cart-drawer"
+  data-cart-drawer
+  aria-hidden="true"
+  aria-labelledby="cart-drawer-title"
+>
+  <div class="cart-drawer-head">
+    <h2 id="cart-drawer-title">{% trans 'Кошик' %}</h2>
+    <button type="button" class="btn btn-icon" data-cart-close aria-label="{% trans 'Закрити кошик' %}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="cart-drawer-body" data-cart-drawer-body>
+    {% include 'components/cart_drawer_panel.html' %}
+  </div>
+
+  <div class="cart-drawer-foot">
+    <div class="cart-drawer-total">
+      <span>{% trans 'Разом' %}</span>
+      <span data-cart-total>{% if cart %}{{ cart.total_price|floatformat:0 }}{% else %}0{% endif %} {% trans 'грн' %}</span>
+    </div>
+    {% include 'components/quick_pay_button.html' %}
+    <a href="{% url 'cart_detail' %}" class="btn btn-ghost btn-block">{% trans 'Перейти до кошика' %}</a>
+  </div>
+</aside>

@@ -1,0 +1,457 @@
+/* ========================================
+   TRADING 2D – Responsive Design
+   Mobile, Tablet, Desktop Adaptations
+   iOS Safari Specific Fixes
+   ======================================== */
+
+/* ---- BASE RESPONSIVE GRID ---- */
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-6 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+    .grid-auto-lg {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+  .footer-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: var(--header-height-mobile);
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 var(--sp-md);
+  }
+
+  .container-lg {
+    max-width: 100%;
+    padding: 0 var(--sp-md);
+  }
+
+  /* Tablet Grid Adjustments */
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--sp-md);
+  }
+
+  .grid-auto-sm {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .grid-auto-lg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+    /* Header Tablet */
+    header {
+        padding: 0 var(--sp-md);
+    }
+
+  .header-search {
+    max-width: none;
+    flex: 1;
+  }
+
+  .search-input {
+    font-size: 16px; /* Prevent iOS zoom */
+  }
+
+  /* Hide some header elements on tablet */
+  .header-contact {
+    display: none;
+  }
+
+  /* Footer Tablet */
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-lg);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--sp-lg);
+  }
+
+  /* Main content */
+  .main {
+    min-height: calc(100vh - var(--header-height-mobile) - 250px);
+    padding: 0 0 var(--sp-lg);
+  }
+
+  .section {
+    padding: var(--sp-lg) 0;
+  }
+
+  .section-header {
+    margin-bottom: var(--sp-lg);
+  }
+
+  /* Card adjustments */
+  .card {
+    padding: var(--sp-md);
+  }
+
+  /* Row layout (CTA flex-1 + fixed 48px icon square) stays intact on tablet –
+     stacking to a column here would stretch the wishlist icon to full width. */
+
+  /* Spacing */
+  .mt-lg { margin-top: var(--sp-lg); }
+  .mb-lg { margin-bottom: var(--sp-lg); }
+  .p-lg { padding: var(--sp-lg); }
+}
+
+/* ---- MOBILE (480px and below) ---- */
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 var(--sp-md);
+  }
+
+  /* Mobile Grid */
+  .grid {
+    gap: var(--sp-md);
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .grid-6 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-auto {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-auto-sm {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-auto-lg {
+    grid-template-columns: 1fr;
+  }
+
+    /* Header Mobile */
+    header {
+        padding: 0 var(--sp-md);
+    }
+
+  .header-content {
+    gap: var(--sp-sm);
+  }
+
+  .header-logo img,
+  .header-logo-img {
+    height: 48px;
+  }
+
+  .header-search {
+    display: none; /* Hide search on small mobile, show in menu instead */
+  }
+
+  .header-actions {
+    gap: var(--sp-xs);
+  }
+
+  .header-action-item {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Buttons */
+  .btn {
+    width: 100%;
+    padding: var(--sp-md) var(--sp-lg);
+  }
+
+  .btn-sm {
+    padding: var(--sp-sm) var(--sp-md);
+  }
+
+  .btn-lg {
+    padding: var(--sp-lg) var(--sp-xl);
+  }
+
+  .btn-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Cards */
+  .card-product-image {
+    aspect-ratio: 4 / 5; /* Taller on mobile for better visibility */
+  }
+
+  /* Footer Mobile */
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: var(--sp-lg);
+  }
+
+  .footer-section {
+    border-bottom: var(--border-thin) solid rgba(255, 255, 255, 0.1);
+    padding-bottom: var(--sp-lg);
+  }
+
+  .footer-section:last-child {
+    border-bottom: none;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--sp-md);
+    text-align: center;
+  }
+
+  /* Tables */
+  .table {
+    font-size: var(--fs-xs);
+  }
+
+  .table th,
+  .table td {
+    padding: var(--sp-sm);
+  }
+
+  /* Forms */
+  .form-group {
+    margin-bottom: var(--sp-md);
+  }
+
+  .form-label {
+    font-size: var(--fs-xs);
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    padding: var(--sp-md);
+    font-size: 16px; /* Critical for iOS – prevents zoom */
+  }
+
+    /* Breadcrumbs */
+    .breadcrumbs-alt .breadcrumbs-list {
+        font-size: var(--fs-sm);
+    }
+
+  /* Spacing utilities */
+  .mt-xl { margin-top: var(--sp-lg); }
+  .mb-xl { margin-bottom: var(--sp-lg); }
+  .px-lg { padding: 0 var(--sp-md); }
+  .py-lg { padding: var(--sp-md) 0; }
+}
+
+/* ---- iOS SAFARI SPECIFIC FIXES ---- */
+
+@supports (-webkit-touch-callout: none) {
+  /* iOS specific */
+
+  /* Prevent zoom on input focus */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  /* Fix for iOS safe area */
+  @supports (padding: max(0px)) {
+    body {
+      padding-left: max(0px, env(safe-area-inset-left));
+      padding-right: max(0px, env(safe-area-inset-right));
+    }
+
+    header {
+      padding-left: max(var(--sp-md), env(safe-area-inset-left));
+      padding-right: max(var(--sp-md), env(safe-area-inset-right));
+    }
+
+    footer {
+      padding-left: max(0, env(safe-area-inset-left));
+      padding-right: max(0, env(safe-area-inset-right));
+    }
+  }
+
+  /* Prevent highlight on tap */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"] {
+    -webkit-tap-highlight-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+
+  /* Fix for input styling in iOS */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea {
+    -webkit-appearance: none;
+    -webkit-border-radius: var(--border-radius-sm);
+    border-radius: var(--border-radius-sm);
+  }
+
+  /* Fix for button styling in iOS */
+  button,
+  input[type="button"],
+  input[type="submit"] {
+    -webkit-appearance: none;
+    -webkit-border-radius: var(--border-radius-sm);
+    border-radius: var(--border-radius-sm);
+  }
+
+  /* Fix select dropdown in iOS */
+  select {
+    -webkit-appearance: none;
+    -webkit-border-radius: var(--border-radius-sm);
+    border-radius: var(--border-radius-sm);
+    /* fill=%231A1A1A must stay hardcoded – CSS var() cannot be used inside a data-URI SVG.
+       Keep this value manually in sync with --color-text-dark in variables.css. */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path fill="%231A1A1A" d="M1 1l5 5 5-5"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right var(--sp-md) center;
+    background-size: 12px;
+    padding-right: 36px;
+  }
+
+  /* Prevent iOS rubber band effect */
+  body {
+    overscroll-behavior-y: none;
+  }
+
+  /* Fix for -webkit-autofill in forms */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px var(--color-white) inset !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+  }
+
+  /* Fix for icons on iOS */
+  .icon svg {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* ---- PRINT STYLES ---- */
+
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-text-primary);
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  .page-break {
+    page-break-after: always;
+  }
+}
+
+/* ---- RETINA DISPLAY SUPPORT ---- */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .card {
+    border-width: 0.5px;
+  }
+
+  .border,
+  .border-top,
+  .border-bottom,
+  .border-left,
+  .border-right {
+    border-width: 0.5px;
+  }
+}
+
+/* ---- LANDSCAPE ORIENTATION ON MOBILE ---- */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  header {
+    height: auto;
+    padding: var(--sp-sm) var(--sp-md);
+  }
+
+  .main {
+    min-height: auto;
+    padding: 0 0 var(--sp-md);
+  }
+
+  .section {
+    padding: var(--sp-md) 0;
+  }
+}
+
+/* ---- DARK MODE SUPPORT (optional, future) ---- */
+
+@media (prefers-color-scheme: dark) {
+  /* Can be expanded if dark mode is needed */
+}
+
+/* ---- REDUCED MOTION ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- HIGH CONTRAST MODE ---- */
+
+@media (prefers-contrast: more) {
+  :root {
+    --color-border: #999999;
+    --color-border-dark: #666666;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

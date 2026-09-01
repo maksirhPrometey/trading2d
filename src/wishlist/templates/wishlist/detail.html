@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Обране' %} – TRADING 2D{% endblock %}
+
+{% block content %}
+
+  <nav class="breadcrumbs breadcrumbs-alt" aria-label="{% trans 'Хлібні крихти' %}">
+    <div class="container">
+      <ol class="breadcrumbs-list">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Головна' %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans 'Обране' %}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="container cart-page">
+    <h1 class="mb-lg">{% trans 'Обране' %}</h1>
+
+    <div data-wishlist-page>
+      {% if wishlist and wishlist.items.all %}
+        <div class="grid grid-auto-lg" data-qa="wishlist-grid">
+          {% for item in wishlist.items.all %}
+            <div data-wishlist-item>
+              {% include 'components/product_card.html' with product=item.product show_image_wrapper=True show_wishlist=True catalog_mode=True %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="cart-empty" data-wishlist-empty>
+          <p>{% trans 'У вас ще немає обраних товарів.' %}</p>
+          <a href="{% url 'catalog' %}" class="btn btn-primary">{% trans 'Перейти до каталогу' %}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}

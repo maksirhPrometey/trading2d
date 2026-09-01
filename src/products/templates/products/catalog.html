@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load i18n i18n_fields static %}
+
+{% block title %}{% trans 'Каталог товарів' %} – TRADING 2D{% endblock %}
+
+{% block content %}
+
+  <nav class="breadcrumbs breadcrumbs-alt" aria-label="{% trans 'Хлібні крихти' %}">
+    <div class="container">
+      <ol class="breadcrumbs-list">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Головна' %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans 'Каталог' %}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="container catalog-page">
+    <div class="grid catalog-layout">
+
+      {% include 'components/catalog_sidebar.html' %}
+
+      <div class="catalog-main">
+        <div class="flex flex-between mb-lg catalog-results-header">
+          <div>
+            <h1 class="catalog-title">
+              {% if active_category %}{{ active_category|loc:'name' }}{% else %}{% trans 'Каталог товарів' %}{% endif %}
+            </h1>
+            <p class="text-sm text-muted">
+              {% blocktrans count counter=total_count %}Знайдено: {{ counter }} товар{% plural %}Знайдено: {{ counter }} товари{% endblocktrans %}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-secondary catalog-filters-toggle"
+            data-sidebar-open
+            aria-expanded="false"
+            aria-controls="catalog-sidebar"
+          >
+            {% trans 'Фільтри' %}
+          </button>
+
+          <form method="get" action="{% url 'catalog' %}" class="catalog-sort-row" data-catalog-sort>
+            {% if query %}<input type="hidden" name="q" value="{{ query }}">{% endif %}
+            {% if active_category %}<input type="hidden" name="category" value="{{ active_category.pk }}">{% endif %}
+            {% if in_stock_only %}<input type="hidden" name="in_stock" value="1">{% endif %}
+            {% if price_min %}<input type="hidden" name="price_min" value="{{ price_min }}">{% endif %}
+            {% if price_max %}<input type="hidden" name="price_max" value="{{ price_max }}">{% endif %}
+
+            <label for="sort" class="text-sm">{% trans 'Сортування:' %}</label>
+            <select id="sort" name="sort" class="form-select catalog-sort-select">
+              <option value="recommended"{% if sort == 'recommended' %} selected{% endif %}>{% trans 'Рекомендовані' %}</option>
+              <option value="new"{% if sort == 'new' %} selected{% endif %}>{% trans 'Нові' %}</option>
+              <option value="popular"{% if sort == 'popular' %} selected{% endif %}>{% trans 'Популярні' %}</option>
+              <option value="price_asc"{% if sort == 'price_asc' %} selected{% endif %}>{% trans 'Найдешевші' %}</option>
+              <option value="price_desc"{% if sort == 'price_desc' %} selected{% endif %}>{% trans 'Найдорожчі' %}</option>
+            </select>
+          </form>
+        </div>
+
+        {% if products %}
+          <div class="grid grid-auto-lg catalog-grid mb-2xl" data-qa="product-grid">
+            {% for product in products %}
+              {% include 'components/product_card.html' with product=product show_image_wrapper=True show_wishlist=True catalog_mode=True %}
+            {% endfor %}
+          </div>
+
+          {% include 'components/pagination.html' %}
+        {% else %}
+          <div class="catalog-empty">
+            <p>{% trans 'За вашим запитом нічого не знайдено.' %}</p>
+            <a href="{% url 'catalog' %}" class="btn btn-secondary">{% trans 'Скинути фільтри' %}</a>
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/catalog.js' %}" defer></script>
+{% endblock %}

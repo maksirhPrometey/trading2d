@@ -1,0 +1,129 @@
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
+<!-- Header Component -->
+
+<header class="site-header">
+  <div class="container-fluid">
+    <div class="header-content">
+
+      <div class="header-left">
+        <div class="header-logo">
+          <a href="{% url 'home' %}" class="logo-link" aria-label="{{ site_settings.site_name|default:'TRADING 2D' }} – {% trans 'головна' %}">
+            <img
+              src="{% if site_settings and site_settings.site_logo %}{{ site_settings.site_logo.url }}{% else %}{% static 'img/logo.png' %}{% endif %}"
+              alt="{{ site_settings.site_name|default:'TRADING 2D' }}"
+              class="header-logo-img"
+              width="64"
+              height="64"
+            >
+          </a>
+        </div>
+
+        <div class="header-contact">
+          <div class="icon icon-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <a href="tel:{{ contact_info.phone|default:'+380441234567'|cut:' '|cut:'('|cut:')'|cut:'-' }}" class="header-contact-link">{{ contact_info.phone|default:'+38 (044) 123-45-67' }}</a>
+        </div>
+      </div>
+
+      <div class="header-search">
+        <form method="get" action="{% url 'catalog' %}" class="search-form">
+          <input
+            type="text"
+            name="q"
+            class="search-input"
+            placeholder="{% trans 'Пошук товарів...' %}"
+            aria-label="{% trans 'Пошук товарів' %}"
+          >
+          <button type="submit" class="search-submit" aria-label="{% trans 'Знайти' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="header-actions">
+
+        <a href="{% url 'wishlist_detail' %}" class="header-action-item" title="{% trans 'Обране' %}">
+          <span class="header-action-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </span>
+          <span class="header-action-badge" id="wishlist-count">{{ wishlist_count|default:0 }}</span>
+        </a>
+
+        <a href="{% url 'cart_detail' %}" class="header-action-item" data-cart-open title="{% trans 'Кошик' %}">
+          <span class="header-action-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+          </span>
+          <span class="header-action-badge" id="cart-count">{{ cart_items_count|default:0 }}</span>
+        </a>
+
+        <form action="{% url 'set_language' %}" method="post" class="header-lang">
+          {% csrf_token %}
+          <input name="next" type="hidden" value="{{ request.get_full_path }}">
+          <select name="language" class="lang-select" id="lang-select" aria-label="{% trans 'Виберіть мову' %}" data-lang-select>
+            <option value="uk"{% if LANGUAGE_CODE == 'uk' %} selected{% endif %}>УК</option>
+            <option value="en"{% if LANGUAGE_CODE == 'en' %} selected{% endif %}>EN</option>
+            <option value="ru"{% if LANGUAGE_CODE == 'ru' %} selected{% endif %}>РУ</option>
+          </select>
+        </form>
+
+        <button class="btn btn-icon" id="menu-toggle" type="button" aria-label="{% trans 'Меню' %}" aria-expanded="false" aria-controls="mobile-menu">
+          <div class="icon icon-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </div>
+        </button>
+
+      </div>
+    </div>
+
+    <nav class="header-nav-desktop" aria-label="{% trans 'Головна навігація' %}">
+      <ul class="header-nav-list">
+        <li><a href="{% url 'catalog' %}">{% trans 'Каталог товарів' %}</a></li>
+        <li><a href="{% url 'about_us' %}">{% trans 'Про нас' %}</a></li>
+        <li><a href="{% url 'delivery' %}">{% trans 'Доставка і оплата' %}</a></li>
+        <li><a href="{% url 'contact' %}">{% trans 'Контакти' %}</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="{% trans 'Мобільне меню' %}">
+  <div class="mobile-menu-content">
+
+    <form method="get" action="{% url 'catalog' %}" class="mobile-search">
+      <input
+        type="text"
+        name="q"
+        placeholder="{% trans 'Пошук товарів...' %}"
+        aria-label="{% trans 'Пошук товарів' %}"
+      >
+    </form>
+
+    <ul class="mobile-nav-list">
+      <li><a href="{% url 'catalog' %}">{% trans 'Каталог' %}</a></li>
+      <li><a href="{% url 'about_us' %}">{% trans 'Про нас' %}</a></li>
+      <li><a href="{% url 'delivery' %}">{% trans 'Доставка та оплата' %}</a></li>
+      <li><a href="{% url 'contact' %}">{% trans 'Контакти' %}</a></li>
+    </ul>
+
+  </div>
+</nav>
+
+<script src="{% static 'js/menu.js' %}" defer></script>
+<script src="{% static 'js/header.js' %}" defer></script>

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Замовлення' %} {{ order.order_number }} – TRADING 2D{% endblock %}
+
+{% block content %}
+
+  <div class="container info-page">
+    <header class="info-page-header">
+      <h1>{% trans 'Дякуємо за замовлення!' %}</h1>
+      <p class="info-page-lead">
+        {% blocktrans with number=order.order_number %}Замовлення <strong>№{{ number }}</strong> прийнято.
+        Наш менеджер зв'яжеться з вами для підтвердження.{% endblocktrans %}
+      </p>
+    </header>
+
+    <div class="info-card mb-lg">
+      <h2>{% trans 'Деталі замовлення' %}</h2>
+      <table class="table table-compact">
+        <tbody>
+          <tr><td class="spec-label">{% trans 'Номер замовлення' %}</td><td>{{ order.order_number }}</td></tr>
+          <tr><td class="spec-label">{% trans 'Сума' %}</td><td>{{ order.subtotal|floatformat:0 }} {% trans 'грн' %}</td></tr>
+          <tr><td class="spec-label">{% trans 'Статус' %}</td><td>{{ order.get_status_display }}</td></tr>
+          <tr><td class="spec-label">{% trans 'Спосіб оплати' %}</td><td>{{ order.get_payment_method_display }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    {% if payment_data %}
+      <div class="info-card">
+        <h2>{% trans 'Оплата онлайн' %}</h2>
+        <p class="text-muted text-sm mb-md">{% trans 'Замовлення ще не оплачено — завершіть оплату для швидшої обробки.' %}</p>
+        <form method="post" action="https://www.liqpay.ua/api/3/checkout" accept-charset="utf-8">
+          <input type="hidden" name="data" value="{{ payment_data }}">
+          <input type="hidden" name="signature" value="{{ payment_signature }}">
+          <button type="submit" class="btn btn-primary btn-lg">{% trans 'Оплатити онлайн' %}</button>
+        </form>
+      </div>
+    {% endif %}
+
+    <a href="{% url 'catalog' %}" class="btn btn-ghost mt-lg">{% trans 'Продовжити покупки' %}</a>
+  </div>
+
+{% endblock %}

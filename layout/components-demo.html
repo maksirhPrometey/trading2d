@@ -1,0 +1,364 @@
+<!-- Component Library – Приклади кожного компонента -->
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Component Library – TRADING 2D</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .demo-section {
+      padding: var(--sp-2xl) 0;
+      border-bottom: var(--border-thin) solid var(--color-border);
+    }
+    .demo-section h2 {
+      margin-bottom: var(--sp-xl);
+      padding-bottom: var(--sp-lg);
+      border-bottom: var(--border-thin) solid var(--color-border);
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--sp-lg);
+    }
+    .demo-item {
+      padding: var(--sp-lg);
+      background-color: var(--bg-card);
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      container-type: inline-size;
+    }
+    .demo-label {
+      font-size: var(--fs-xs);
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      margin-bottom: var(--sp-md);
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container-fluid">
+      <div class="header-content">
+        <div class="header-logo">
+          <a href="#">TRADING 2D</a>
+        </div>
+        <div class="header-search">
+          <form method="GET" class="search-form">
+            <input type="text" class="search-input" placeholder="Пошук товарів...">
+          </form>
+        </div>
+        <div class="header-actions">
+          <div class="header-action-item">❤️</div>
+          <div class="header-action-item">🛒</div>
+          <select class="lang-select">
+            <option selected>УК</option>
+            <option>EN</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+
+      <!-- BUTTONS -->
+      <section class="demo-section">
+        <h2>Кнопки</h2>
+        
+        <div class="demo-grid">
+          <div class="demo-item">
+            <span class="demo-label">Primary Button</span>
+            <button class="btn btn-primary">Додати в кошик</button>
+          </div>
+          <div class="demo-item">
+            <span class="demo-label">Primary Large</span>
+            <button class="btn btn-primary btn-lg">Перейти до каталогу</button>
+          </div>
+          <div class="demo-item">
+            <span class="demo-label">Primary Small</span>
+            <button class="btn btn-primary btn-sm">Додати</button>
+          </div>
+          <div class="demo-item">
+            <span class="demo-label">Secondary Button</span>
+            <button class="btn btn-secondary">Відмінити</button>
+          </div>
+          <div class="demo-item">
+            <span class="demo-label">Ghost Button</span>
+            <button class="btn btn-ghost">Обране</button>
+          </div>
+          <div class="demo-item">
+            <span class="demo-label">Dark Button</span>
+            <button class="btn btn-dark">Придбати</button>
+          </div>
+          <div class="demo-item">
+            <span class="demo-label">Button as Link</span>
+            <a href="#" class="btn btn-primary">Посилання-кнопка</a>
+          </div>
+          <div class="demo-item">
+            <span class="demo-label">Icon Button</span>
+            <button class="btn btn-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              </svg>
+            </button>
+          </div>
+          <div class="demo-item">
+            <span class="demo-label">Disabled Button</span>
+            <button class="btn btn-primary" disabled>Відключено</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- BADGES -->
+      <section class="demo-section">
+        <h2>Бейджи</h2>
+        
+        <div class="flex flex-gap-lg flex-wrap">
+          <span class="badge badge-accent">-25%</span>
+          <span class="badge badge-success">В наявності</span>
+          <span class="badge badge-error">Немає</span>
+          <span class="badge badge-warning">Обмежено</span>
+          <span class="badge badge-light">Новинка</span>
+        </div>
+      </section>
+
+      <!-- PRODUCT CARDS -->
+      <section class="demo-section">
+        <h2>Картки товарів</h2>
+        
+        <div class="grid grid-3">
+          <article class="card card-product">
+            <div style="width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #E0E0E0 0%, #F5F5F0 100%); border-radius: var(--border-radius-sm); margin-bottom: var(--sp-md); display: flex; align-items: center; justify-content: center; color: var(--color-text-light);">
+              [Фото]
+            </div>
+            <div class="card-body">
+              <h5 class="card-product-name">Преміальний товар</h5>
+              <div class="card-product-price">
+                <span class="card-product-price-old">1500 грн</span>
+                <span>1200 грн</span>
+              </div>
+              <p class="card-product-info">
+                <span class="badge badge-success">В наявності</span>
+              </p>
+            </div>
+            <div class="card-product-actions">
+              <button class="btn btn-primary flex-1">До кошика</button>
+              <button class="btn btn-ghost">❤️</button>
+            </div>
+          </article>
+
+          <article class="card card-product">
+            <div style="width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #E0E0E0 0%, #F5F5F0 100%); border-radius: var(--border-radius-sm); margin-bottom: var(--sp-md); display: flex; align-items: center; justify-content: center; position: relative; color: var(--color-text-light);">
+              [Фото]
+              <span class="badge badge-accent" style="position: absolute; top: var(--sp-md); right: var(--sp-md);">-30%</span>
+            </div>
+            <div class="card-body">
+              <h5 class="card-product-name">Товар з знижкою</h5>
+              <div class="card-product-price">
+                <span class="card-product-price-old">2000 грн</span>
+                <span>1400 грн</span>
+              </div>
+              <p class="card-product-info">
+                <span class="badge badge-warning">Обмежено</span>
+              </p>
+            </div>
+            <div class="card-product-actions">
+              <button class="btn btn-primary flex-1">До кошика</button>
+              <button class="btn btn-ghost">❤️</button>
+            </div>
+          </article>
+
+          <article class="card card-product">
+            <div style="width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #E0E0E0 0%, #F5F5F0 100%); border-radius: var(--border-radius-sm); margin-bottom: var(--sp-md); display: flex; align-items: center; justify-content: center; opacity: 0.5; color: var(--color-text-light);">
+              [Фото]
+            </div>
+            <div class="card-body">
+              <h5 class="card-product-name">Недоступний товар</h5>
+              <div class="card-product-price">
+                <span>800 грн</span>
+              </div>
+              <p class="card-product-info">
+                <span class="badge badge-light">Немає</span>
+              </p>
+            </div>
+            <div class="card-product-actions">
+              <button class="btn btn-primary flex-1" disabled>Виконано</button>
+              <button class="btn btn-ghost">❤️</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- FORMS -->
+      <section class="demo-section">
+        <h2>Форми</h2>
+        
+        <div class="grid grid-2">
+          <div>
+            <div class="form-group">
+              <label class="form-label">Email адреса</label>
+              <input type="email" class="form-input" placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Пароль</label>
+              <input type="password" class="form-input" placeholder="••••••••">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Область</label>
+              <select class="form-select">
+                <option selected disabled>Виберіть область...</option>
+                <option>Київська</option>
+                <option>Львівська</option>
+                <option>Одеська</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Повідомлення</label>
+              <textarea class="form-textarea" placeholder="Ваше повідомлення..."></textarea>
+            </div>
+          </div>
+
+          <div>
+            <div class="form-group">
+              <div class="form-checkbox-item">
+                <input type="checkbox" class="form-checkbox" id="check1">
+                <label for="check1">Я погоджуюсь з умовами</label>
+              </div>
+              <div class="form-checkbox-item">
+                <input type="checkbox" class="form-checkbox" id="check2">
+                <label for="check2">Підписати на новини</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-radio-item">
+                <input type="radio" class="form-radio" id="radio1" name="delivery">
+                <label for="radio1">Доставка Укрпошта</label>
+              </div>
+              <div class="form-radio-item">
+                <input type="radio" class="form-radio" id="radio2" name="delivery">
+                <label for="radio2">Самовивіз</label>
+              </div>
+            </div>
+
+            <button class="btn btn-primary">Відправити</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALERTS -->
+      <section class="demo-section">
+        <h2>Сповіщення</h2>
+        
+        <div class="alert alert-success">
+          <strong>Успіх!</strong> Товар додано до кошика.
+        </div>
+        <div class="alert alert-error">
+          <strong>Помилка!</strong> Щось пішло не так. Спробуйте ще раз.
+        </div>
+        <div class="alert alert-warning">
+          <strong>Увага!</strong> Залишилось всього 2 товари.
+        </div>
+        <div class="alert alert-info">
+          <strong>Інформація:</strong> Доставка може бути затримана через погоду.
+        </div>
+      </section>
+
+      <!-- BREADCRUMBS -->
+      <section class="demo-section">
+        <h2>Хлібні крихти</h2>
+        
+        <nav class="breadcrumbs">
+          <span class="breadcrumb-item"><a href="/">Головна</a></span>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-item"><a href="/catalog/">Каталог</a></span>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-item"><a href="/catalog/electronics/">Електроніка</a></span>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-item active">Смартфони</span>
+        </nav>
+      </section>
+
+      <!-- PAGINATION -->
+      <section class="demo-section">
+        <h2>Пагінація</h2>
+        
+        <div class="pagination">
+          <button class="pagination-item disabled">← Назад</button>
+          <button class="pagination-item">1</button>
+          <button class="pagination-item active">2</button>
+          <button class="pagination-item">3</button>
+          <button class="pagination-item">4</button>
+          <button class="pagination-item">Вперед →</button>
+        </div>
+      </section>
+
+      <!-- TYPOGRAPHY -->
+      <section class="demo-section">
+        <h2>Типографія</h2>
+        
+        <h1>Заголовок 1 (H1)</h1>
+        <h2>Заголовок 2 (H2)</h2>
+        <h3>Заголовок 3 (H3)</h3>
+        <h4>Заголовок 4 (H4)</h4>
+        <h5>Заголовок 5 (H5)</h5>
+        <h6>Заголовок 6 (H6)</h6>
+        
+        <p>Це звичайний абзац тексту. Він використовує шрифт <code>Lato</code> для максимальної читабельності на всіх пристроях. <strong>Жирний текст</strong> вимагає більшої уваги, а <em>курсив</em> використовується для наголосу.</p>
+        
+        <p class="text-sm">Це малий текст (14px) для вторинної інформації та підказок.</p>
+        <p class="text-xs">Це дуже малий текст (12px) для ярликів та метаданих.</p>
+        <p class="text-lg">Це великий текст (18px) для посилення важливої інформації.</p>
+        
+        <p class="text-muted">Це виділений мутований текст (сірий колір).</p>
+        <p class="text-accent">Це текст з акцентним кольором (золото).</p>
+        <p class="text-success">Це текст успіху (зелений).</p>
+      </section>
+
+      <!-- GRID EXAMPLES -->
+      <section class="demo-section">
+        <h2>Сітка</h2>
+        
+        <h3>Grid 3 колони</h3>
+        <div class="grid grid-3">
+          <div style="background: var(--color-bg-alt); padding: var(--sp-lg); border-radius: var(--border-radius-md); text-align: center;">Колона 1</div>
+          <div style="background: var(--color-bg-alt); padding: var(--sp-lg); border-radius: var(--border-radius-md); text-align: center;">Колона 2</div>
+          <div style="background: var(--color-bg-alt); padding: var(--sp-lg); border-radius: var(--border-radius-md); text-align: center;">Колона 3</div>
+        </div>
+
+        <h3 style="margin-top: var(--sp-2xl);">Grid Auto (відзивчива)</h3>
+        <div class="grid grid-auto">
+          <div style="background: var(--color-bg-alt); padding: var(--sp-lg); border-radius: var(--border-radius-md); text-align: center;">Item</div>
+          <div style="background: var(--color-bg-alt); padding: var(--sp-lg); border-radius: var(--border-radius-md); text-align: center;">Item</div>
+          <div style="background: var(--color-bg-alt); padding: var(--sp-lg); border-radius: var(--border-radius-md); text-align: center;">Item</div>
+          <div style="background: var(--color-bg-alt); padding: var(--sp-lg); border-radius: var(--border-radius-md); text-align: center;">Item</div>
+          <div style="background: var(--color-bg-alt); padding: var(--sp-lg); border-radius: var(--border-radius-md); text-align: center;">Item</div>
+          <div style="background: var(--color-bg-alt); padding: var(--sp-lg); border-radius: var(--border-radius-md); text-align: center;">Item</div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer style="margin-top: var(--sp-3xl); background-color: var(--color-text-primary); color: var(--color-white); padding: var(--sp-2xl) 0;">
+    <div class="container">
+      <p style="text-align: center; color: var(--color-text-light);">
+        Component Library – TRADING 2D Design System
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="TRADING 2D – Картка товару">
+  <meta name="theme-color" content="#FAFAFA">
+
+  <title>Класична сумка "Атлас" – TRADING 2D</title>
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <style>
+    .demo-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(135deg, #E0E0E0 0%, #F5F5F0 100%);
+      border-radius: var(--border-radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-light);
+      font-size: var(--fs-sm);
+    }
+
+    .demo-photo-thumb {
+      aspect-ratio: 1;
+    }
+
+    #main-image {
+      transition: opacity var(--duration-base) var(--easing-ease-out);
+    }
+
+    #main-image.is-switching {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="container-fluid">
+      <div class="header-content">
+
+        <div class="header-logo">
+          <a href="index.html" class="logo-link">
+            <span class="logo-text">TRADING 2D</span>
+          </a>
+        </div>
+
+        <div class="header-search">
+          <form method="GET" action="catalog.html" class="search-form">
+            <input type="text" name="q" class="search-input" placeholder="Пошук товарів..." aria-label="Пошук товарів">
+          </form>
+        </div>
+
+        <div class="header-actions">
+          <a href="#" class="header-action-item" title="Обране">
+            <div class="icon icon-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <span class="header-action-badge">1</span>
+          </a>
+          <a href="#" class="header-action-item" title="Кошик">
+            <div class="icon icon-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+            </div>
+            <span class="header-action-badge">2</span>
+          </a>
+          <div class="header-lang">
+            <select class="lang-select" aria-label="Виберіть мову">
+              <option value="uk" selected>УК</option>
+              <option value="en">EN</option>
+              <option value="ru">РУ</option>
+            </select>
+          </div>
+          <button class="btn btn-icon" id="menu-toggle" aria-label="Меню" aria-expanded="false">
+            <div class="icon icon-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Мобільне меню">
+    <div class="mobile-menu-content">
+      <form method="GET" action="catalog.html" class="mobile-search">
+        <input type="text" name="q" placeholder="Пошук товарів..." aria-label="Пошук товарів">
+      </form>
+      <ul class="mobile-nav-list">
+        <li><a href="catalog.html">Каталог</a></li>
+        <li><a href="#">Про нас</a></li>
+        <li><a href="#">Доставка та оплата</a></li>
+        <li><a href="#">Контакти</a></li>
+        <li><a href="#">Поширені питання</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main">
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs breadcrumbs-alt">
+      <div class="container">
+        <span class="breadcrumb-item"><a href="index.html">Головна</a></span>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-item"><a href="catalog.html">Каталог</a></span>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-item"><a href="catalog.html">Аксесуари</a></span>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-item active">Класична сумка "Атлас"</span>
+      </div>
+    </nav>
+
+    <div class="container product-main-section">
+      <div class="grid product-layout">
+
+        <!-- Product Gallery (LEFT) -->
+        <div>
+          <div class="product-gallery-main">
+            <div class="demo-photo" id="main-image" data-photo="1">Фото 1</div>
+          </div>
+
+          <div class="product-thumbs">
+            <button class="gallery-thumb active" data-photo="1">
+              <div class="demo-photo demo-photo-thumb">1</div>
+            </button>
+            <button class="gallery-thumb" data-photo="2">
+              <div class="demo-photo demo-photo-thumb">2</div>
+            </button>
+            <button class="gallery-thumb" data-photo="3">
+              <div class="demo-photo demo-photo-thumb">3</div>
+            </button>
+            <button class="gallery-thumb" data-photo="4">
+              <div class="demo-photo demo-photo-thumb">4</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Info (RIGHT) -->
+        <div>
+          <h1>Класична сумка "Атлас"</h1>
+
+          <div class="product-meta">
+            <span class="product-rating">★★★★★</span>
+            <span class="product-meta-item">24 відгуки</span>
+            <span class="product-meta-item">SKU: TR-2D-0142</span>
+          </div>
+
+          <div class="product-status">
+            <span class="badge badge-success">В наявності (7 шт)</span>
+            <span class="badge badge-light">Новинка</span>
+          </div>
+
+          <div class="product-price-block">
+            <div class="product-price">
+              1920 грн
+              <span class="product-price-old">2400 грн</span>
+            </div>
+            <span class="product-savings">
+              Ви економите: 480 грн (-20%)
+            </span>
+          </div>
+
+          <div class="product-modifications">
+
+            <div class="form-group">
+              <label class="form-label">Колір</label>
+              <div class="color-swatches">
+                <button style="background-color: #1A1A1A;" title="Чорний" class="color-btn active" data-color="black"></button>
+                <button style="background-color: #C5A059;" title="Бронза" class="color-btn" data-color="bronze"></button>
+                <button style="background-color: #6B4A34;" title="Коричневий" class="color-btn" data-color="brown"></button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Розмір</label>
+              <div class="size-swatches">
+                <button class="size-btn" data-size="S">S</button>
+                <button class="size-btn active" data-size="M">M</button>
+                <button class="size-btn" data-size="L">L</button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="product-quantity-block">
+            <div class="product-quantity-row">
+              <label class="form-label qty-label">Кількість:</label>
+              <div class="qty-control">
+                <button class="qty-btn" id="qty-minus">−</button>
+                <input type="number" value="1" min="1" max="7" class="qty-input" id="qty-input">
+                <button class="qty-btn" id="qty-plus">+</button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg btn-block mb-md">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+              Додати в кошик
+            </button>
+
+            <div class="product-secondary-actions">
+              <button class="btn btn-ghost flex-1">❤️ Обране</button>
+              <button class="btn btn-secondary flex-1">📤 Поділитись</button>
+            </div>
+          </div>
+
+          <div class="product-shipping-info">
+            <div class="shipping-row">
+              <span>📦 Доставка</span>
+              <span>1-3 робочих дні</span>
+            </div>
+            <div class="shipping-row">
+              <span>🔄 Повернення</span>
+              <span>До 30 днів</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Description & Specifications -->
+      <div class="grid product-details-grid">
+
+        <div>
+          <h2>Опис</h2>
+          <p>
+            Класична сумка "Атлас" виконана з натуральної шкіри найвищої якості.
+            Строгий силует та мінімалістична фурнітура роблять її ідеальним
+            супутником як для офісу, так і для повсякденних справ.
+          </p>
+          <p class="text-muted text-sm">
+            Інформація про вислання та доставку знаходиться у розділі "Доставка та оплата".
+          </p>
+        </div>
+
+        <div>
+          <h2>Характеристики</h2>
+          <table class="table table-compact">
+            <tbody>
+              <tr><td class="spec-label">Артикул</td><td>TR-2D-0142</td></tr>
+              <tr><td class="spec-label">Марка</td><td>TRADING 2D</td></tr>
+              <tr><td class="spec-label">Матеріал</td><td>Натуральна шкіра</td></tr>
+              <tr><td class="spec-label">Колір</td><td>Чорний</td></tr>
+              <tr><td class="spec-label">Вага</td><td>850 г</td></tr>
+              <tr><td class="spec-label">Виміри</td><td>32 × 24 × 12 см</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Related Products -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Схожі товари</h2>
+        </div>
+
+        <div class="grid grid-auto-lg">
+          <article class="card card-product">
+            <div class="demo-photo">Фото товару</div>
+            <div class="card-body">
+              <h5 class="card-product-name">Портмоне "Флоренція"</h5>
+              <div class="card-product-price">1100 грн</div>
+            </div>
+            <div class="card-product-actions">
+              <button class="btn btn-primary flex-1">До кошика</button>
+            </div>
+          </article>
+
+          <article class="card card-product">
+            <div class="demo-photo">Фото товару</div>
+            <div class="card-body">
+              <h5 class="card-product-name">Ремінь "Кастор"</h5>
+              <div class="card-product-price">780 грн</div>
+            </div>
+            <div class="card-product-actions">
+              <button class="btn btn-primary flex-1">До кошика</button>
+            </div>
+          </article>
+
+          <article class="card card-product">
+            <div class="demo-photo">Фото товару</div>
+            <div class="card-body">
+              <h5 class="card-product-name">Портфель "Абрис"</h5>
+              <div class="card-product-price">4200 грн</div>
+            </div>
+            <div class="card-product-actions">
+              <button class="btn btn-primary flex-1">До кошика</button>
+            </div>
+          </article>
+
+          <article class="card card-product">
+            <div class="demo-photo">Фото товару</div>
+            <div class="card-body">
+              <h5 class="card-product-name">Шарф "Норд"</h5>
+              <div class="card-product-price">1250 грн</div>
+            </div>
+            <div class="card-product-actions">
+              <button class="btn btn-primary flex-1">До кошика</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Про магазин</h4>
+          <ul>
+            <li><a href="#">Про нас</a></li>
+            <li><a href="#">Блог</a></li>
+            <li><a href="#">Вакансії</a></li>
+            <li><a href="#">Преса</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Сервіс</h4>
+          <ul>
+            <li><a href="#">Доставка та оплата</a></li>
+            <li><a href="#">Повернення та обмін</a></li>
+            <li><a href="#">Поширені питання</a></li>
+            <li><a href="#">Стан замовлення</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Правова інформація</h4>
+          <ul>
+            <li><a href="#">Умови використання</a></li>
+            <li><a href="#">Політика конфіденційності</a></li>
+            <li><a href="#">Договір оферти</a></li>
+            <li><a href="#">Кукі та відстеження</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Контакти</h4>
+          <p><strong>Email:</strong><br><a href="mailto:info@trading2d.com">info@trading2d.com</a></p>
+          <p><strong>Телефон:</strong><br><a href="tel:+380441234567">+38 (044) 123-45-67</a></p>
+          <p><strong>Графік роботи:</strong><br>Пн-Пт: 9:00 - 18:00<br>Сб-Нд: 10:00 - 17:00</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright"><p>&copy; 2024 TRADING 2D. Всі права захищені.</p></div>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" title="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="#" class="footer-social-link" title="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <circle cx="17.5" cy="6.5" r="1.5"/>
+            </svg>
+          </a>
+          <a href="#" class="footer-social-link" title="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2s9 5 20 5a9.5 9.5 0 0 0-9-5.5c4.75 2.25 7-7 7-7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', mobileMenu.classList.contains('active'));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Gallery thumbnails – fade the main image out, swap label, then fade back in
+    const mainImage = document.getElementById('main-image');
+
+    document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+
+        const photoNumber = thumb.dataset.photo;
+        if (photoNumber === mainImage.dataset.photo) return;
+
+        mainImage.classList.add('is-switching');
+        setTimeout(() => {
+          mainImage.textContent = 'Фото ' + photoNumber;
+          mainImage.dataset.photo = photoNumber;
+          mainImage.classList.remove('is-switching');
+        }, 250);
+      });
+    });
+
+    // Size / Color selection
+    document.querySelectorAll('.size-btn, .color-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Quantity stepper
+    const qtyInput = document.getElementById('qty-input');
+    document.getElementById('qty-minus').addEventListener('click', () => {
+      qtyInput.value = Math.max(1, parseInt(qtyInput.value || '1', 10) - 1);
+    });
+    document.getElementById('qty-plus').addEventListener('click', () => {
+      const max = parseInt(qtyInput.max || '99', 10);
+      qtyInput.value = Math.min(max, parseInt(qtyInput.value || '1', 10) + 1);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+/* ========================================
+   TRADING 2D – Design System
+   Engraving / Premium Monochrome Palette
+   ======================================== */
+
+:root {
+  /* ---- CORE PALETTE (Industrial Tech) ---- */
+  --bg-main: #F4F5F7;
+  --bg-card: #FFFFFF;
+  --btn-primary: #27272A;
+  --btn-primary-hover: #3F3F46;
+  --text-on-dark: #F4F5F7;
+  --text-main: #0F172A;
+  --border-color: #E2E8F0;
+  --hero-bg: #F8F9FA;
+  --hero-bg-end: #EEF1F4;
+  --hero-heading: #111827;
+  --hero-muted: #4B5563;
+  --hero-cta: #0F172A;
+  --hero-cta-hover: #1E293B;
+  --hero-shape: #E4EAF0;
+  --accent-start: #FF6B00;
+  --accent-end: #FF8F00;
+  --accent-gradient: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-end) 100%);
+  --stock-bg: #DCFCE7;
+  --stock-fg: #166534;
+  --stock-dot: #22C55E;
+
+  /* ---- LEGACY ALIASES (used across layout/components) ---- */
+  --color-white: var(--bg-card);
+  --color-bg: var(--bg-main);
+  --color-bg-alt: #EEEEEE;
+  --color-text-dark: var(--text-main);
+  --color-text-primary: var(--text-main);
+  --color-text-secondary: #5C5C5C;
+  /* #666666 замінює попередній #8A8A8A: контраст на --bg-main ≈5.2:1, проходить WCAG AA (≥4.5:1) */
+  --color-text-light: #666666;
+  --color-border: var(--border-color);
+  --color-border-dark: #CCCCCC;
+
+  --color-accent: var(--accent-start);
+  --color-accent-hover: var(--accent-end);
+  --color-accent-light: #FFF4E8;
+  --color-price: var(--text-main);
+
+  /* Accent is the industrial orange gradient; success/error stay flat. */
+  --color-success: #2E5E4E;
+  --color-error: #6B2E2E;
+  --color-warning: #5C4A1F;
+  --color-info: var(--btn-primary);
+
+  /* ---- HANDBOOK-СУМІСНІ АЛІАСИ (30_Development/Design_Systems/CSS_Tokens_Handbook.md) ----
+     Не дублюють значення – лише інша назва тих самих токенів вище,
+     щоб не ламати існуючі стилі під час перейменування. */
+  --bg: var(--bg-main);
+  --surface: var(--bg-card);
+  --fg: var(--text-main);
+  --accent: var(--color-accent);
+  --accent-hover: var(--color-accent-hover);
+  --accent-on: var(--text-on-dark);
+  --success: var(--color-success);
+  --warn: var(--color-warning);
+  --danger: var(--color-error);
+
+  /* ---- TYPOGRAPHY ---- */
+
+  --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: var(--font-display);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.25rem;
+  --fs-2xl: 1.5rem;
+  --fs-3xl: 1.875rem;
+  --fs-4xl: 2.25rem;
+  --fs-5xl: 3rem;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 900;
+
+  --lh-tight: 1.2;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.75;
+
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.05em;
+
+  /* ---- SPACING ---- */
+
+  --sp-xs: 0.25rem;
+  --sp-sm: 0.5rem;
+  --sp-md: 1rem;
+  --sp-lg: 1.5rem;
+  --sp-xl: 2rem;
+  --sp-2xl: 3rem;
+  --sp-3xl: 4rem;
+
+  /* ---- BORDERS & SHADOWS ---- */
+
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 4px;
+  --border-radius-lg: 4px;
+
+  --shadow-subtle: 0 4px 8px -2px rgba(15, 23, 42, 0.06);
+  --shadow-sm: 0 8px 12px -4px rgba(15, 23, 42, 0.07);
+  --shadow-md: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 16px 24px -8px rgba(15, 23, 42, 0.12);
+  --shadow-card: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+
+  /* ---- TRANSITIONS ---- */
+
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 350ms;
+  --duration-ui: 200ms;
+  --easing-ease: ease;
+  --easing-ease-in: ease-in;
+  --easing-ease-out: ease-out;
+  --easing-ease-in-out: ease-in-out;
+  /* Emil motion spec (05_System/Skills/design_skills/motion/emil_motion_skill.md) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* ---- LAYOUT ---- */
+
+  --container-max-width: 1200px;
+  --header-height: 80px;
+  --header-height-mobile: 60px;
+
+  --z-base: 0;
+  --z-overlay: 100;
+  --z-modal: 1000;
+  --z-dropdown: 200;
+
+  /* ---- RADIUS (handbook naming, аліас на існуючі --border-radius-*) ---- */
+  --radius-sm: var(--border-radius-sm);
+  --radius-md: var(--border-radius-md);
+  --radius-lg: var(--border-radius-lg);
+}

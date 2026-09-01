@@ -1,0 +1,499 @@
+# TRADING 2D English translations
+msgid ""
+msgstr ""
+"Project-Id-Version: TRADING 2D\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Кошик"
+msgstr "Cart"
+
+msgid "Хлібні крихти"
+msgstr "Breadcrumbs"
+
+msgid "Головна"
+msgstr "Home"
+
+msgid "грн"
+msgstr "UAH"
+
+msgid "Зменшити"
+msgstr "Decrease"
+
+msgid "Збільшити"
+msgstr "Increase"
+
+#, python-format
+msgid "Видалити %(name)s з кошика"
+msgstr "Remove %(name)s from cart"
+
+msgid "Разом"
+msgstr "Total"
+
+msgid "Товарів"
+msgstr "Items"
+
+msgid "Сума"
+msgstr "Amount"
+
+msgid "Оформити замовлення"
+msgstr "Checkout"
+
+msgid "Продовжити покупки"
+msgstr "Continue shopping"
+
+msgid "Ваш кошик порожній."
+msgstr "Your cart is empty."
+
+msgid "Перейти до каталогу"
+msgstr "Go to catalog"
+
+#, python-format
+msgid "«%(name)s» додано в кошик."
+msgstr "“%(name)s” added to cart."
+
+msgid "Оберіть місто та відділення Нової Пошти зі списку."
+msgstr "Select a Nova Poshta city and branch from the list."
+
+msgid "Нове"
+msgstr "New"
+
+msgid "Підтверджено"
+msgstr "Confirmed"
+
+msgid "Оплачено"
+msgstr "Paid"
+
+msgid "Відправлено"
+msgstr "Shipped"
+
+msgid "Завершено"
+msgstr "Completed"
+
+msgid "Скасовано"
+msgstr "Cancelled"
+
+msgid "Нова Пошта — відділення"
+msgstr "Nova Poshta — branch"
+
+msgid "Нова Пошта — курʼєр"
+msgstr "Nova Poshta — courier"
+
+msgid "Самовивіз"
+msgstr "Pickup"
+
+msgid "Оплата картою онлайн (LiqPay)"
+msgstr "Pay online by card (LiqPay)"
+
+msgid "Оплата при отриманні"
+msgstr "Cash on delivery"
+
+msgid "ПІБ"
+msgstr "Full name"
+
+msgid "Телефон"
+msgstr "Phone"
+
+msgid "Коментар до замовлення"
+msgstr "Order comment"
+
+msgid "Місто (Нова Пошта)"
+msgstr "City (Nova Poshta)"
+
+msgid "Відділення (Нова Пошта)"
+msgstr "Branch (Nova Poshta)"
+
+msgid "Оформлення замовлення"
+msgstr "Checkout"
+
+msgid "Контактні дані"
+msgstr "Contact details"
+
+msgid "E-mail (необов'язково)"
+msgstr "Email (optional)"
+
+msgid "Доставка"
+msgstr "Delivery"
+
+msgid "Відділення"
+msgstr "Branch"
+
+msgid "Оберіть місто та відділення зі списку."
+msgstr "Select a city and branch from the list."
+
+msgid "Оплата"
+msgstr "Payment"
+
+msgid "Коментар"
+msgstr "Comment"
+
+msgid "Підтвердити замовлення"
+msgstr "Place order"
+
+msgid "Ваше замовлення"
+msgstr "Your order"
+
+msgid "Замовлення"
+msgstr "Order"
+
+msgid "Дякуємо за замовлення!"
+msgstr "Thank you for your order!"
+
+#, python-format
+msgid ""
+"Замовлення <strong>№%(number)s</strong> прийнято.\n"
+"        Наш менеджер зв'яжеться з вами для підтвердження."
+msgstr ""
+"Order <strong>#%(number)s</strong> has been received.\n"
+"        Our manager will contact you to confirm it."
+
+msgid "Деталі замовлення"
+msgstr "Order details"
+
+msgid "Номер замовлення"
+msgstr "Order number"
+
+msgid "Статус"
+msgstr "Status"
+
+msgid "Спосіб оплати"
+msgstr "Payment method"
+
+msgid "Оплата онлайн"
+msgstr "Online payment"
+
+msgid "Замовлення ще не оплачено — завершіть оплату для швидшої обробки."
+msgstr "This order is not paid yet — complete payment for faster processing."
+
+msgid "Оплатити онлайн"
+msgstr "Pay online"
+
+msgid "Ваш кошик порожній — додайте товари перед оформленням замовлення."
+msgstr "Your cart is empty — add products before checkout."
+
+msgid "Кошик порожній."
+msgstr "Cart is empty."
+
+msgid "Сад і город"
+msgstr "Garden"
+
+msgid "Генератори та енергія"
+msgstr "Generators and energy"
+
+msgid "Акумулятори та зарядка"
+msgstr "Batteries and charging"
+
+msgid "Інструменти"
+msgstr "Tools"
+
+msgid "Авто"
+msgstr "Auto"
+
+msgid "Аксесуари"
+msgstr "Accessories"
+
+msgid "Інше"
+msgstr "Other"
+
+msgid "Каталог товарів"
+msgstr "Product catalog"
+
+msgid "Каталог"
+msgstr "Catalog"
+
+#, python-format
+msgid "Знайдено: %(counter)s товар"
+msgid_plural "Знайдено: %(counter)s товари"
+msgstr[0] "Found: %(counter)s product"
+msgstr[1] "Found: %(counter)s products"
+
+msgid "Фільтри"
+msgstr "Filters"
+
+msgid "Сортування:"
+msgstr "Sort:"
+
+msgid "Рекомендовані"
+msgstr "Recommended"
+
+msgid "Нові"
+msgstr "Newest"
+
+msgid "Популярні"
+msgstr "Popular"
+
+msgid "Найдешевші"
+msgstr "Price: low to high"
+
+msgid "Найдорожчі"
+msgstr "Price: high to low"
+
+msgid "За вашим запитом нічого не знайдено."
+msgstr "Nothing found for your request."
+
+msgid "Скинути фільтри"
+msgstr "Reset filters"
+
+msgid "Відкрити фото на весь екран"
+msgstr "Open photo fullscreen"
+
+msgid "Фото товару"
+msgstr "Product photo"
+
+#, python-format
+msgid "Фото %(n)s"
+msgstr "Photo %(n)s"
+
+msgid "В наявності"
+msgstr "In stock"
+
+msgid "шт"
+msgstr "pcs"
+
+msgid "Немає в наявності"
+msgstr "Out of stock"
+
+msgid "Новинка"
+msgstr "New"
+
+msgid "Хіт продажу"
+msgstr "Bestseller"
+
+#, python-format
+msgid "Ви економите: %(amount)s грн (−%(percent)s%%)"
+msgstr "You save: %(amount)s UAH (−%(percent)s%%)"
+
+msgid "Кількість:"
+msgstr "Quantity:"
+
+msgid "Додати в кошик"
+msgstr "Add to cart"
+
+msgid "У обраному"
+msgstr "In wishlist"
+
+msgid "Обране"
+msgstr "Wishlist"
+
+msgid "Поділитись"
+msgstr "Share"
+
+msgid "1–3 робочих дні"
+msgstr "1–3 business days"
+
+msgid "Повернення"
+msgstr "Returns"
+
+msgid "До 30 днів"
+msgstr "Within 30 days"
+
+msgid "Опис"
+msgstr "Description"
+
+msgid "Опис товару ще не додано."
+msgstr "Product description is not added yet."
+
+msgid "Деталі доставки та оплати — у розділі «Доставка та оплата»."
+msgstr "Delivery and payment details are in the Delivery and payment section."
+
+msgid "Характеристики"
+msgstr "Specifications"
+
+msgid "Артикул"
+msgstr "SKU"
+
+msgid "Категорія"
+msgstr "Category"
+
+msgid "Ціна"
+msgstr "Price"
+
+msgid "Наявність"
+msgstr "Availability"
+
+msgid "Схожі товари"
+msgstr "Related products"
+
+msgid "Хіти продажу"
+msgstr "Bestsellers"
+
+msgid "Новинки"
+msgstr "New arrivals"
+
+msgid "телефон, e-mail та адреса."
+msgstr "phone, email and address."
+
+msgid "Адреса"
+msgstr "Address"
+
+msgid ""
+"Промислове обладнання та інструмент для виробництва. Підбір, наявність, "
+"доставка по Україні."
+msgstr ""
+"Industrial equipment and tools for production. Selection, stock, delivery across Ukraine."
+
+msgid "Найпопулярніші позиції цього сезону"
+msgstr "Most popular items this season"
+
+msgid "Свіжі надходження каталогу"
+msgstr "Fresh catalog arrivals"
+
+msgid "У вас ще немає обраних товарів."
+msgstr "You have no wishlist items yet."
+
+msgid "Скопійовано!"
+msgstr "Copied!"
+
+msgid "Посилання на товар скопійовано"
+msgstr "Product link copied"
+
+msgid "Не вдалося скопіювати посилання"
+msgstr "Could not copy the link"
+
+msgid "Скопіюйте посилання на товар:"
+msgstr "Copy the product link:"
+
+msgid "TRADING 2D – Інтернет-магазин"
+msgstr "TRADING 2D – Online store"
+
+msgid "Закрити кошик"
+msgstr "Close cart"
+
+msgid "Перейти до кошика"
+msgstr "Go to cart"
+
+msgid "Закрити фільтри"
+msgstr "Close filters"
+
+msgid "Категорії"
+msgstr "Categories"
+
+msgid "Пошук категорії"
+msgstr "Search category"
+
+msgid "Знайти категорію…"
+msgstr "Find a category…"
+
+msgid "всі товари"
+msgstr "all products"
+
+msgid "Всі товари"
+msgstr "All products"
+
+msgid "Категорій не знайдено"
+msgstr "No categories found"
+
+msgid "Від"
+msgstr "From"
+
+msgid "Ціна від"
+msgstr "Price from"
+
+msgid "До"
+msgstr "To"
+
+msgid "Ціна до"
+msgstr "Price to"
+
+msgid "Застосувати фільтри"
+msgstr "Apply filters"
+
+msgid "Про магазин"
+msgstr "About the store"
+
+msgid "Про нас"
+msgstr "About us"
+
+msgid "Контакти"
+msgstr "Contacts"
+
+msgid "Сервіс"
+msgstr "Service"
+
+msgid "Доставка та оплата"
+msgstr "Delivery and payment"
+
+msgid "Правова інформація"
+msgstr "Legal"
+
+msgid "Умови використання"
+msgstr "Terms of use"
+
+msgid "Політика конфіденційності"
+msgstr "Privacy policy"
+
+msgid "Графік роботи"
+msgstr "Working hours"
+
+msgid "Пн-Пт: 9:00 - 18:00"
+msgstr "Mon–Fri: 9:00 – 18:00"
+
+msgid "Сб-Нд: 10:00 - 17:00"
+msgstr "Sat–Sun: 10:00 – 17:00"
+
+msgid "Всі права захищені."
+msgstr "All rights reserved."
+
+msgid "головна"
+msgstr "home"
+
+msgid "Пошук товарів..."
+msgstr "Search products..."
+
+msgid "Пошук товарів"
+msgstr "Search products"
+
+msgid "Знайти"
+msgstr "Search"
+
+msgid "Виберіть мову"
+msgstr "Select language"
+
+msgid "Меню"
+msgstr "Menu"
+
+msgid "Головна навігація"
+msgstr "Main navigation"
+
+msgid "Доставка і оплата"
+msgstr "Delivery and payment"
+
+msgid "Мобільне меню"
+msgstr "Mobile menu"
+
+msgid "Сторінки каталогу"
+msgstr "Catalog pages"
+
+msgid "Назад"
+msgstr "Back"
+
+msgid "Вперед"
+msgstr "Next"
+
+msgid "До кошика"
+msgstr "Add to cart"
+
+msgid "Немає"
+msgstr "N/A"
+
+#, python-format
+msgid "Додати «%(name)s» в обране"
+msgstr "Add “%(name)s” to wishlist"
+
+msgid "Перегляд фото товару"
+msgstr "Product photo view"
+
+msgid "Закрити"
+msgstr "Close"
+
+msgid "Попереднє фото"
+msgstr "Previous photo"
+
+msgid "Наступне фото"
+msgstr "Next photo"
+
+msgid "Швидка оплата"
+msgstr "Quick pay"

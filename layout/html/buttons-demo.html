@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#F4F4F4">
+  <title>Кнопки – TRADING 2D Design System</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    body {
+      background-color: var(--bg-main);
+      padding: var(--sp-2xl) var(--sp-md);
+    }
+    .buttons-showcase {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+    }
+    .buttons-showcase h1 {
+      margin-bottom: var(--sp-xl);
+    }
+    .buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--sp-lg);
+    }
+    .button-cell {
+      container-type: inline-size;
+      padding: var(--sp-lg);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+    .button-cell__label {
+      display: block;
+      margin-bottom: var(--sp-md);
+      font-size: var(--fs-xs);
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+    }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-md);
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="buttons-showcase">
+    <h1>Система кнопок</h1>
+
+    <div class="buttons-grid">
+      <div class="button-cell">
+        <span class="button-cell__label">Primary</span>
+        <button type="button" class="btn btn-primary">Додати в кошик</button>
+      </div>
+
+      <div class="button-cell">
+        <span class="button-cell__label">Primary Large</span>
+        <button type="button" class="btn btn-primary btn-lg">Перейти до каталогу</button>
+      </div>
+
+      <div class="button-cell">
+        <span class="button-cell__label">Primary Small</span>
+        <button type="button" class="btn btn-primary btn-sm">Додати</button>
+      </div>
+
+      <div class="button-cell">
+        <span class="button-cell__label">Secondary</span>
+        <button type="button" class="btn btn-secondary">Відмінити</button>
+      </div>
+
+      <div class="button-cell">
+        <span class="button-cell__label">Ghost</span>
+        <button type="button" class="btn btn-ghost">Обране</button>
+      </div>
+
+      <div class="button-cell">
+        <span class="button-cell__label">Icon Button</span>
+        <button type="button" class="btn btn-icon" aria-label="Додати">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="button-cell">
+        <span class="button-cell__label">Disabled</span>
+        <button type="button" class="btn btn-primary" disabled>Відключено</button>
+      </div>
+
+      <div class="button-cell">
+        <span class="button-cell__label">Button as Link</span>
+        <a href="#" class="btn btn-primary">Посилання-кнопка</a>
+      </div>
+    </div>
+
+    <div class="button-row" style="margin-top: var(--sp-2xl);">
+      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="button" class="btn btn-secondary">Secondary</button>
+      <button type="button" class="btn btn-ghost">Ghost</button>
+      <button type="button" class="btn btn-icon" aria-label="Icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+    </div>
+  </div>
+</body>
+</html>
