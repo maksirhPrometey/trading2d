@@ -93,6 +93,19 @@
         display: none;
     }
 
+    .lang-toggle,
+    .lang-option {
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .lang-menu {
+        right: 0;
+        left: auto;
+        min-width: 132px;
+    }
+
     /* Footer Tablet */
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
@@ -208,12 +221,26 @@
 
     .header-actions {
         gap: var(--sp-xs);
+        overflow: visible;
     }
 
     .header-action-item {
         /* Touch target ≥44px (anti-slop) */
         width: 44px;
         height: 44px;
+    }
+
+    .lang-toggle,
+    .lang-option {
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .lang-menu {
+        right: 0;
+        left: auto;
+        min-width: 132px;
     }
 
     /* Buttons */
@@ -389,6 +416,14 @@
         background-position: right var(--sp-md) center;
         background-size: 12px;
         padding-right: 36px;
+    }
+
+    .lang-toggle,
+    .lang-option {
+        -webkit-appearance: none;
+        -webkit-border-radius: var(--border-radius-sm);
+        border-radius: var(--border-radius-sm);
+        font-size: 16px;
     }
 
     /* Prevent iOS rubber band effect */

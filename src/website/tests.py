@@ -155,3 +155,40 @@ class HomeShowcaseTests(TestCase):
             ).exists()
         )
         self.assertEqual(HomeShowcaseItem.objects.count(), 2)
+
+
+class LocaleSelectionTests(TestCase):
+    def _content_lang(self, response):
+        return (response.headers.get('Content-Language') or '')[:2]
+
+    def test_home_stays_uk_when_browser_is_russian(self):
+        response = self.client.get('/', HTTP_ACCEPT_LANGUAGE='ru-RU,ru;q=0.9,en;q=0.8')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self._content_lang(response), 'uk')
+        self.assertContains(response, 'data-lang-menu')
+        self.assertContains(response, 'lang-toggle-code')
+        self.assertContains(response, '>УК<')
+        self.assertNotContains(response, 'data-lang-select')
+        self.assertNotContains(response, 'id="lang-select"')
+
+    def test_ru_cookie_does_not_switch_unprefixed_home(self):
+        from django.conf import settings as django_settings
+
+        self.client.cookies[django_settings.LANGUAGE_COOKIE_NAME] = 'ru'
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self._content_lang(response), 'uk')
+
+    def test_explicit_ru_prefix_still_works(self):
+        response = self.client.get('/ru/', HTTP_ACCEPT_LANGUAGE='uk')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self._content_lang(response), 'ru')
+        self.assertContains(response, '>РУ<')
+
+    def test_set_language_to_en_prefixes_url(self):
+        response = self.client.post(
+            reverse('set_language'),
+            {'language': 'en', 'next': '/'},
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response['Location'].startswith('/en'))

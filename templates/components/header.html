@@ -69,15 +69,25 @@
           <span class="header-action-badge" id="cart-count">{{ cart_items_count|default:0 }}</span>
         </a>
 
-        <form action="{% url 'set_language' %}" method="post" class="header-lang">
-          {% csrf_token %}
-          <input name="next" type="hidden" value="{{ request.get_full_path }}">
-          <select name="language" class="lang-select" id="lang-select" aria-label="{% trans 'Виберіть мову' %}" data-lang-select>
-            <option value="uk"{% if LANGUAGE_CODE == 'uk' %} selected{% endif %}>УК</option>
-            <option value="en"{% if LANGUAGE_CODE == 'en' %} selected{% endif %}>EN</option>
-            <option value="ru"{% if LANGUAGE_CODE == 'ru' %} selected{% endif %}>РУ</option>
-          </select>
-        </form>
+        {% with lang=LANGUAGE_CODE|slice:':2' %}
+        <details class="header-lang" data-lang-menu>
+          <summary class="lang-toggle" aria-label="{% trans 'Виберіть мову' %}">
+            <span class="lang-toggle-code">{% if lang == 'en' %}EN{% elif lang == 'ru' %}РУ{% else %}УК{% endif %}</span>
+            <svg class="lang-toggle-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="lang-menu">
+            <form action="{% url 'set_language' %}" method="post" class="lang-menu-form">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ request.get_full_path }}">
+              <button type="submit" name="language" value="uk" class="lang-option{% if lang == 'uk' %} is-active{% endif %}"{% if lang == 'uk' %} aria-current="true"{% endif %}>УК</button>
+              <button type="submit" name="language" value="en" class="lang-option{% if lang == 'en' %} is-active{% endif %}"{% if lang == 'en' %} aria-current="true"{% endif %}>EN</button>
+              <button type="submit" name="language" value="ru" class="lang-option{% if lang == 'ru' %} is-active{% endif %}"{% if lang == 'ru' %} aria-current="true"{% endif %}>РУ</button>
+            </form>
+          </div>
+        </details>
+        {% endwith %}
 
         <button class="btn btn-icon" id="menu-toggle" type="button" aria-label="{% trans 'Меню' %}" aria-expanded="false" aria-controls="mobile-menu">
           <div class="icon icon-sm">

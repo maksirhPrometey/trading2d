@@ -1,12 +1,21 @@
 (function () {
   'use strict';
 
-  const langSelect = document.querySelector('[data-lang-select]');
-  if (langSelect && langSelect.form) {
-    langSelect.addEventListener('change', function () {
-      langSelect.form.submit();
-    });
-  }
+  const menu = document.querySelector('[data-lang-menu]');
+  if (!menu) return;
+
+  document.addEventListener('click', function (event) {
+    if (!menu.hasAttribute('open')) return;
+    if (menu.contains(event.target)) return;
+    menu.removeAttribute('open');
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape' || !menu.hasAttribute('open')) return;
+    menu.removeAttribute('open');
+    const toggle = menu.querySelector('.lang-toggle');
+    if (toggle) toggle.focus();
+  });
 })();
 
 /* RULE-30: dual-row sticky header — другий рядок навігації згортається
