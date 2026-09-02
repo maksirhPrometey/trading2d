@@ -353,21 +353,12 @@
   line-height: 1;
   letter-spacing: var(--ls-wide);
   cursor: pointer;
-  list-style: none;
   touch-action: manipulation;
   -webkit-tap-highlight-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 
-.lang-toggle::-webkit-details-marker {
-  display: none;
-}
-
-.lang-toggle::marker {
-  content: "";
-}
-
 .lang-toggle:hover,
-.header-lang[open] > .lang-toggle {
+.header-lang.is-open > .lang-toggle {
   color: var(--color-accent);
 }
 
@@ -377,7 +368,7 @@
   transition: transform var(--duration-fast) var(--easing-ease);
 }
 
-.header-lang[open] .lang-toggle-chevron {
+.header-lang.is-open .lang-toggle-chevron {
   transform: rotate(180deg);
 }
 

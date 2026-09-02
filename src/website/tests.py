@@ -192,3 +192,27 @@ class LocaleSelectionTests(TestCase):
         )
         self.assertEqual(response.status_code, 302)
         self.assertTrue(response['Location'].startswith('/en'))
+
+    def test_set_language_from_en_home_to_uk(self):
+        response = self.client.post(
+            reverse('set_language'),
+            {'language': 'uk', 'next': '/en/'},
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], '/')
+
+    def test_set_language_from_en_catalog_to_ru(self):
+        response = self.client.post(
+            reverse('set_language'),
+            {'language': 'ru', 'next': '/en/catalog/'},
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], '/ru/catalog/')
+
+    def test_set_language_from_ru_to_en(self):
+        response = self.client.post(
+            reverse('set_language'),
+            {'language': 'en', 'next': '/ru/'},
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], '/en/')

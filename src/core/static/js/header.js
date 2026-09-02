@@ -1,20 +1,35 @@
 (function () {
   'use strict';
 
-  const menu = document.querySelector('[data-lang-menu]');
-  if (!menu) return;
+  const root = document.querySelector('[data-lang-menu]');
+  if (!root) return;
+
+  const toggle = root.querySelector('.lang-toggle');
+  const panel = root.querySelector('.lang-menu');
+  if (!toggle || !panel) return;
+
+  function setOpen(open) {
+    root.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.hidden = !open;
+  }
+
+  toggle.addEventListener('click', function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    setOpen(panel.hidden);
+  });
 
   document.addEventListener('click', function (event) {
-    if (!menu.hasAttribute('open')) return;
-    if (menu.contains(event.target)) return;
-    menu.removeAttribute('open');
+    if (!root.classList.contains('is-open')) return;
+    if (root.contains(event.target)) return;
+    setOpen(false);
   });
 
   document.addEventListener('keydown', function (event) {
-    if (event.key !== 'Escape' || !menu.hasAttribute('open')) return;
-    menu.removeAttribute('open');
-    const toggle = menu.querySelector('.lang-toggle');
-    if (toggle) toggle.focus();
+    if (event.key !== 'Escape' || !root.classList.contains('is-open')) return;
+    setOpen(false);
+    toggle.focus();
   });
 })();
 

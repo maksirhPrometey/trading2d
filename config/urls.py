@@ -7,6 +7,7 @@ from django.urls import path, include
 
 from config.views import healthz, robots_txt
 from src.products.sitemaps import CategorySitemap, ProductSitemap, StaticViewSitemap
+from src.website.i18n_views import set_language
 
 sitemaps = {
     'products': ProductSitemap,
@@ -19,7 +20,7 @@ urlpatterns = [
     path('robots.txt', robots_txt, name='robots_txt'),
     path(settings.ADMIN_URL, admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
-    path('i18n/', include('django.conf.urls.i18n')),
+    path('i18n/setlang/', set_language, name='set_language'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
