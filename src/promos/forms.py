@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from unfold.widgets import UnfoldAdminIntegerFieldWidget
 
 from src.promos.models import PromoCode
 from src.promos.services import normalize_code
@@ -30,6 +31,7 @@ class PromoCodeAdminForm(forms.ModelForm):
         required=False,
         label=_('Кількість кодів'),
         help_text=_('1 — зберегти цей код. Більше 1 — окремі рядки: КОД-01, КОД-02…'),
+        widget=UnfoldAdminIntegerFieldWidget(),
     )
 
     class Meta:
