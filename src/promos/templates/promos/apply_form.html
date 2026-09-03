@@ -1,0 +1,35 @@
+{% load i18n %}
+<div class="promo-box" data-qa="promo-box">
+  {% if promo_quote and promo_quote.promo %}
+    <div class="promo-box__applied">
+      <p>
+        {% blocktrans with code=promo_quote.promo.code percent=promo_quote.promo.discount_percent %}Код <strong>{{ code }}</strong> (−{{ percent }}%){% endblocktrans %}
+      </p>
+      <form method="post" action="{% url 'promo_remove' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <button type="submit" class="promo-box__remove">{% trans 'Зняти' %}</button>
+      </form>
+    </div>
+  {% else %}
+    <form method="post" action="{% url 'promo_apply' %}" class="promo-form" data-qa="promo-form">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.path }}">
+      <label class="promo-form__label">{% trans 'Промокод' %}</label>
+      <div class="promo-form__row">
+        <input
+          type="text"
+          name="code"
+          class="promo-form__input"
+          aria-label="{% trans 'Промокод' %}"
+          maxlength="32"
+          autocomplete="off"
+          autocapitalize="characters"
+          spellcheck="false"
+          placeholder="{% trans 'Введіть код' %}"
+        >
+        <button type="submit" class="btn btn-secondary promo-form__submit">{% trans 'Застосувати' %}</button>
+      </div>
+    </form>
+  {% endif %}
+</div>

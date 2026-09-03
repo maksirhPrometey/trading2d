@@ -36,6 +36,7 @@ class OrderAdmin(ModelAdmin):
         'phone',
         'status_badge',
         'subtotal',
+        'total',
         'paid_badge',
         'created_at',
     )
@@ -50,12 +51,15 @@ class OrderAdmin(ModelAdmin):
     readonly_fields = (
         'order_number',
         'subtotal',
+        'total',
+        'discount_amount',
+        'promo_code',
         'session_key',
         'payment_transaction_id',
         'created_at',
         'updated_at',
     )
-    raw_id_fields = ('user',)
+    raw_id_fields = ('user', 'promo')
     inlines = (OrderItemInline,)
     warn_unsaved_form = True
     list_per_page = 25
@@ -77,7 +81,19 @@ class OrderAdmin(ModelAdmin):
         ),
         (
             'Оплата',
-            {'fields': ('payment_method', 'is_paid', 'subtotal', 'payment_transaction_id')},
+            {
+                'fields': (
+                    'payment_method',
+                    'is_paid',
+                    'subtotal',
+                    'promo',
+                    'promo_code',
+                    'discount_percent',
+                    'discount_amount',
+                    'total',
+                    'payment_transaction_id',
+                ),
+            },
         ),
         ('Службове', {'classes': ('collapse',), 'fields': ('session_key',)}),
     )

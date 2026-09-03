@@ -31,6 +31,7 @@ urlpatterns += i18n_patterns(
     path('cart/', include('src.cart.urls')),
     path('wishlist/', include('src.wishlist.urls')),
     path('', include('src.orders.urls')),
+    path('', include('src.promos.urls')),
     prefix_default_language=False,
 )
 

@@ -22,9 +22,12 @@
   </div>
 
   <div class="cart-drawer-foot">
+    {% if cart and cart.items.all %}
+      {% include 'promos/apply_form.html' %}
+    {% endif %}
     <div class="cart-drawer-total">
-      <span>{% trans 'Разом' %}</span>
-      <span data-cart-total>{% if cart %}{{ cart.total_price|floatformat:0 }}{% else %}0{% endif %} {% trans 'грн' %}</span>
+      <span>{% trans 'До сплати' %}</span>
+      <span data-cart-total>{% if promo_quote %}{{ promo_quote.total|floatformat:0 }}{% elif cart %}{{ cart.total_price|floatformat:0 }}{% else %}0{% endif %} {% trans 'грн' %}</span>
     </div>
     {% include 'components/quick_pay_button.html' %}
     <a href="{% url 'cart_detail' %}" class="btn btn-ghost btn-block">{% trans 'Перейти до кошика' %}</a>

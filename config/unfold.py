@@ -128,6 +128,11 @@ UNFOLD = {
                         'link': reverse_lazy('admin:orders_order_changelist'),
                     },
                     {
+                        'title': 'Промокоди',
+                        'icon': 'percent',
+                        'link': reverse_lazy('admin:promos_promocode_changelist'),
+                    },
+                    {
                         'title': 'Кошики',
                         'icon': 'shopping_cart',
                         'link': reverse_lazy('admin:cart_cart_changelist'),

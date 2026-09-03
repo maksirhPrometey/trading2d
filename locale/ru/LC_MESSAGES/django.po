@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TRADING 2D\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-03 15:50+0300\n"
+"POT-Creation-Date: 2026-09-03 17:45+0300\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,7 +95,7 @@ msgid "Замовлення"
 msgstr "Заказы"
 
 #: src/accounts/templates/accounts/order_detail.html:23
-#: src/orders/templates/orders/success.html:23
+#: src/orders/templates/orders/success.html:30
 msgid "Статус"
 msgstr "Статус"
 
@@ -133,20 +133,29 @@ msgid "Ціна"
 msgstr "Цена"
 
 #: src/accounts/templates/accounts/order_detail.html:53
-#: src/accounts/templates/accounts/order_detail.html:60
+#: src/accounts/templates/accounts/order_detail.html:61
+#: src/accounts/templates/accounts/order_detail.html:62
+#: src/accounts/templates/accounts/order_detail.html:64
 #: src/accounts/templates/accounts/order_list.html:29
-#: src/accounts/templates/accounts/profile.html:45
-#: src/accounts/templates/accounts/profile.html:67
+#: src/accounts/templates/accounts/profile.html:61
+#: src/accounts/templates/accounts/profile.html:101
 #: src/cart/templates/cart/detail.html:31
 #: src/cart/templates/cart/detail.html:43
-#: src/cart/templates/cart/detail.html:66
+#: src/cart/templates/cart/detail.html:67
+#: src/cart/templates/cart/detail.html:72
+#: src/cart/templates/cart/detail.html:77
 #: src/orders/templates/orders/checkout.html:95
-#: src/orders/templates/orders/checkout.html:100
-#: src/orders/templates/orders/success.html:22
+#: src/orders/templates/orders/checkout.html:101
+#: src/orders/templates/orders/checkout.html:106
+#: src/orders/templates/orders/checkout.html:111
+#: src/orders/templates/orders/success.html:23
+#: src/orders/templates/orders/success.html:25
+#: src/orders/templates/orders/success.html:26
+#: src/orders/templates/orders/success.html:28
 #: src/products/templates/products/detail.html:103
 #: src/products/templates/products/detail.html:105
 #: src/products/templates/products/detail.html:215 templates/base.html:6
-#: templates/components/cart_drawer.html:27
+#: templates/components/cart_drawer.html:30
 #: templates/components/cart_drawer_panel.html:8
 #: templates/components/cart_drawer_panel.html:10
 #: templates/components/product_card.html:39
@@ -154,14 +163,27 @@ msgstr "Цена"
 msgid "грн"
 msgstr "грн"
 
-#: src/accounts/templates/accounts/order_detail.html:60
+#: src/accounts/templates/accounts/order_detail.html:61
+#: src/cart/templates/cart/detail.html:66
+#: src/orders/templates/orders/checkout.html:100
+#: src/orders/templates/orders/success.html:23
+#: src/orders/templates/orders/success.html:28
+msgid "Сума"
+msgstr "Сумма"
+
+#: src/accounts/templates/accounts/order_detail.html:62
+#: src/cart/templates/cart/detail.html:71
+#: src/orders/templates/orders/checkout.html:105
+#: src/orders/templates/orders/success.html:25
+msgid "Знижка"
+msgstr "Скидка"
+
+#: src/accounts/templates/accounts/order_detail.html:64
 #: src/cart/templates/cart/detail.html:59
-#: src/orders/templates/orders/checkout.html:99
-#: templates/components/cart_drawer.html:26
 msgid "Разом"
 msgstr "Итого"
 
-#: src/accounts/templates/accounts/order_detail.html:63
+#: src/accounts/templates/accounts/order_detail.html:67
 msgid "До списку замовлень"
 msgstr "К списку заказов"
 
@@ -170,13 +192,13 @@ msgid "Мої замовлення"
 msgstr "Мои заказы"
 
 #: src/accounts/templates/accounts/order_list.html:36
-#: src/accounts/templates/accounts/profile.html:75
+#: src/accounts/templates/accounts/profile.html:109
 msgid "У вас ще немає замовлень."
 msgstr "У вас ещё нет заказов."
 
 #: src/accounts/templates/accounts/order_list.html:37
-#: src/accounts/templates/accounts/profile.html:76
-#: src/cart/templates/cart/detail.html:76
+#: src/accounts/templates/accounts/profile.html:110
+#: src/cart/templates/cart/detail.html:87
 #: src/website/templates/website/home.html:20
 #: src/wishlist/templates/wishlist/detail.html:35
 #: src/wishlist/templates/wishlist/detail.html:68 templates/base.html:13
@@ -258,7 +280,8 @@ msgstr "Проверьте почту"
 msgid ""
 "Якщо акаунт з таким email існує, ми надіслали інструкції для скидання пароля."
 msgstr ""
-"Если аккаунт с таким email существует, мы отправили инструкции для сброса пароля."
+"Если аккаунт с таким email существует, мы отправили инструкции для сброса "
+"пароля."
 
 #: src/accounts/templates/accounts/password_reset_email.html:2
 #, python-format
@@ -266,7 +289,8 @@ msgid ""
 "Ви отримали цей лист, бо хтось запросив скидання пароля для акаунта на "
 "%(site_name)s."
 msgstr ""
-"Вы получили это письмо, потому что кто-то запросил сброс пароля для аккаунта на %(site_name)s."
+"Вы получили это письмо, потому что кто-то запросил сброс пароля для аккаунта "
+"на %(site_name)s."
 
 #: src/accounts/templates/accounts/password_reset_email.html:4
 msgid "Перейдіть за посиланням:"
@@ -288,22 +312,26 @@ msgstr "Личный кабинет"
 msgid "Зберегти"
 msgstr "Сохранить"
 
-#: src/accounts/templates/accounts/profile.html:42
+#: src/accounts/templates/accounts/profile.html:39
+msgid "Статистика"
+msgstr "Статистика"
+
+#: src/accounts/templates/accounts/profile.html:50
 msgid "Замовлень"
 msgstr "Заказов"
 
-#: src/accounts/templates/accounts/profile.html:46
+#: src/accounts/templates/accounts/profile.html:62
 msgid "Сума покупок"
 msgstr "Сумма покупок"
 
-#: src/accounts/templates/accounts/profile.html:50
+#: src/accounts/templates/accounts/profile.html:76
 #: src/products/templates/products/catalog.html:12
 #: src/products/templates/products/detail.html:13
 #: templates/components/header.html:149
 msgid "Каталог"
 msgstr "Каталог"
 
-#: src/accounts/templates/accounts/profile.html:52
+#: src/accounts/templates/accounts/profile.html:86
 #: src/cart/templates/cart/detail.html:4 src/cart/templates/cart/detail.html:12
 #: src/cart/templates/cart/detail.html:18
 #: src/orders/templates/orders/checkout.html:12
@@ -312,11 +340,11 @@ msgstr "Каталог"
 msgid "Кошик"
 msgstr "Корзина"
 
-#: src/accounts/templates/accounts/profile.html:59
+#: src/accounts/templates/accounts/profile.html:93
 msgid "Останні замовлення"
 msgstr "Последние заказы"
 
-#: src/accounts/templates/accounts/profile.html:72
+#: src/accounts/templates/accounts/profile.html:106
 msgid "Усі замовлення"
 msgstr "Все заказы"
 
@@ -379,26 +407,28 @@ msgstr "Удалить %(name)s из корзины"
 msgid "Товарів"
 msgstr "Товаров"
 
-#: src/cart/templates/cart/detail.html:65
-#: src/orders/templates/orders/success.html:22
-msgid "Сума"
-msgstr "Сумма"
+#: src/cart/templates/cart/detail.html:76
+#: src/orders/templates/orders/checkout.html:110
+#: src/orders/templates/orders/success.html:26
+#: templates/components/cart_drawer.html:29
+msgid "До сплати"
+msgstr "К оплате"
 
-#: src/cart/templates/cart/detail.html:69 templates/components/footer.html:22
+#: src/cart/templates/cart/detail.html:80 templates/components/footer.html:22
 msgid "Оформити замовлення"
 msgstr "Оформить заказ"
 
-#: src/cart/templates/cart/detail.html:70
-#: src/orders/templates/orders/success.html:41
+#: src/cart/templates/cart/detail.html:81
+#: src/orders/templates/orders/success.html:48
 msgid "Продовжити покупки"
 msgstr "Продолжить покупки"
 
-#: src/cart/templates/cart/detail.html:75
+#: src/cart/templates/cart/detail.html:86
 #: templates/components/cart_drawer_panel.html:14
 msgid "Ваш кошик порожній."
 msgstr "Ваша корзина пуста."
 
-#: src/cart/views.py:36
+#: src/cart/views.py:38
 #, python-format
 msgid "«%(name)s» додано в кошик."
 msgstr "«%(name)s» добавлен в корзину."
@@ -518,19 +548,25 @@ msgstr "Детали заказа"
 msgid "Номер замовлення"
 msgstr "Номер заказа"
 
-#: src/orders/templates/orders/success.html:24
+#: src/orders/templates/orders/success.html:24 src/promos/forms.py:11
+#: src/promos/models.py:43 src/promos/templates/promos/apply_form.html:18
+#: src/promos/templates/promos/apply_form.html:24
+msgid "Промокод"
+msgstr "Промокод"
+
+#: src/orders/templates/orders/success.html:31
 msgid "Спосіб оплати"
 msgstr "Способ оплаты"
 
-#: src/orders/templates/orders/success.html:31
+#: src/orders/templates/orders/success.html:38
 msgid "Оплата онлайн"
 msgstr "Оплата онлайн"
 
-#: src/orders/templates/orders/success.html:32
+#: src/orders/templates/orders/success.html:39
 msgid "Замовлення ще не оплачено — завершіть оплату для швидшої обробки."
 msgstr "Заказ ещё не оплачен — завершите оплату для более быстрой обработки."
 
-#: src/orders/templates/orders/success.html:36
+#: src/orders/templates/orders/success.html:43
 msgid "Оплатити онлайн"
 msgstr "Оплатить онлайн"
 
@@ -728,6 +764,141 @@ msgstr "Наличие"
 msgid "Схожі товари"
 msgstr "Похожие товары"
 
+#: src/promos/forms.py:31
+msgid "Кількість кодів"
+msgstr "Количество кодов"
+
+#: src/promos/forms.py:32
+msgid "1 — зберегти цей код. Більше 1 — окремі рядки: КОД-01, КОД-02…"
+msgstr "1 — сохранить этот код. Больше 1 — отдельные строки: КОД-01, КОД-02…"
+
+#: src/promos/models.py:9
+msgid "Код"
+msgstr "Код"
+
+#: src/promos/models.py:12
+msgid "Знижка, %"
+msgstr "Скидка, %"
+
+#: src/promos/models.py:14
+msgid "Активний"
+msgstr "Активный"
+
+#: src/promos/models.py:15
+msgid "Діє з"
+msgstr "Действует с"
+
+#: src/promos/models.py:16
+msgid "Діє до"
+msgstr "Действует до"
+
+#: src/promos/models.py:23
+msgid "Мін. сума кошика"
+msgstr "Мин. сумма корзины"
+
+#: src/promos/models.py:28
+msgid "Ліміт використань"
+msgstr "Лимит использований"
+
+#: src/promos/models.py:29
+msgid "Порожньо — без загального ліміту."
+msgstr "Пусто — без общего лимита."
+
+#: src/promos/models.py:34
+msgid "Ліміт на покупця"
+msgstr "Лимит на покупателя"
+
+#: src/promos/models.py:35
+msgid "Порожньо — без ліміту на акаунт / сесію."
+msgstr "Пусто — без лимита на аккаунт / сессию."
+
+#: src/promos/models.py:37
+msgid "Використано"
+msgstr "Использовано"
+
+#: src/promos/models.py:38
+msgid "Нотатка"
+msgstr "Заметка"
+
+#: src/promos/models.py:44
+msgid "Промокоди"
+msgstr "Промокоды"
+
+#: src/promos/models.py:78
+msgid "Використання промокоду"
+msgstr "Использование промокода"
+
+#: src/promos/models.py:79
+msgid "Використання промокодів"
+msgstr "Использования промокодов"
+
+#: src/promos/services.py:69 src/promos/views.py:27
+msgid "Введіть промокод."
+msgstr "Введите промокод."
+
+#: src/promos/services.py:72
+msgid "Промокод недійсний."
+msgstr "Промокод недействителен."
+
+#: src/promos/services.py:74
+msgid "Термін дії промокоду закінчився."
+msgstr "Срок действия промокода истёк."
+
+#: src/promos/services.py:77
+#, python-format
+msgid "Мінімальна сума для цього коду — %(amount)s грн."
+msgstr "Минимальная сумма для этого кода — %(amount)s грн."
+
+#: src/promos/services.py:81
+msgid "Промокод вичерпано."
+msgstr "Промокод исчерпан."
+
+#: src/promos/services.py:99
+msgid "Ви вже використали цей промокод."
+msgstr "Вы уже использовали этот промокод."
+
+#: src/promos/services.py:142
+msgid "Вкажіть код і кількість."
+msgstr "Укажите код и количество."
+
+#: src/promos/services.py:144
+msgid "Максимум 200 кодів за раз."
+msgstr "Максимум 200 кодов за раз."
+
+#: src/promos/services.py:160
+msgid "Не вдалося згенерувати унікальні коди."
+msgstr "Не удалось сгенерировать уникальные коды."
+
+#: src/promos/templates/promos/apply_form.html:6
+#, python-format
+msgid "Код <strong>%(code)s</strong> (−%(percent)s%%)"
+msgstr "Код <strong>%(code)s</strong> (−%(percent)s%%)"
+
+#: src/promos/templates/promos/apply_form.html:11
+msgid "Зняти"
+msgstr "Снять"
+
+#: src/promos/templates/promos/apply_form.html:29
+msgid "Введіть код"
+msgstr "Введите код"
+
+#: src/promos/templates/promos/apply_form.html:31
+msgid "Застосувати"
+msgstr "Применить"
+
+#: src/promos/views.py:24
+msgid "Додайте товари в кошик, щоб застосувати промокод."
+msgstr "Добавьте товары в корзину, чтобы применить промокод."
+
+#: src/promos/views.py:36
+#, python-format
+msgid "Промокод %(code)s застосовано: −%(percent)s%%"
+msgstr "Промокод %(code)s применён: −%(percent)s%%"
+
+#: src/promos/views.py:45
+msgid "Промокод знято."
+msgstr "Промокод снят."
+
 #: src/website/models.py:62 src/website/templates/website/home.html:51
 msgid "Хіти продажу"
 msgstr "Хиты продаж"
@@ -789,7 +960,7 @@ msgstr "TRADING 2D – Интернет-магазин"
 msgid "Закрити кошик"
 msgstr "Закрыть корзину"
 
-#: templates/components/cart_drawer.html:30
+#: templates/components/cart_drawer.html:33
 msgid "Перейти до кошика"
 msgstr "Перейти в корзину"
 
@@ -973,6 +1144,3 @@ msgstr "Следующее фото"
 #: templates/components/quick_pay_button.html:8
 msgid "Швидка оплата"
 msgstr "Быстрая оплата"
-
-msgid "Статистика"
-msgstr "Статистика"

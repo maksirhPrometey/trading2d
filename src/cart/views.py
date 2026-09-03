@@ -7,6 +7,7 @@ from django.views.decorators.http import require_POST
 
 from src.cart import services
 from src.products.models import Product
+from src.promos.services import quote_cart
 
 
 def cart_detail(request):
@@ -27,10 +28,11 @@ def cart_add(request, slug):
 
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         cart = services.get_cart(request)
+        quote = quote_cart(request, cart)
         return JsonResponse({
             'ok': True,
             'cart_items_count': cart.total_quantity,
-            'total_price': str(cart.total_price),
+            'total_price': str(quote.total),
         })
 
     messages.success(request, _('«%(name)s» додано в кошик.') % {'name': product.loc('name')})
@@ -44,10 +46,11 @@ def cart_update(request, item_id):
 
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         cart = services.get_cart(request)
+        quote = quote_cart(request, cart)
         return JsonResponse({
             'ok': True,
             'cart_items_count': cart.total_quantity if cart else 0,
-            'total_price': str(cart.total_price) if cart else '0',
+            'total_price': str(quote.total),
         })
     return redirect('cart_detail')
 

@@ -50,7 +50,28 @@ class Order(models.Model):
     is_paid = models.BooleanField(default=False)
     payment_transaction_id = models.CharField(max_length=128, blank=True)
 
+    promo = models.ForeignKey(
+        'promos.PromoCode',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='orders',
+    )
+    promo_code = models.CharField(max_length=32, blank=True)
+    discount_percent = models.PositiveSmallIntegerField(default=0)
+    discount_amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0)],
+    )
     subtotal = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
+    total = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        validators=[MinValueValidator(0)],
+    )
 
     session_key = models.CharField(max_length=40, blank=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -71,7 +92,13 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         if not self.order_number:
             self.order_number = self._generate_order_number()
+        if not self.pk and self.total == 0 and not self.discount_amount:
+            self.total = self.subtotal or 0
         super().save(*args, **kwargs)
+
+    @property
+    def payable_amount(self):
+        return self.total if self.total else self.subtotal
 
     def _generate_order_number(self):
         from django.utils import timezone

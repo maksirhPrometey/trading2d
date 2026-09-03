@@ -57,7 +57,11 @@
         </table>
 
         <p class="account-order-total">
-          {% trans 'Разом' %}: <strong>{{ order.subtotal }} {% trans 'грн' %}</strong>
+          {% if order.discount_amount %}
+            {% trans 'Сума' %}: {{ order.subtotal }} {% trans 'грн' %}<br>
+            {% trans 'Знижка' %} ({{ order.promo_code }}): −{{ order.discount_amount }} {% trans 'грн' %}<br>
+          {% endif %}
+          {% trans 'Разом' %}: <strong>{{ order.payable_amount }} {% trans 'грн' %}</strong>
         </p>
 
         <a href="{% url 'accounts:order_list' %}" class="account-card__more">{% trans 'До списку замовлень' %}</a>

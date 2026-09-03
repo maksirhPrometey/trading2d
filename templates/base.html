@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="{% static 'css/components.css' %}">
   <link rel="stylesheet" href="{% static 'css/layout.css' %}">
   <link rel="stylesheet" href="{% static 'css/pages.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/promo.css' %}">
   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
   <link rel="stylesheet" href="{% static 'css/industrial.css' %}">
   <link rel="stylesheet" href="{% static 'css/industrial-mq.css' %}">
@@ -49,6 +50,13 @@
 <body>
   {% include 'components/header.html' %}
   <main class="main">
+    {% if messages %}
+      <div class="container messages" role="status">
+        {% for message in messages %}
+          <p class="alert alert-{{ message.tags|default:'info' }}">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
     {% block content %}{% endblock %}
   </main>
   {% include 'components/footer.html' %}

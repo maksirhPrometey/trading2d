@@ -26,7 +26,7 @@
                   <span class="account-order-row__num">{{ order.order_number }}</span>
                   <span class="account-order-row__date">{{ order.created_at|date:"d.m.Y" }}</span>
                   <span class="account-order-row__status">{{ order.get_status_display }}</span>
-                  <span class="account-order-row__total">{{ order.subtotal }} {% trans 'грн' %}</span>
+                  <span class="account-order-row__total">{{ order.payable_amount }} {% trans 'грн' %}</span>
                 </a>
               </li>
             {% endfor %}

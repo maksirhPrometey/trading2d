@@ -1,4 +1,5 @@
 from src.cart.services import get_cart
+from src.promos.services import quote_cart
 
 
 def cart(request):
@@ -9,4 +10,5 @@ def cart(request):
     return {
         'cart': current_cart,
         'cart_items_count': total_quantity,
+        'promo_quote': quote_cart(request, current_cart),
     }

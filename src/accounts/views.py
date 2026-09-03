@@ -107,7 +107,7 @@ def profile(request):
         form = ProfileForm(instance=profile_obj, user=request.user)
 
     orders_qs = request.user.orders.exclude(status=Order.Status.CANCELLED)
-    stats = orders_qs.aggregate(count=Count('id'), total=Sum('subtotal'))
+    stats = orders_qs.aggregate(count=Count('id'), total=Sum('total'))
     recent_orders = (
         request.user.orders.select_related()
         .prefetch_related('items')

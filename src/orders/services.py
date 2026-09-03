@@ -4,6 +4,7 @@ from django.db import transaction
 
 from src.cart.services import clear_cart, get_cart
 from src.orders.models import Order, OrderItem
+from src.promos.services import redeem_on_order
 
 
 class EmptyCartError(Exception):
@@ -21,10 +22,26 @@ def create_order_from_cart(request, form):
 
     order = form.save(commit=False)
     order.subtotal = subtotal
+    order.total = subtotal
     order.session_key = request.session.session_key or ''
     if request.user.is_authenticated:
         order.user = request.user
     order.save()
+    quote = redeem_on_order(request, order, subtotal)
+    if quote.promo:
+        order.promo = quote.promo
+        order.promo_code = quote.promo.code
+        order.discount_percent = quote.promo.discount_percent
+        order.discount_amount = quote.discount
+        order.total = quote.total
+        order.save(update_fields=[
+            'promo',
+            'promo_code',
+            'discount_percent',
+            'discount_amount',
+            'total',
+            'updated_at',
+        ])
 
     OrderItem.objects.bulk_create([
         OrderItem(

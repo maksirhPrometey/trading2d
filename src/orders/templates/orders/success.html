@@ -19,7 +19,14 @@
       <table class="table table-compact">
         <tbody>
           <tr><td class="spec-label">{% trans 'Номер замовлення' %}</td><td>{{ order.order_number }}</td></tr>
-          <tr><td class="spec-label">{% trans 'Сума' %}</td><td>{{ order.subtotal|floatformat:0 }} {% trans 'грн' %}</td></tr>
+          {% if order.discount_amount %}
+            <tr><td class="spec-label">{% trans 'Сума' %}</td><td>{{ order.subtotal|floatformat:0 }} {% trans 'грн' %}</td></tr>
+            <tr><td class="spec-label">{% trans 'Промокод' %}</td><td>{{ order.promo_code }} (−{{ order.discount_percent }}%)</td></tr>
+            <tr><td class="spec-label">{% trans 'Знижка' %}</td><td>−{{ order.discount_amount|floatformat:0 }} {% trans 'грн' %}</td></tr>
+            <tr><td class="spec-label">{% trans 'До сплати' %}</td><td>{{ order.total|floatformat:0 }} {% trans 'грн' %}</td></tr>
+          {% else %}
+            <tr><td class="spec-label">{% trans 'Сума' %}</td><td>{{ order.payable_amount|floatformat:0 }} {% trans 'грн' %}</td></tr>
+          {% endif %}
           <tr><td class="spec-label">{% trans 'Статус' %}</td><td>{{ order.get_status_display }}</td></tr>
           <tr><td class="spec-label">{% trans 'Спосіб оплати' %}</td><td>{{ order.get_payment_method_display }}</td></tr>
         </tbody>

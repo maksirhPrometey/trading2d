@@ -61,9 +61,20 @@
             <span>{% trans 'Товарів' %}</span>
             <span>{{ cart.total_quantity }}</span>
           </div>
-          <div class="cart-summary-row cart-summary-total">
+          {% include 'promos/apply_form.html' %}
+          <div class="cart-summary-row">
             <span>{% trans 'Сума' %}</span>
-            <span>{{ cart.total_price|floatformat:0 }} {% trans 'грн' %}</span>
+            <span>{{ promo_quote.subtotal|floatformat:0 }} {% trans 'грн' %}</span>
+          </div>
+          {% if promo_quote.discount %}
+            <div class="cart-summary-row cart-summary-row--discount">
+              <span>{% trans 'Знижка' %}</span>
+              <span>−{{ promo_quote.discount|floatformat:0 }} {% trans 'грн' %}</span>
+            </div>
+          {% endif %}
+          <div class="cart-summary-row cart-summary-total">
+            <span>{% trans 'До сплати' %}</span>
+            <span>{{ promo_quote.total|floatformat:0 }} {% trans 'грн' %}</span>
           </div>
           {% include 'components/quick_pay_button.html' %}
           <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg btn-block">{% trans 'Оформити замовлення' %}</a>

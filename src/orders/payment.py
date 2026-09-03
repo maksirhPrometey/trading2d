@@ -16,7 +16,7 @@ def build_payment_data(order):
         'version': '3',
         'public_key': settings.LIQPAY_PUBLIC_KEY,
         'action': 'pay',
-        'amount': str(order.subtotal),
+        'amount': str(order.payable_amount),
         'currency': 'UAH',
         'description': f'Оплата замовлення {order.order_number}',
         'order_id': order.order_number,
