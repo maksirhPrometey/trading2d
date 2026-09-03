@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans 'Мої замовлення' %} – TRADING 2D{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/account.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container account-page">
+  <header class="page-header account-page__header">
+    <h1 class="page-title">{% trans 'Замовлення' %}</h1>
+  </header>
+
+  <div class="account-layout">
+    {% include 'accounts/partials/sidebar.html' %}
+
+    <div class="account-main">
+      <section class="account-card">
+        {% if orders %}
+          <ul class="account-order-list">
+            {% for order in orders %}
+              <li>
+                <a href="{% url 'accounts:order_detail' order.order_number %}" class="account-order-row">
+                  <span class="account-order-row__num">{{ order.order_number }}</span>
+                  <span class="account-order-row__date">{{ order.created_at|date:"d.m.Y" }}</span>
+                  <span class="account-order-row__status">{{ order.get_status_display }}</span>
+                  <span class="account-order-row__total">{{ order.subtotal }} {% trans 'грн' %}</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="account-empty">
+            <p>{% trans 'У вас ще немає замовлень.' %}</p>
+            <a href="{% url 'catalog' %}" class="btn btn-primary">{% trans 'Перейти до каталогу' %}</a>
+          </div>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

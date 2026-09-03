@@ -40,6 +40,18 @@ def checkout(request):
 
 def order_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
+    owns_order = False
+    if request.user.is_authenticated and order.user_id == request.user.id:
+        owns_order = True
+    elif (
+        request.session.get('last_order_id') == order.pk
+        and request.session.get('last_order_number') == order.order_number
+    ):
+        owns_order = True
+    if not owns_order:
+        from django.http import Http404
+        raise Http404()
+
     payment_data = payment_signature = None
     if order.payment_method == Order.PaymentMethod.LIQPAY and not order.is_paid:
         payment_data, payment_signature = payment.build_payment_data(order)

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans 'Вхід' %} – TRADING 2D{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+  <div class="auth-page__shell container">
+    <div class="auth-card">
+      <h1 class="auth-card__title">{% trans 'Вхід' %}</h1>
+      <form method="post" novalidate data-qa="login-form">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="auth-card__errors" role="alert" aria-live="polite">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+        {% for field in form %}
+          <div class="auth-field">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}<p class="auth-field__help">{{ field.help_text }}</p>{% endif %}
+            {{ field.errors }}
+          </div>
+        {% endfor %}
+        <button type="submit" class="auth-card__submit">{% trans 'Увійти' %}</button>
+      </form>
+      <p class="auth-card__footer">
+        <a href="{% url 'accounts:password_reset' %}">{% trans 'Забули пароль?' %}</a>
+      </p>
+      <p class="auth-card__footer">
+        {% trans 'Немає акаунта?' %}
+        <a href="{% url 'accounts:register' %}">{% trans 'Створити акаунт' %}</a>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

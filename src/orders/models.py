@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -25,6 +26,14 @@ class Order(models.Model):
 
     order_number = models.CharField(max_length=32, unique=True, editable=False)
     status = models.CharField(max_length=16, choices=Status.choices, default=Status.NEW)
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='orders',
+    )
 
     full_name = models.CharField(max_length=255, verbose_name=_('ПІБ'))
     phone = models.CharField(max_length=32, verbose_name=_('Телефон'))

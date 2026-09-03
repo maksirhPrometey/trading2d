@@ -22,6 +22,8 @@ def create_order_from_cart(request, form):
     order = form.save(commit=False)
     order.subtotal = subtotal
     order.session_key = request.session.session_key or ''
+    if request.user.is_authenticated:
+        order.user = request.user
     order.save()
 
     OrderItem.objects.bulk_create([
@@ -37,4 +39,6 @@ def create_order_from_cart(request, form):
     ])
 
     clear_cart(cart)
+    request.session['last_order_id'] = order.pk
+    request.session['last_order_number'] = order.order_number
     return order

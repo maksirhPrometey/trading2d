@@ -2,146 +2,536 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TRADING 2D\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-03 15:50+0300\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
-msgid "Кошик"
-msgstr "Кошик"
+#: src/accounts/forms.py:24
+msgid "Email або логін"
+msgstr "Email або логін"
 
-msgid "Хлібні крихти"
-msgstr "Хлібні крихти"
+#: src/accounts/forms.py:37 src/accounts/forms.py:95
+msgid "Email"
+msgstr "Email"
 
-msgid "Головна"
-msgstr "Головна"
+#: src/accounts/forms.py:38 src/accounts/forms.py:93
+msgid "Ім'я"
+msgstr "Ім'я"
 
+#: src/accounts/forms.py:39 src/accounts/models.py:16 src/orders/models.py:39
+#: src/orders/templates/orders/checkout.html:37
+#: src/website/templates/website/contact.html:28
+#: templates/components/footer.html:41
+msgid "Телефон"
+msgstr "Телефон"
+
+#: src/accounts/forms.py:48
+msgid "До 150 символів. Літери, цифри та @/./+/-/_."
+msgstr "До 150 символів. Літери, цифри та @/./+/-/_."
+
+#: src/accounts/forms.py:51
+msgid "Мінімум 8 символів. Без поширених паролів."
+msgstr "Мінімум 8 символів. Без поширених паролів."
+
+#: src/accounts/forms.py:54
+msgid "Повторіть пароль для підтвердження."
+msgstr "Повторіть пароль для підтвердження."
+
+#: src/accounts/forms.py:75 src/accounts/forms.py:126
+msgid "Користувач з таким email уже існує."
+msgstr "Користувач з таким email уже існує."
+
+#: src/accounts/forms.py:94
+msgid "Прізвище"
+msgstr "Прізвище"
+
+#: src/accounts/models.py:21
+#: src/accounts/templates/accounts/partials/sidebar.html:21
+#: src/accounts/templates/accounts/profile.html:21
+msgid "Профіль"
+msgstr "Профіль"
+
+#: src/accounts/models.py:22
+msgid "Профілі"
+msgstr "Профілі"
+
+#: src/accounts/templates/accounts/login.html:4
+#: src/accounts/templates/accounts/login.html:14
+msgid "Вхід"
+msgstr "Вхід"
+
+#: src/accounts/templates/accounts/login.html:30
+#: src/accounts/templates/accounts/password_reset_complete.html:17
+#: src/accounts/templates/accounts/register.html:34
+#: templates/components/header.html:71
+msgid "Увійти"
+msgstr "Увійти"
+
+#: src/accounts/templates/accounts/login.html:33
+#: src/accounts/templates/accounts/password_reset.html:14
+msgid "Забули пароль?"
+msgstr "Забули пароль?"
+
+#: src/accounts/templates/accounts/login.html:36
+#, fuzzy
+#| msgid "Немає в наявності"
+msgid "Немає акаунта?"
+msgstr "Немає в наявності"
+
+#: src/accounts/templates/accounts/login.html:37
+#: src/accounts/templates/accounts/register.html:14
+#, fuzzy
+#| msgid "Закрити кошик"
+msgid "Створити акаунт"
+msgstr "Закрити кошик"
+
+#: src/accounts/templates/accounts/order_detail.html:4
+#: src/accounts/templates/accounts/order_detail.html:13
+#: src/accounts/templates/accounts/order_list.html:13
+#: src/accounts/templates/accounts/partials/sidebar.html:22
+#: src/orders/templates/orders/success.html:4
+msgid "Замовлення"
+msgstr "Замовлення"
+
+#: src/accounts/templates/accounts/order_detail.html:23
+#: src/orders/templates/orders/success.html:23
+msgid "Статус"
+msgstr "Статус"
+
+#: src/accounts/templates/accounts/order_detail.html:27
+msgid "Дата"
+msgstr "Дата"
+
+#: src/accounts/templates/accounts/order_detail.html:31
+#: src/orders/templates/orders/checkout.html:72
+msgid "Оплата"
+msgstr "Оплата"
+
+#: src/accounts/templates/accounts/order_detail.html:32 src/orders/models.py:13
+msgid "Оплачено"
+msgstr "Оплачено"
+
+#: src/accounts/templates/accounts/order_detail.html:35
+#: src/orders/templates/orders/checkout.html:48
+#: src/products/templates/products/detail.html:184
+msgid "Доставка"
+msgstr "Доставка"
+
+#: src/accounts/templates/accounts/order_detail.html:43
+#, fuzzy
+#| msgid "Товарів"
+msgid "Товар"
+msgstr "Товарів"
+
+#: src/accounts/templates/accounts/order_detail.html:44
+msgid "К-сть"
+msgstr "К-сть"
+
+#: src/accounts/templates/accounts/order_detail.html:45
+#: src/products/templates/products/detail.html:215
+#: templates/components/catalog_sidebar.html:93
+msgid "Ціна"
+msgstr "Ціна"
+
+#: src/accounts/templates/accounts/order_detail.html:53
+#: src/accounts/templates/accounts/order_detail.html:60
+#: src/accounts/templates/accounts/order_list.html:29
+#: src/accounts/templates/accounts/profile.html:45
+#: src/accounts/templates/accounts/profile.html:67
+#: src/cart/templates/cart/detail.html:31
+#: src/cart/templates/cart/detail.html:43
+#: src/cart/templates/cart/detail.html:66
+#: src/orders/templates/orders/checkout.html:95
+#: src/orders/templates/orders/checkout.html:100
+#: src/orders/templates/orders/success.html:22
+#: src/products/templates/products/detail.html:103
+#: src/products/templates/products/detail.html:105
+#: src/products/templates/products/detail.html:215 templates/base.html:6
+#: templates/components/cart_drawer.html:27
+#: templates/components/cart_drawer_panel.html:8
+#: templates/components/cart_drawer_panel.html:10
+#: templates/components/product_card.html:39
+#: templates/components/product_card.html:41
 msgid "грн"
 msgstr "грн"
 
+#: src/accounts/templates/accounts/order_detail.html:60
+#: src/cart/templates/cart/detail.html:59
+#: src/orders/templates/orders/checkout.html:99
+#: templates/components/cart_drawer.html:26
+msgid "Разом"
+msgstr "Разом"
+
+#: src/accounts/templates/accounts/order_detail.html:63
+#, fuzzy
+#| msgid "Оформити замовлення"
+msgid "До списку замовлень"
+msgstr "Оформити замовлення"
+
+#: src/accounts/templates/accounts/order_list.html:4
+#, fuzzy
+#| msgid "Номер замовлення"
+msgid "Мої замовлення"
+msgstr "Номер замовлення"
+
+#: src/accounts/templates/accounts/order_list.html:36
+#: src/accounts/templates/accounts/profile.html:75
+#, fuzzy
+#| msgid "У вас ще немає обраних товарів."
+msgid "У вас ще немає замовлень."
+msgstr "У вас ще немає обраних товарів."
+
+#: src/accounts/templates/accounts/order_list.html:37
+#: src/accounts/templates/accounts/profile.html:76
+#: src/cart/templates/cart/detail.html:76
+#: src/website/templates/website/home.html:20
+#: src/wishlist/templates/wishlist/detail.html:35
+#: src/wishlist/templates/wishlist/detail.html:68 templates/base.html:13
+msgid "Перейти до каталогу"
+msgstr "Перейти до каталогу"
+
+#: src/accounts/templates/accounts/partials/sidebar.html:2
+#: src/accounts/templates/accounts/profile.html:4
+#: templates/components/header.html:62
+msgid "Кабінет"
+msgstr "Кабінет"
+
+#: src/accounts/templates/accounts/partials/sidebar.html:23
+#: src/products/templates/products/detail.html:161
+#: src/wishlist/templates/wishlist/detail.html:4
+#: src/wishlist/templates/wishlist/detail.html:17
+#: src/wishlist/templates/wishlist/detail.html:48
+#: src/wishlist/templates/wishlist/detail.html:54 templates/base.html:10
+#: templates/components/header.html:52
+msgid "Обране"
+msgstr "Обране"
+
+#: src/accounts/templates/accounts/partials/sidebar.html:26
+msgid "Вийти"
+msgstr "Вийти"
+
+#: src/accounts/templates/accounts/password_reset.html:4
+#, fuzzy
+#| msgid "Оформлення замовлення"
+msgid "Скидання пароля"
+msgstr "Оформлення замовлення"
+
+#: src/accounts/templates/accounts/password_reset.html:15
+msgid "Вкажіть email — надішлемо посилання для скидання пароля."
+msgstr "Вкажіть email — надішлемо посилання для скидання пароля."
+
+#: src/accounts/templates/accounts/password_reset.html:26
+#, fuzzy
+#| msgid "Спосіб оплати"
+msgid "Надіслати"
+msgstr "Спосіб оплати"
+
+#: src/accounts/templates/accounts/password_reset.html:29
+#: src/accounts/templates/accounts/password_reset_done.html:17
+msgid "Назад до входу"
+msgstr "Назад до входу"
+
+#: src/accounts/templates/accounts/password_reset_complete.html:4
+#: src/accounts/templates/accounts/password_reset_complete.html:14
+msgid "Пароль змінено"
+msgstr "Пароль змінено"
+
+#: src/accounts/templates/accounts/password_reset_complete.html:15
+msgid "Тепер можете увійти з новим паролем."
+msgstr "Тепер можете увійти з новим паролем."
+
+#: src/accounts/templates/accounts/password_reset_confirm.html:4
+#: src/accounts/templates/accounts/password_reset_confirm.html:14
+#, fuzzy
+#| msgid "Новинка"
+msgid "Новий пароль"
+msgstr "Новинка"
+
+#: src/accounts/templates/accounts/password_reset_confirm.html:26
+msgid "Зберегти пароль"
+msgstr "Зберегти пароль"
+
+#: src/accounts/templates/accounts/password_reset_confirm.html:29
+msgid "Посилання недійсне або застаріле. Запросіть нове скидання пароля."
+msgstr "Посилання недійсне або застаріле. Запросіть нове скидання пароля."
+
+#: src/accounts/templates/accounts/password_reset_confirm.html:31
+#, fuzzy
+#| msgid "Закрити кошик"
+msgid "Запросити знову"
+msgstr "Закрити кошик"
+
+#: src/accounts/templates/accounts/password_reset_done.html:4
+msgid "Лист надіслано"
+msgstr "Лист надіслано"
+
+#: src/accounts/templates/accounts/password_reset_done.html:14
+#, fuzzy
+#| msgid "Перейти до каталогу"
+msgid "Перевірте пошту"
+msgstr "Перейти до каталогу"
+
+#: src/accounts/templates/accounts/password_reset_done.html:15
+msgid ""
+"Якщо акаунт з таким email існує, ми надіслали інструкції для скидання пароля."
+msgstr ""
+
+#: src/accounts/templates/accounts/password_reset_email.html:2
+#, python-format
+msgid ""
+"Ви отримали цей лист, бо хтось запросив скидання пароля для акаунта на "
+"%(site_name)s."
+msgstr ""
+
+#: src/accounts/templates/accounts/password_reset_email.html:4
+#, fuzzy
+#| msgid "Перейти до кошика"
+msgid "Перейдіть за посиланням:"
+msgstr "Перейти до кошика"
+
+#: src/accounts/templates/accounts/password_reset_email.html:7
+msgid "Якщо ви не надсилали запит — просто проігноруйте цей лист."
+msgstr "Якщо ви не надсилали запит — просто проігноруйте цей лист."
+
+#: src/accounts/templates/accounts/password_reset_subject.txt:1
+msgid "Скидання пароля — TRADING 2D"
+msgstr "Скидання пароля — TRADING 2D"
+
+#: src/accounts/templates/accounts/profile.html:13
+msgid "Особистий кабінет"
+msgstr "Особистий кабінет"
+
+#: src/accounts/templates/accounts/profile.html:34
+msgid "Зберегти"
+msgstr "Зберегти"
+
+#: src/accounts/templates/accounts/profile.html:42
+#, fuzzy
+#| msgid "Замовлення"
+msgid "Замовлень"
+msgstr "Замовлення"
+
+#: src/accounts/templates/accounts/profile.html:46
+msgid "Сума покупок"
+msgstr "Сума покупок"
+
+#: src/accounts/templates/accounts/profile.html:50
+#: src/products/templates/products/catalog.html:12
+#: src/products/templates/products/detail.html:13
+#: templates/components/header.html:149
+msgid "Каталог"
+msgstr "Каталог"
+
+#: src/accounts/templates/accounts/profile.html:52
+#: src/cart/templates/cart/detail.html:4 src/cart/templates/cart/detail.html:12
+#: src/cart/templates/cart/detail.html:18
+#: src/orders/templates/orders/checkout.html:12
+#: templates/components/cart_drawer.html:11 templates/components/footer.html:21
+#: templates/components/header.html:81
+msgid "Кошик"
+msgstr "Кошик"
+
+#: src/accounts/templates/accounts/profile.html:59
+#, fuzzy
+#| msgid "Деталі замовлення"
+msgid "Останні замовлення"
+msgstr "Деталі замовлення"
+
+#: src/accounts/templates/accounts/profile.html:72
+msgid "Усі замовлення"
+msgstr "Усі замовлення"
+
+#: src/accounts/templates/accounts/register.html:4
+msgid "Реєстрація"
+msgstr "Реєстрація"
+
+#: src/accounts/templates/accounts/register.html:30
+#, fuzzy
+#| msgid "Застосувати фільтри"
+msgid "Зареєструватися"
+msgstr "Застосувати фільтри"
+
+#: src/accounts/templates/accounts/register.html:33
+msgid "Вже є акаунт?"
+msgstr "Вже є акаунт?"
+
+#: src/accounts/views.py:59
+msgid "Акаунт створено. Ласкаво просимо!"
+msgstr "Акаунт створено. Ласкаво просимо!"
+
+#: src/accounts/views.py:104
+#, fuzzy
+#| msgid "Деталі замовлення"
+msgid "Профіль оновлено."
+msgstr "Деталі замовлення"
+
+#: src/cart/templates/cart/detail.html:8
+#: src/orders/templates/orders/checkout.html:8
+#: src/products/templates/products/catalog.html:8
+#: src/products/templates/products/detail.html:9
+#: src/website/templates/website/contact.html:9
+#: src/website/templates/website/info_page.html:9
+#: src/wishlist/templates/wishlist/detail.html:44
+msgid "Хлібні крихти"
+msgstr "Хлібні крихти"
+
+#: src/cart/templates/cart/detail.html:11
+#: src/orders/templates/orders/checkout.html:11
+#: src/products/templates/products/catalog.html:11
+#: src/products/templates/products/detail.html:12
+#: src/website/templates/website/contact.html:12
+#: src/website/templates/website/info_page.html:12
+#: src/wishlist/templates/wishlist/detail.html:47
+msgid "Головна"
+msgstr "Головна"
+
+#: src/cart/templates/cart/detail.html:37
+#: src/products/templates/products/detail.html:123
 msgid "Зменшити"
 msgstr "Зменшити"
 
+#: src/cart/templates/cart/detail.html:39
+#: src/products/templates/products/detail.html:134
 msgid "Збільшити"
 msgstr "Збільшити"
 
+#: src/cart/templates/cart/detail.html:47
 #, python-format
 msgid "Видалити %(name)s з кошика"
 msgstr "Видалити %(name)s з кошика"
 
-msgid "Разом"
-msgstr "Разом"
-
+#: src/cart/templates/cart/detail.html:61
 msgid "Товарів"
 msgstr "Товарів"
 
+#: src/cart/templates/cart/detail.html:65
+#: src/orders/templates/orders/success.html:22
 msgid "Сума"
 msgstr "Сума"
 
+#: src/cart/templates/cart/detail.html:69 templates/components/footer.html:22
 msgid "Оформити замовлення"
 msgstr "Оформити замовлення"
 
+#: src/cart/templates/cart/detail.html:70
+#: src/orders/templates/orders/success.html:41
 msgid "Продовжити покупки"
 msgstr "Продовжити покупки"
 
+#: src/cart/templates/cart/detail.html:75
+#: templates/components/cart_drawer_panel.html:14
 msgid "Ваш кошик порожній."
 msgstr "Ваш кошик порожній."
 
-msgid "Перейти до каталогу"
-msgstr "Перейти до каталогу"
-
+#: src/cart/views.py:36
 #, python-format
 msgid "«%(name)s» додано в кошик."
 msgstr "«%(name)s» додано в кошик."
 
+#: src/orders/forms.py:46
 msgid "Оберіть місто та відділення Нової Пошти зі списку."
 msgstr "Оберіть місто та відділення Нової Пошти зі списку."
 
+#: src/orders/models.py:11
 msgid "Нове"
 msgstr "Нове"
 
+#: src/orders/models.py:12
 msgid "Підтверджено"
 msgstr "Підтверджено"
 
-msgid "Оплачено"
-msgstr "Оплачено"
-
+#: src/orders/models.py:14
 msgid "Відправлено"
 msgstr "Відправлено"
 
+#: src/orders/models.py:15
 msgid "Завершено"
 msgstr "Завершено"
 
+#: src/orders/models.py:16
 msgid "Скасовано"
 msgstr "Скасовано"
 
+#: src/orders/models.py:19
 msgid "Нова Пошта — відділення"
 msgstr "Нова Пошта — відділення"
 
+#: src/orders/models.py:20
 msgid "Нова Пошта — курʼєр"
 msgstr "Нова Пошта — курʼєр"
 
+#: src/orders/models.py:21
 msgid "Самовивіз"
 msgstr "Самовивіз"
 
+#: src/orders/models.py:24
 msgid "Оплата картою онлайн (LiqPay)"
 msgstr "Оплата картою онлайн (LiqPay)"
 
+#: src/orders/models.py:25
 msgid "Оплата при отриманні"
 msgstr "Оплата при отриманні"
 
+#: src/orders/models.py:38 src/orders/templates/orders/checkout.html:32
 msgid "ПІБ"
 msgstr "ПІБ"
 
-msgid "Телефон"
-msgstr "Телефон"
-
+#: src/orders/models.py:41
 msgid "Коментар до замовлення"
 msgstr "Коментар до замовлення"
 
+#: src/orders/models.py:44 src/orders/templates/orders/checkout.html:55
 msgid "Місто (Нова Пошта)"
 msgstr "Місто (Нова Пошта)"
 
+#: src/orders/models.py:46
 msgid "Відділення (Нова Пошта)"
 msgstr "Відділення (Нова Пошта)"
 
+#: src/orders/templates/orders/checkout.html:4
+#: src/orders/templates/orders/checkout.html:13
+#: src/orders/templates/orders/checkout.html:19
 msgid "Оформлення замовлення"
 msgstr "Оформлення замовлення"
 
+#: src/orders/templates/orders/checkout.html:30
 msgid "Контактні дані"
 msgstr "Контактні дані"
 
+#: src/orders/templates/orders/checkout.html:42
 msgid "E-mail (необов'язково)"
 msgstr "E-mail (необов'язково)"
 
-msgid "Доставка"
-msgstr "Доставка"
-
+#: src/orders/templates/orders/checkout.html:61
 msgid "Відділення"
 msgstr "Відділення"
 
+#: src/orders/templates/orders/checkout.html:67
 msgid "Оберіть місто та відділення зі списку."
 msgstr "Оберіть місто та відділення зі списку."
 
-msgid "Оплата"
-msgstr "Оплата"
-
+#: src/orders/templates/orders/checkout.html:81
 msgid "Коментар"
 msgstr "Коментар"
 
+#: src/orders/templates/orders/checkout.html:87
 msgid "Підтвердити замовлення"
 msgstr "Підтвердити замовлення"
 
+#: src/orders/templates/orders/checkout.html:91
 msgid "Ваше замовлення"
 msgstr "Ваше замовлення"
 
-msgid "Замовлення"
-msgstr "Замовлення"
-
+#: src/orders/templates/orders/success.html:10
 msgid "Дякуємо за замовлення!"
 msgstr "Дякуємо за замовлення!"
 
+#: src/orders/templates/orders/success.html:12
 #, python-format
 msgid ""
 "Замовлення <strong>№%(number)s</strong> прийнято.\n"
@@ -150,60 +540,73 @@ msgstr ""
 "Замовлення <strong>№%(number)s</strong> прийнято.\n"
 "        Наш менеджер зв'яжеться з вами для підтвердження."
 
+#: src/orders/templates/orders/success.html:18
 msgid "Деталі замовлення"
 msgstr "Деталі замовлення"
 
+#: src/orders/templates/orders/success.html:21
 msgid "Номер замовлення"
 msgstr "Номер замовлення"
 
-msgid "Статус"
-msgstr "Статус"
-
+#: src/orders/templates/orders/success.html:24
 msgid "Спосіб оплати"
 msgstr "Спосіб оплати"
 
+#: src/orders/templates/orders/success.html:31
 msgid "Оплата онлайн"
 msgstr "Оплата онлайн"
 
+#: src/orders/templates/orders/success.html:32
 msgid "Замовлення ще не оплачено — завершіть оплату для швидшої обробки."
 msgstr "Замовлення ще не оплачено — завершіть оплату для швидшої обробки."
 
+#: src/orders/templates/orders/success.html:36
 msgid "Оплатити онлайн"
 msgstr "Оплатити онлайн"
 
+#: src/orders/views.py:23
 msgid "Ваш кошик порожній — додайте товари перед оформленням замовлення."
 msgstr "Ваш кошик порожній — додайте товари перед оформленням замовлення."
 
+#: src/orders/views.py:32
 msgid "Кошик порожній."
 msgstr "Кошик порожній."
 
+#: src/products/catalog_categories.py:16
 msgid "Сад і город"
 msgstr "Сад і город"
 
+#: src/products/catalog_categories.py:21
 msgid "Генератори та енергія"
 msgstr "Генератори та енергія"
 
+#: src/products/catalog_categories.py:25
 msgid "Акумулятори та зарядка"
 msgstr "Акумулятори та зарядка"
 
+#: src/products/catalog_categories.py:28
 msgid "Інструменти"
 msgstr "Інструменти"
 
+#: src/products/catalog_categories.py:32
 msgid "Авто"
 msgstr "Авто"
 
+#: src/products/catalog_categories.py:35
 msgid "Аксесуари"
 msgstr "Аксесуари"
 
+#: src/products/catalog_categories.py:88
 msgid "Інше"
 msgstr "Інше"
 
+#: src/products/templates/products/catalog.html:4
+#: src/products/templates/products/catalog.html:26
+#: templates/components/footer.html:12 templates/components/header.html:127
 msgid "Каталог товарів"
 msgstr "Каталог товарів"
 
-msgid "Каталог"
-msgstr "Каталог"
-
+#: src/products/templates/products/catalog.html:29
 #, python-format
 msgid "Знайдено: %(counter)s товар"
 msgid_plural "Знайдено: %(counter)s товари"
@@ -211,290 +614,392 @@ msgstr[0] "Знайдено: %(counter)s товар"
 msgstr[1] "Знайдено: %(counter)s товари"
 msgstr[2] "Знайдено: %(counter)s товарів"
 
+#: src/products/templates/products/catalog.html:40
+#: templates/components/catalog_sidebar.html:5
 msgid "Фільтри"
 msgstr "Фільтри"
 
+#: src/products/templates/products/catalog.html:50
 msgid "Сортування:"
 msgstr "Сортування:"
 
+#: src/products/templates/products/catalog.html:52
 msgid "Рекомендовані"
 msgstr "Рекомендовані"
 
+#: src/products/templates/products/catalog.html:53
 msgid "Нові"
 msgstr "Нові"
 
+#: src/products/templates/products/catalog.html:54
 msgid "Популярні"
 msgstr "Популярні"
 
+#: src/products/templates/products/catalog.html:55
 msgid "Найдешевші"
 msgstr "Найдешевші"
 
+#: src/products/templates/products/catalog.html:56
 msgid "Найдорожчі"
 msgstr "Найдорожчі"
 
+#: src/products/templates/products/catalog.html:71
 msgid "За вашим запитом нічого не знайдено."
 msgstr "За вашим запитом нічого не знайдено."
 
+#: src/products/templates/products/catalog.html:72
 msgid "Скинути фільтри"
 msgstr "Скинути фільтри"
 
+#: src/products/templates/products/detail.html:30
 msgid "Відкрити фото на весь екран"
 msgstr "Відкрити фото на весь екран"
 
+#: src/products/templates/products/detail.html:42
+#: templates/components/product_card_image.html:12
 msgid "Фото товару"
 msgstr "Фото товару"
 
+#: src/products/templates/products/detail.html:57
 #, python-format
 msgid "Фото %(n)s"
 msgstr "Фото %(n)s"
 
+#: src/products/templates/products/detail.html:85
+#: src/products/templates/products/detail.html:218
+#: templates/components/catalog_sidebar.html:131
+#: templates/components/product_card.html:47
 msgid "В наявності"
 msgstr "В наявності"
 
+#: src/products/templates/products/detail.html:85
 msgid "шт"
 msgstr "шт"
 
+#: src/products/templates/products/detail.html:90
+#: src/products/templates/products/detail.html:147
+#: src/products/templates/products/detail.html:218
+#: templates/components/product_card.html:52
 msgid "Немає в наявності"
 msgstr "Немає в наявності"
 
+#: src/products/templates/products/detail.html:94
+#: templates/components/product_card.html:13
 msgid "Новинка"
 msgstr "Новинка"
 
+#: src/products/templates/products/detail.html:97
 msgid "Хіт продажу"
 msgstr "Хіт продажу"
 
+#: src/products/templates/products/detail.html:110
 #, python-format
 msgid "Ви економите: %(amount)s грн (−%(percent)s%%)"
 msgstr "Ви економите: %(amount)s грн (−%(percent)s%%)"
 
+#: src/products/templates/products/detail.html:121
 msgid "Кількість:"
 msgstr "Кількість:"
 
+#: src/products/templates/products/detail.html:143
 msgid "Додати в кошик"
 msgstr "Додати в кошик"
 
+#: src/products/templates/products/detail.html:161 templates/base.html:9
 msgid "У обраному"
 msgstr "У обраному"
 
-msgid "Обране"
-msgstr "Обране"
-
+#: src/products/templates/products/detail.html:177
 msgid "Поділитись"
 msgstr "Поділитись"
 
+#: src/products/templates/products/detail.html:185
 msgid "1–3 робочих дні"
 msgstr "1–3 робочих дні"
 
+#: src/products/templates/products/detail.html:188
 msgid "Повернення"
 msgstr "Повернення"
 
+#: src/products/templates/products/detail.html:189
 msgid "До 30 днів"
 msgstr "До 30 днів"
 
+#: src/products/templates/products/detail.html:198
 msgid "Опис"
 msgstr "Опис"
 
+#: src/products/templates/products/detail.html:202
 msgid "Опис товару ще не додано."
 msgstr "Опис товару ще не додано."
 
+#: src/products/templates/products/detail.html:205
 msgid "Деталі доставки та оплати — у розділі «Доставка та оплата»."
 msgstr "Деталі доставки та оплати — у розділі «Доставка та оплата»."
 
+#: src/products/templates/products/detail.html:210
 msgid "Характеристики"
 msgstr "Характеристики"
 
+#: src/products/templates/products/detail.html:213
 msgid "Артикул"
 msgstr "Артикул"
 
+#: src/products/templates/products/detail.html:214
 msgid "Категорія"
 msgstr "Категорія"
 
-msgid "Ціна"
-msgstr "Ціна"
-
+#: src/products/templates/products/detail.html:217
+#: templates/components/catalog_sidebar.html:121
 msgid "Наявність"
 msgstr "Наявність"
 
+#: src/products/templates/products/detail.html:236
 msgid "Схожі товари"
 msgstr "Схожі товари"
 
+#: src/website/models.py:62 src/website/templates/website/home.html:51
 msgid "Хіти продажу"
 msgstr "Хіти продажу"
 
+#: src/website/models.py:63 src/website/templates/website/home.html:68
 msgid "Новинки"
 msgstr "Новинки"
 
+#: src/website/templates/website/contact.html:5
 msgid "телефон, e-mail та адреса."
 msgstr "телефон, e-mail та адреса."
 
+#: src/website/templates/website/contact.html:38
 msgid "Адреса"
 msgstr "Адреса"
 
+#: src/website/templates/website/home.html:18
 msgid ""
 "Промислове обладнання та інструмент для виробництва. Підбір, наявність, "
 "доставка по Україні."
 msgstr ""
-"Промислове обладнання та інструмент для виробництва. Підбір, наявність, доставка по Україні."
+"Промислове обладнання та інструмент для виробництва. Підбір, наявність, "
+"доставка по Україні."
 
+#: src/website/templates/website/home.html:52
 msgid "Найпопулярніші позиції цього сезону"
 msgstr "Найпопулярніші позиції цього сезону"
 
+#: src/website/templates/website/home.html:69
 msgid "Свіжі надходження каталогу"
 msgstr "Свіжі надходження каталогу"
 
+#: src/wishlist/templates/wishlist/detail.html:34
+#: src/wishlist/templates/wishlist/detail.html:67 templates/base.html:11
 msgid "У вас ще немає обраних товарів."
 msgstr "У вас ще немає обраних товарів."
 
+#: templates/base.html:14
 msgid "Скопійовано!"
 msgstr "Скопійовано!"
 
+#: templates/base.html:15
 msgid "Посилання на товар скопійовано"
 msgstr "Посилання на товар скопійовано"
 
+#: templates/base.html:16
 msgid "Не вдалося скопіювати посилання"
 msgstr "Не вдалося скопіювати посилання"
 
+#: templates/base.html:17
 msgid "Скопіюйте посилання на товар:"
 msgstr "Скопіюйте посилання на товар:"
 
+#: templates/base.html:24
 msgid "TRADING 2D – Інтернет-магазин"
 msgstr "TRADING 2D – Інтернет-магазин"
 
+#: templates/components/cart_drawer.html:12
 msgid "Закрити кошик"
 msgstr "Закрити кошик"
 
+#: templates/components/cart_drawer.html:30
 msgid "Перейти до кошика"
 msgstr "Перейти до кошика"
 
+#: templates/components/catalog_sidebar.html:6
 msgid "Закрити фільтри"
 msgstr "Закрити фільтри"
 
+#: templates/components/catalog_sidebar.html:25
 msgid "Категорії"
 msgstr "Категорії"
 
+#: templates/components/catalog_sidebar.html:27
 msgid "Пошук категорії"
 msgstr "Пошук категорії"
 
+#: templates/components/catalog_sidebar.html:32
 msgid "Знайти категорію…"
 msgstr "Знайти категорію…"
 
+#: templates/components/catalog_sidebar.html:46
 msgid "всі товари"
 msgstr "всі товари"
 
+#: templates/components/catalog_sidebar.html:48
 msgid "Всі товари"
 msgstr "Всі товари"
 
+#: templates/components/catalog_sidebar.html:88
 msgid "Категорій не знайдено"
 msgstr "Категорій не знайдено"
 
+#: templates/components/catalog_sidebar.html:99
 msgid "Від"
 msgstr "Від"
 
+#: templates/components/catalog_sidebar.html:104
 msgid "Ціна від"
 msgstr "Ціна від"
 
+#: templates/components/catalog_sidebar.html:110
 msgid "До"
 msgstr "До"
 
+#: templates/components/catalog_sidebar.html:115
 msgid "Ціна до"
 msgstr "Ціна до"
 
+#: templates/components/catalog_sidebar.html:136
 msgid "Застосувати фільтри"
 msgstr "Застосувати фільтри"
 
+#: templates/components/footer.html:9
 msgid "Про магазин"
 msgstr "Про магазин"
 
+#: templates/components/footer.html:11 templates/components/header.html:128
+#: templates/components/header.html:150
 msgid "Про нас"
 msgstr "Про нас"
 
+#: templates/components/footer.html:13 templates/components/footer.html:35
+#: templates/components/header.html:130 templates/components/header.html:152
 msgid "Контакти"
 msgstr "Контакти"
 
+#: templates/components/footer.html:18
 msgid "Сервіс"
 msgstr "Сервіс"
 
+#: templates/components/footer.html:20 templates/components/header.html:151
 msgid "Доставка та оплата"
 msgstr "Доставка та оплата"
 
+#: templates/components/footer.html:27
 msgid "Правова інформація"
 msgstr "Правова інформація"
 
+#: templates/components/footer.html:29
 msgid "Умови використання"
 msgstr "Умови використання"
 
+#: templates/components/footer.html:30
 msgid "Політика конфіденційності"
 msgstr "Політика конфіденційності"
 
+#: templates/components/footer.html:45
 msgid "Графік роботи"
 msgstr "Графік роботи"
 
+#: templates/components/footer.html:46
 msgid "Пн-Пт: 9:00 - 18:00"
 msgstr "Пн-Пт: 9:00 - 18:00"
 
+#: templates/components/footer.html:47
 msgid "Сб-Нд: 10:00 - 17:00"
 msgstr "Сб-Нд: 10:00 - 17:00"
 
+#: templates/components/footer.html:55
 msgid "Всі права захищені."
 msgstr "Всі права захищені."
 
+#: templates/components/header.html:11
 msgid "головна"
 msgstr "головна"
 
+#: templates/components/header.html:38 templates/components/header.html:143
 msgid "Пошук товарів..."
 msgstr "Пошук товарів..."
 
+#: templates/components/header.html:39 templates/components/header.html:144
 msgid "Пошук товарів"
 msgstr "Пошук товарів"
 
+#: templates/components/header.html:41
 msgid "Знайти"
 msgstr "Знайти"
 
+#: templates/components/header.html:94
 msgid "Виберіть мову"
 msgstr "Виберіть мову"
 
+#: templates/components/header.html:112
 msgid "Меню"
 msgstr "Меню"
 
+#: templates/components/header.html:125
 msgid "Головна навігація"
 msgstr "Головна навігація"
 
+#: templates/components/header.html:129
 msgid "Доставка і оплата"
 msgstr "Доставка і оплата"
 
+#: templates/components/header.html:136
 msgid "Мобільне меню"
 msgstr "Мобільне меню"
 
+#: templates/components/pagination.html:3
 msgid "Сторінки каталогу"
 msgstr "Сторінки каталогу"
 
+#: templates/components/pagination.html:8
+#: templates/components/pagination.html:10
 msgid "Назад"
 msgstr "Назад"
 
+#: templates/components/pagination.html:30
+#: templates/components/pagination.html:32
 msgid "Вперед"
 msgstr "Вперед"
 
+#: templates/components/product_card.html:63
 msgid "До кошика"
 msgstr "До кошика"
 
+#: templates/components/product_card.html:66
 msgid "Немає"
 msgstr "Немає"
 
+#: templates/components/product_card.html:76
 #, python-format
 msgid "Додати «%(name)s» в обране"
 msgstr "Додати «%(name)s» в обране"
 
+#: templates/components/product_lightbox.html:3
 msgid "Перегляд фото товару"
 msgstr "Перегляд фото товару"
 
+#: templates/components/product_lightbox.html:5
 msgid "Закрити"
 msgstr "Закрити"
 
+#: templates/components/product_lightbox.html:12
 msgid "Попереднє фото"
 msgstr "Попереднє фото"
 
+#: templates/components/product_lightbox.html:22
 msgid "Наступне фото"
 msgstr "Наступне фото"
 
+#: templates/components/quick_pay_button.html:8
 msgid "Швидка оплата"
 msgstr "Швидка оплата"

@@ -31,6 +31,7 @@ class OrderItemInline(TabularInline):
 class OrderAdmin(ModelAdmin):
     list_display = (
         'order_number',
+        'user',
         'full_name',
         'phone',
         'status_badge',
@@ -45,7 +46,7 @@ class OrderAdmin(ModelAdmin):
         'is_paid',
         ('created_at', RangeDateFilter),
     )
-    search_fields = ('order_number', 'full_name', 'phone', 'email')
+    search_fields = ('order_number', 'full_name', 'phone', 'email', 'user__username')
     readonly_fields = (
         'order_number',
         'subtotal',
@@ -54,12 +55,13 @@ class OrderAdmin(ModelAdmin):
         'created_at',
         'updated_at',
     )
+    raw_id_fields = ('user',)
     inlines = (OrderItemInline,)
     warn_unsaved_form = True
     list_per_page = 25
     date_hierarchy = 'created_at'
     fieldsets = (
-        ('Замовлення', {'fields': ('order_number', 'status', 'created_at', 'updated_at')}),
+        ('Замовлення', {'fields': ('order_number', 'status', 'user', 'created_at', 'updated_at')}),
         ('Покупець', {'fields': ('full_name', 'phone', 'email', 'comment')}),
         (
             'Доставка',

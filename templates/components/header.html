@@ -58,6 +58,26 @@
           <span class="header-action-badge" id="wishlist-count">{{ wishlist_count|default:0 }}</span>
         </a>
 
+        {% if user.is_authenticated %}
+          <a href="{% url 'accounts:profile' %}" class="header-action-item" title="{% trans 'Кабінет' %}" data-qa="account-link">
+            <span class="header-action-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+          </a>
+        {% else %}
+          <a href="{% url 'accounts:login' %}" class="header-action-item" title="{% trans 'Увійти' %}" data-qa="login-link">
+            <span class="header-action-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+          </a>
+        {% endif %}
+
         <a href="{% url 'cart_detail' %}" class="header-action-item" data-cart-open title="{% trans 'Кошик' %}">
           <span class="header-action-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">

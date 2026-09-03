@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans 'Кабінет' %} – TRADING 2D{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/account.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container account-page">
+  <header class="page-header account-page__header">
+    <h1 class="page-title">{% trans 'Особистий кабінет' %}</h1>
+  </header>
+
+  <div class="account-layout">
+    {% include 'accounts/partials/sidebar.html' %}
+
+    <div class="account-main">
+      <section class="account-card account-card--main profile-card--main">
+        <h2 class="account-card__title">{% trans 'Профіль' %}</h2>
+        <form method="post" novalidate class="account-profile-form">
+          {% csrf_token %}
+          {% if form.non_field_errors %}
+            <div class="form-errors" role="alert">{{ form.non_field_errors }}</div>
+          {% endif %}
+          {% for field in form %}
+            <div class="form-group">
+              <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {{ field.errors }}
+            </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary">{% trans 'Зберегти' %}</button>
+        </form>
+      </section>
+
+      <aside class="account-sidebar-panels profile-sidebar">
+        <div class="account-card profile-stats">
+          <div class="profile-stat-card">
+            <span class="profile-stat-card__value">{{ stats.count|default:0 }}</span>
+            <span class="profile-stat-card__label">{% trans 'Замовлень' %}</span>
+          </div>
+          <div class="profile-stat-card">
+            <span class="profile-stat-card__value">{{ stats.total|default:0 }} {% trans 'грн' %}</span>
+            <span class="profile-stat-card__label">{% trans 'Сума покупок' %}</span>
+          </div>
+        </div>
+        <div class="account-card profile-quick-links">
+          <a href="{% url 'catalog' %}" class="profile-quick-link">{% trans 'Каталог' %}</a>
+          <a href="{% url 'cart_detail' %}" class="profile-quick-link">
+            {% trans 'Кошик' %}
+            {% if cart_items_count %}<span class="profile-quick-link__badge">{{ cart_items_count }}</span>{% endif %}
+          </a>
+        </div>
+      </aside>
+
+      <section class="account-card account-orders-preview">
+        <h2 class="account-card__title">{% trans 'Останні замовлення' %}</h2>
+        {% if recent_orders %}
+          <ul class="account-order-list">
+            {% for order in recent_orders %}
+              <li>
+                <a href="{% url 'accounts:order_detail' order.order_number %}" class="account-order-row">
+                  <span class="account-order-row__num">{{ order.order_number }}</span>
+                  <span class="account-order-row__status">{{ order.get_status_display }}</span>
+                  <span class="account-order-row__total">{{ order.subtotal }} {% trans 'грн' %}</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+          <a href="{% url 'accounts:order_list' %}" class="account-card__more">{% trans 'Усі замовлення' %}</a>
+        {% else %}
+          <div class="account-empty">
+            <p>{% trans 'У вас ще немає замовлень.' %}</p>
+            <a href="{% url 'catalog' %}" class="btn btn-primary">{% trans 'Перейти до каталогу' %}</a>
+          </div>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

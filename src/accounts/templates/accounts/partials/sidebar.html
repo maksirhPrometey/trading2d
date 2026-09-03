@@ -1,0 +1,29 @@
+{% load i18n static %}
+<aside class="account-sidebar" aria-label="{% trans 'Кабінет' %}">
+  <div class="account-sidebar__identity">
+    <img
+      src="{% static 'img/accounts/avatar-default.svg' %}"
+      alt=""
+      class="account-sidebar__avatar"
+      width="48"
+      height="48"
+    >
+    <div class="account-sidebar__meta">
+      <p class="account-sidebar__name">
+        {% if user.get_full_name %}{{ user.get_full_name }}{% else %}{{ user.username }}{% endif %}
+      </p>
+      {% if user.email %}
+        <p class="account-sidebar__email">{{ user.email }}</p>
+      {% endif %}
+    </div>
+  </div>
+  <nav class="account-sidebar__nav">
+    <a href="{% url 'accounts:profile' %}" class="account-sidebar__link{% if account_nav == 'profile' %} is-active{% endif %}">{% trans 'Профіль' %}</a>
+    <a href="{% url 'accounts:order_list' %}" class="account-sidebar__link{% if account_nav == 'orders' %} is-active{% endif %}">{% trans 'Замовлення' %}</a>
+    <a href="{% url 'wishlist_detail' %}" class="account-sidebar__link{% if account_nav == 'wishlist' %} is-active{% endif %}">{% trans 'Обране' %}</a>
+    <form action="{% url 'accounts:logout' %}" method="post" class="account-sidebar__logout">
+      {% csrf_token %}
+      <button type="submit" class="account-sidebar__link account-sidebar__link--button">{% trans 'Вийти' %}</button>
+    </form>
+  </nav>
+</aside>

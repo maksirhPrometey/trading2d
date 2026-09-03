@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'tinymce',
     'src.products.apps.ProductsConfig',
     'src.website.apps.WebsiteConfig',
+    'src.accounts.apps.AccountsConfig',
     'src.cart.apps.CartConfig',
     'src.wishlist.apps.WishlistConfig',
     'src.orders.apps.OrdersConfig',
@@ -124,7 +125,9 @@ _admin_path = (env('ADMIN_URL', 'manage') or 'manage').strip().strip('/')
 if not _admin_path or _admin_path.lower() == 'admin':
     _admin_path = 'manage'
 ADMIN_URL = f'{_admin_path}/'
-LOGIN_URL = 'admin:login'
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'accounts:profile'
+LOGOUT_REDIRECT_URL = 'home'
 
 X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -141,3 +144,4 @@ LIQPAY_SANDBOX = env_bool('LIQPAY_SANDBOX', True)
 
 SITE_DOMAIN = env('SITE_DOMAIN', 'localhost:8000')
 SITE_PROTOCOL = env('SITE_PROTOCOL', 'http')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', 'noreply@trading2d.com')
