@@ -970,3 +970,6 @@ msgstr "Next photo"
 #: templates/components/quick_pay_button.html:8
 msgid "Швидка оплата"
 msgstr "Quick pay"
+
+msgid "Статистика"
+msgstr "Statistics"
