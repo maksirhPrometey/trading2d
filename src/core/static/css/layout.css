@@ -287,11 +287,15 @@
   height: 40px;
   color: var(--color-text-primary);
   text-decoration: none;
+  outline: none;
   transition: color var(--duration-base) var(--easing-ease);
 }
 
-.header-action-item:hover {
+.header-action-item:hover,
+.header-action-item:focus,
+.header-action-item:focus-visible {
   color: var(--color-accent);
+  outline: none;
 }
 
 .header-action-icon {
